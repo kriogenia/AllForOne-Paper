@@ -1,0 +1,68 @@
+\subsection{API}
+
+\begin{longtable}{ l l c }
+    \hline
+    Referencia & Caso & Resultado \\
+    \hline
+    \ref{cp:u:api:encabezado_correcto} & Encabezado de autenticación correcto & PASA \\
+    \ref{cp:u:api:encabezado_faltante} & Encabezado de autenticación faltante & PASA \\
+    \ref{cp:u:api:encabezado_mal_formateado} & Encabezado de autenticación mal formateado & PASA \\
+    \ref{cp:u:api:encabezado_token_invalido} & Encabezado de autenticación con token inválido & PASA \\\hline
+    \ref{cp:u:api:manejo_error_correcto} & Manejo correcto de errores conocidos & PASA \\
+    \ref{cp:u:api:manejo_correcto_desconocido} & Manejo correcto de errores desconocidos & PASA \\\hline
+    \ref{cp:u:api:crear_mensaje_texto} & Creación de un mensaje de texto & PASA \\
+    \ref{cp:u:api:crear_mensaje_texto_invalido} & Creación de un mensaje de texto inválido & PASA \\
+    \ref{cp:u:api:recuperar_mensaje} & Recuperación de mensajes & PASA \\
+    \ref{cp:u:api:recuperar_mensaje_pagina} & Recuperación de mensajes de una página concreta & PASA \\\hline
+    \ref{cp:u:api:crear_notificacion} & Creación de una notificación & PASA \\
+    \ref{cp:u:api:marcar_notificacion_leida} & Marcado de una notificación con más interesados como leída & PASA \\
+    \ref{cp:u:api:marcar_notificacion_compartida_leida} & Marcado de una notificación sin más interesados como leída & PASA \\
+    \ref{cp:u:api:marcar_notificaciones_leidas} & Marcado de todas las notificaciones como leídas & PASA \\
+    \ref{cp:u:api:recuperar_notificaciones} & Recuperación de notificaciones & PASA \\
+    \ref{cp:u:api:recuperar_notificaciones_edad} & Recuperación de notificaciones con edad especificada & PASA \\\hline
+    \caption{Primera parte de los resultados de las pruebas unitarias de la API}
+\end{longtable}
+
+\begin{figure}[H]
+\begin{longtable}{ l l c }
+    \hline
+    Referencia & Caso & Resultado \\
+    \hline
+    \ref{cp:u:api:inicio_sesion} & Inicio de sesión & PASA \\
+    \ref{cp:u:api:cierre_sesion} & Cierre de sesión & PASA \\
+    \ref{cp:u:api:comprobar_sesion_abierta} & Comprobación de sesión abierta & PASA \\
+    \ref{cp:u:api:comprobar_sesion_cerrada} & Comprobación de sesión cerrada & PASA \\
+    \ref{cp:u:api:comprobar_tupla_existente} & Comprobación de tuplas de sesión existentes & PASA \\
+    \ref{cp:u:api:comprobar_tupla_inexistente} & Comprobación de tuplas de sesión inexistentes & PASA \\
+    \ref{cp:u:api:comprobar_tupla_invalida} & Comprobación de tuplas de sesión inválidas & PASA \\\hline
+    \ref{cp:u:api:crear_tarea} & Creación de una tarea & PASA \\
+    \ref{cp:u:api:crear_tarea_invalida} & Creación de una tarea inválida & PASA \\
+    \ref{cp:u:api:eliminar_tarea} & Eliminación de una tarea & PASA \\
+    \ref{cp:u:api:actualizar_tarea} & Actualización de una tarea & PASA \\
+    \ref{cp:u:api:actualizar_tarea_no_existente} & Actualización de una tarea no existente & PASA \\
+    \ref{cp:u:api:recuperar_tareas} & Recuperación de tareas relevantes & PASA \\
+    \ref{cp:u:api:recuperar_tareas_edad} & Recuperación de tareas relevantes de edad especificada & PASA \\
+    \ref{cp:u:api:comprobar_sala_tarea} & Comprobación de la sala de una tarea & PASA \\\hline 
+    \ref{cp:u:api:generar_token_sesion} & Generación de tokens de sesión & PASA \\
+    \ref{cp:u:api:refresco_token_sesion} & Refresco de tokens de sesión & PASA \\
+    \ref{cp:u:api:refresco_token_sesion_invalido} & Refresco de tokens de sesión inválida & PASA \\
+    \ref{cp:u:api:generacion_token_vinculacion} & Generación de tokens de vinculación & PASA \\
+    \ref{cp:u:api:decodificacion_token_vinculacion} & Decodificación de tokens de vinculación & PASA \\
+    \ref{cp:u:api:decodificacion_token_vinculacion_invalido} & Decodificación de tokens de vinculación inválidos & PASA \\
+    \ref{cp:u:api:comprobar_tupla_token} & Comprobación de tuplas de tokens & PASA \\\hline
+    \ref{cp:u:api:recuperar_usuario_no_existente_googleid} & Recuperación de un usuario no existente por su ID de Google & PASA \\
+    \ref{cp:u:api:recuperar_usuario_googleid} & Recuperación de un usuario existente por su ID de Google & PASA \\
+    \ref{cp:u:api:actualizar_usuario} & Actualización de un usuario & PASA \\
+    \ref{cp:u:api:crear_vinculo} & Creación de vínculo & PASA \\
+    \ref{cp:u:api:crear_vinculo_invalido} & Creación de vínculo inválida & PASA \\
+    \ref{cp:u:api:eliminar_vinculo} & Eliminación de vínculos inválida & PASA \\
+    \ref{cp:u:api:recuperar_cared} & Recuperación de Paciente vinculado de un Cuidador & PASA \\
+    \ref{cp:u:api:recuperar_cared_no_vinculo} & Recuperación de Paciente vinculado de un Cuidador no vinculado & PASA \\
+    \ref{cp:u:api:recuperar_cared_invalido} & Recuperación de Paciente vinculado inválida & PASA \\
+    \ref{cp:u:api:recuperar_vinculos} & Recuperación de vínculos & PASA \\
+    \ref{cp:u:api:recuperar_rol} & Recuperación de rol de un usuario & PASA \\\hline
+    \caption{Segunda parte de los resultados de las pruebas unitarias de la API}
+\end{longtable}
+\end{figure}
+
+Como se puede comprobar las pruebas unitarias de la \acrshort{api} no han podido ofrecer un resultado más satisfactorio. Todos los casos de prueba han sido implementados y sus resultados son exitosos. Además, se ha conseguido una cobertura de código superior al \textbf{90\%} en líneas, condiciones, métodos y clases.

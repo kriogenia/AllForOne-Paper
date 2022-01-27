@@ -1,0 +1,538 @@
+\subsection{API}
+
+\subsubsection{Middleware de autenticación}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Encabezado de autenticación correcto}} \\ \hline 
+    Descripción                 & Se lanza una petición privada con un encabezado de autenticación con formato y token correctos \\ \hline
+    Entrada                     & Petición con encabezado "Authorization: Bearer valid" \\ \hline
+    Resultado esperado          & Extrae el token y llama a la siguiente función \\ \hline
+    \caption{Prueba unitaria de la API: Encabezado de autenticación correcto}
+    \label{cp:u:api:encabezado_correcto}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Encabezado de autenticación faltante}} \\ \hline 
+    Descripción                 & Se lanza una petición privada sin encabezado de autenticación \\ \hline
+    Entrada                     & Petición sin encabezado de autorización \\ \hline
+    Resultado esperado          & Error Bad Request \\ \hline
+    \caption{Prueba unitaria de la API: Encabezado de autenticación faltante}
+    \label{cp:u:api:encabezado_faltante}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Encabezado de autenticación mal formateado}} \\ \hline 
+    Descripción                 & Se lanza una petición privada con encabezado de autenticación con formato erróneo \\ \hline
+    Entrada                     & Petición con encabezado sin Bearer \\ 
+                                & Petición con encabezado con Bearer mal escrito \\ \hline
+    Resultado esperado          & Error Bad Request \\ \hline
+    \caption{Prueba unitaria de la API: Encabezado de autenticación mal formateado}
+    \label{cp:u:api:encabezado_mal_formateado}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Encabezado de autenticación con token inválido}} \\ \hline 
+    Descripción                 & Se lanza una petición privada con encabezado de autenticación con formato erróneo \\ \hline
+    Entrada                     & Petición con encabezado "Authorization: Bearer invalid" \\ \hline
+    Resultado esperado          & Error Unauthorized \\ \hline
+    \caption{Prueba unitaria de la API: Encabezado de autenticación con token inválido}
+    \label{cp:u:api:encabezado_token_invalido}
+\end{longtable}
+
+\vspace{-20pt}
+\subsubsection{Middleware de manejo de errores}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Manejo correcto de errores conocidos}} \\ \hline 
+    Descripción                 & Se lanza un error HTTP esperando la respuesta correspondiente \\ \hline
+    Entrada                     & HttpError con diferentes estados \\ \hline
+    Resultado esperado          & Respuesta de error con el estado del error lanzado \\ \hline
+    \caption{Prueba unitaria de la API: Manejo correcto de errores conocidos}
+    \label{cp:u:api:manejo_error_correcto}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Manejo correcto de errores desconocidos}} \\ \hline 
+    Descripción                 & Se lanza un Error esperando una respuesta de error interno \\ \hline
+    Entrada                     & Error \\ \hline
+    Resultado esperado          & Respuesta con estado 500: Internal Server Error \\ \hline
+    \caption{Prueba unitaria de la API: Manejo correcto de errores desconocidos}
+    \label{cp:u:api:manejo_correcto_desconocido}
+\end{longtable}
+
+\vspace{-20pt}
+\subsubsection{Servicio de mensajes}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de un mensaje de texto}} \\ \hline 
+    Descripción                 & Se persiste un mensaje de texto válido en la base de datos \\ \hline
+    Entrada                     & Mensaje de texto válido \\ \hline
+    Resultado esperado          & Mensaje persistido en la base de datos \\
+                                & Retorno del mensaje creado \\ \hline
+    \caption{Prueba unitaria de la API: Creación de un mensaje de texto}
+    \label{cp:u:api:crear_mensaje_texto}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de un mensaje de texto inválido}} \\ \hline 
+    Descripción                 & Se persiste un mensaje de texto inválido en la base de datos \\ \hline
+    Entrada                     & Mensaje de texto sin alguna propiedad obligatoria \\ \hline
+    Resultado esperado          & HttpError con BadRequest \\ \hline
+    \caption{Prueba unitaria de la API: Creación de un mensaje de texto inválido}
+    \label{cp:u:api:crear_mensaje_texto_invalido}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de mensajes}} \\ \hline 
+    Descripción                 & Se recupera la primera página de mensajes de una habitación \\ \hline
+    Entrada                     & Habitación de los mensajes \\ \hline
+    Resultado esperado          & Lista de mensajes esperados \\ \hline
+    \caption{Prueba unitaria de la API: Recuperación de mensajes}
+    \label{cp:u:api:recuperar_mensaje}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de mensajes de una página concreta}} \\ \hline 
+    Descripción                 & Se recupera una página de mensajes de una habitación distinta de la primera \\ \hline
+    Entrada                     & Habitación de los mensajes y página a recuperar \\ \hline
+    Resultado esperado          & Lista de mensajes esperados \\ \hline
+    \caption{Prueba unitaria de la API: Recuperación de mensajes de una página concreta}
+    \label{cp:u:api:recuperar_mensaje_pagina}
+\end{longtable}
+
+\subsubsection{Servicio de notificaciones}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de una notificación}} \\ \hline 
+    Descripción                 & Se crea y persiste una notificación en la base de datos \\ \hline
+    Entrada                     & Acción e ID del autor \\ \hline
+    Resultado esperado          & Notificación persistida en la base de datos \\
+                                & Retorno de la notificación creada \\ \hline
+    \caption{Prueba unitaria de la API: Creación de una notificación}
+    \label{cp:u:api:crear_notificacion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcado de una notificación con más interesados como leída}} \\ \hline 
+    Descripción                 & Se marcan una notificación con más interesados como leída por un usuario \\ \hline
+    Entrada                     & ID de la notificación y del usuario \\ \hline
+    Resultado esperado          & La notificación es marcada como leída por el usuario \\ \hline
+    \caption{Prueba unitaria de la API: Marcado de una notificación con más interesados como leída}
+    \label{cp:u:api:marcar_notificacion_leida}
+\end{longtable}
+
+\newpage
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcado de una notificación sin más interesados como leída}} \\ \hline 
+    Descripción                 & Se marcan una notificación sin más interesados como leída por el usuario \\ \hline
+    Entrada                     & ID de la notificación y del usuario \\ \hline
+    Resultado esperado          & La notificación es eliminada de la base de datos \\ \hline
+    \caption{Prueba unitaria de la API: Marcado de una notificación sin más interesados como leída}
+    \label{cp:u:api:marcar_notificacion_compartida_leida}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcado de todas las notificaciones como leídas}} \\ \hline 
+    Descripción                 & Se marcan las notificaciones de un usuario como leídas \\ \hline
+    Entrada                     & ID del usuario \\ \hline
+    Resultado esperado          & Todos las notificaciones del usuario marcadas como leídas \\ \hline
+    \caption{Prueba unitaria de la API: Marcado de notificaciones como leídas}
+    \label{cp:u:api:marcar_notificaciones_leidas}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de notificaciones}} \\ \hline 
+    Descripción                 & Se recupera las notificaciones no leídas por defecto \\ \hline
+    Entrada                     & ID del usuario \\ \hline
+    Resultado esperado          & Lista de notificaciones esperadas \\ \hline
+    \caption{Prueba unitaria de la API: Recuperación de notificaciones}
+    \label{cp:u:api:recuperar_notificaciones}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de notificaciones con edad especificada}} \\ \hline 
+    Descripción                 & Se recupera las notificaciones no leídas con una edad máxima especificada \\ \hline
+    Entrada                     & ID del usuario y edad máxima de la notificación \\ \hline
+    Resultado esperado          & Lista de notificaciones esperadas \\ \hline
+    \caption{Prueba unitaria de la API: Recuperación de notificaciones con edad especificada}
+    \label{cp:u:api:recuperar_notificaciones_edad}
+\end{longtable}
+
+\newpage
+\subsubsection{Servicios de sesiones}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Inicio de sesión}} \\ \hline 
+    Descripción                 & Se crea y persiste una nueva sesión en la base de datos \\ \hline
+    Entrada                     & Expiración y los tokens de autenticación y refresco \\ \hline
+    Resultado esperado          & Sesión persistida en la base de datos \\
+                                & Retorno de la sesión creada \\ \hline
+    \caption{Prueba unitaria de la API: Inicio de sesión}
+    \label{cp:u:api:inicio_sesion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Cierre de sesión}} \\ \hline 
+    Descripción                 & Se elimina una sesión en la base de datos \\ \hline
+    Entrada                     & Token de autenticación de la sesión \\ \hline
+    Resultado esperado          & Sesión eliminada en la base de datos \\  \hline
+    \caption{Prueba unitaria de la API: Cierre de sesión}
+    \label{cp:u:api:cierre_sesion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Comprobación de sesión abierta}} \\ \hline 
+    Descripción                 & Se comprueba que una sesión activa lo está \\ \hline
+    Entrada                     & Token de autenticación de la sesión \\ \hline
+    Resultado esperado          & Verdadero \\ \hline
+    \caption{Prueba unitaria de la API: Comprobación de sesión abierta}
+    \label{cp:u:api:comprobar_sesion_abierta}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Comprobación de sesión cerrada}} \\ \hline 
+    Descripción                 & Se comprueba que una sesión inactiva lo está \\ \hline
+    Entrada                     & Token de autenticación de una sesión inexistente \\ \hline
+    Resultado esperado          & Falso \\ \hline
+    \caption{Prueba unitaria de la API: Comprobación de sesión cerrada}
+    \label{cp:u:api:comprobar_sesion_cerrada}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Comprobación de tuplas de sesión existentes}} \\ \hline 
+    Descripción                 & Se comprueba que una tupla de tokens de sesión son válidos \\ \hline
+    Entrada                     & Tokens de autenticación y refresco de una sesión existente \\ \hline
+    Resultado esperado          & Verdadero \\ \hline
+    \caption{Prueba unitaria de la API: Comprobación de tuplas de sesión existentes}
+    \label{cp:u:api:comprobar_tupla_existente}
+\end{longtable}
+
+\newpage
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Comprobación de tuplas de sesión inexistentes}} \\ \hline 
+    Descripción                 & Se comprueba que una tupla de tokens de sesión relacionados e inactivos son inválidos \\ \hline
+    Entrada                     & Tokens de autenticación y refresco de una sesión inexistente \\ \hline
+    Resultado esperado          & Falso \\ \hline
+    \caption{Prueba unitaria de la API: Comprobación de tuplas de sesión inexistentes}
+    \label{cp:u:api:comprobar_tupla_inexistente}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Comprobación de tuplas de sesión inválidas}} \\ \hline 
+    Descripción                 & Se comprueba que una tupla de tokens de sesión no relacionados son inválidos \\ \hline
+    Entrada                     & Tokens de autenticación y refresco no relacionados \\ \hline
+    Resultado esperado          & Falso \\ \hline
+    \caption{Prueba unitaria de la API: Comprobación de tuplas de sesión inválidas}
+    \label{cp:u:api:comprobar_tupla_invalida}
+\end{longtable}
+
+\vspace{-20pt}
+\subsubsection{Servicio de tareas}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de una tarea}} \\ \hline 
+    Descripción                 & Se persiste una tarea válida en la base de datos \\ \hline
+    Entrada                     & Tarea válida \\ \hline
+    Resultado esperado          & Tarea persistida en la base de datos \\
+                                & Retorno de la tarea creada \\ \hline
+    \caption{Prueba unitaria de la API: Creación de una tarea}
+    \label{cp:u:api:crear_tarea}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de una tarea inválida}} \\ \hline 
+    Descripción                 & Se persiste una tarea inválida en la base de datos \\ \hline
+    Entrada                     & Tarea sin alguna propiedad obligatoria \\ \hline
+    Resultado esperado          & HttpError con BadRequest \\ \hline
+    \caption{Prueba unitaria de la API: Creación de una tarea inválida}
+    \label{cp:u:api:crear_tarea_invalida}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación de una tarea}} \\ \hline 
+    Descripción                 & Se elimina una tarea en la base de datos \\ \hline
+    Entrada                     & ID de la tarea \\ \hline
+    Resultado esperado          & Tarea eliminada de la base de datos \\ \hline
+    \caption{Prueba unitaria de la API: Eliminación de una tarea}
+    \label{cp:u:api:eliminar_tarea}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualización de una tarea}} \\ \hline 
+    Descripción                 & Se actualiza una tarea con datos válidos en la base de datos \\ \hline
+    Entrada                     & Tarea válida \\ \hline
+    Resultado esperado          & Tarea actualizada en la base de datos \\
+                                & Retorno de la tarea creada \\ \hline
+    \caption{Prueba unitaria de la API: Actualización de una tarea}
+    \label{cp:u:api:actualizar_tarea}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualización de una tarea no existente}} \\ \hline 
+    Descripción                 & Se actualiza una tarea no existente la base de datos \\ \hline
+    Entrada                     & Tarea inválida \\ \hline
+    Resultado esperado          & Error fatal \\ \hline
+    \caption{Prueba unitaria de la API: Actualización de una tarea no existente}
+    \label{cp:u:api:actualizar_tarea_no_existente}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de tareas relevantes}} \\ \hline 
+    Descripción                 & Se recuperan las tareas relevantes sin más especificación \\ \hline
+    Entrada                     & Habitación de las tareas a recuperar \\ \hline
+    Resultado esperado          & Lista de tareas esperadas \\ \hline
+    \caption{Prueba unitaria de la API: Recuperación de tareas relevantes}
+    \label{cp:u:api:recuperar_tareas}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de tareas relevantes de edad especificada}} \\ \hline 
+    Descripción                 & Se recuperan las tareas relevantes con una edad máxima especificada \\ \hline
+    Entrada                     & Habitación de las tareas a recuperar y edad máxima \\ \hline
+    Resultado esperado          & Lista de tareas esperadas \\ \hline
+    \caption{Prueba unitaria de la API: Recuperación de tareas relevantes de edad especificada}
+    \label{cp:u:api:recuperar_tareas_edad}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Comprobación de la sala de una tarea}} \\ \hline 
+    Descripción                 & Se comprueba si una tarea pertenece a una sala específica \\ \hline
+    Entrada                     & ID de la tarea y sala de la tarea \\
+                                & ID de la tarea y sala errónea \\ \hline
+    Resultado esperado          & Verdadero o falso según sea correcto que pertenezca a la sala \\ \hline
+    \caption{Prueba unitaria de la API: Comprobación de la sala de una tarea}
+    \label{cp:u:api:comprobar_sala_tarea}
+\end{longtable}
+
+\subsubsection{Servicio de tokens}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Generación de tokens de sesión}} \\ \hline 
+    Descripción                 & Se crean los tokens de una sesión \\ \hline
+    Entrada                     & Clave del token \\ \hline
+    Resultado esperado          & Tokens de sesión de la clave proporcionada \\  \hline
+    \caption{Prueba unitaria de la API: Generación de tokens de sesión}
+    \label{cp:u:api:generar_token_sesion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Refresco de tokens de sesión}} \\ \hline 
+    Descripción                 & Se refresco los tokens de una sesión válida \\ \hline
+    Entrada                     & Token de autenticación y de refresco \\ \hline
+    Resultado esperado          & Nueva tupla de sesión \\  \hline
+    \caption{Prueba unitaria de la API: Refresco de tokens de sesión}
+    \label{cp:u:api:refresco_token_sesion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Refresco de tokens de sesión inválida}} \\ \hline 
+    Descripción                 & Se refresco los tokens de una sesión inválida \\ \hline
+    Entrada                     & Token de refresco inactivo \\
+                                & Token de refresco expirado \\
+                                & Token de refresco incorrecto \\ \hline
+    Resultado esperado          & Error \\  \hline
+    \caption{Prueba unitaria de la API: Refresco de tokens de sesión inválida}
+    \label{cp:u:api:refresco_token_sesion_invalido}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Generación de tokens de vinculación}} \\ \hline 
+    Descripción                 & Se crean un token de vinculación \\ \hline
+    Entrada                     & ID del usuario \\ \hline
+    Resultado esperado          & Token de vinculación del usuario \\  \hline
+    \caption{Prueba unitaria de la API: Generación de tokens de vinculación}
+    \label{cp:u:api:generacion_token_vinculacion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Decodificación de tokens de vinculación}} \\ \hline 
+    Descripción                 & Se decodifica un token de vinculación \\ \hline
+    Entrada                     & Token de vinculación \\ \hline
+    Resultado esperado          & ID del usuario \\  \hline
+    \caption{Prueba unitaria de la API: Decodificación de tokens de vinculación}
+    \label{cp:u:api:decodificacion_token_vinculacion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Decodificación de tokens de vinculación inválidos}} \\ \hline 
+    Descripción                 & Se decodifica un token de vinculación inválidos \\ \hline
+    Entrada                     & Token de vinculación expirado \\
+                                & Token de vinculación incorrecto \\ \hline
+    Resultado esperado          & Error \\  \hline
+    \caption{Prueba unitaria de la API: Decodificación de tokens de vinculación inválidos}
+    \label{cp:u:api:decodificacion_token_vinculacion_invalido}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Comprobación de tuplas de tokens}} \\ \hline 
+    Descripción                 & Se comprueba si una tupla de dos tokens es válida \\ \hline
+    Entrada                     & Tokens a comprobar \\ \hline
+    Resultado esperado          & Verdadero y falso según sea válidos \\  \hline
+    \caption{Prueba unitaria de la API: Comprobación de tuplas de tokens}
+    \label{cp:u:api:comprobar_tupla_token}
+\end{longtable}
+
+\vspace{-30pt}
+\subsubsection{Servicio de usuarios}
+
+\vspace{-5pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de un usuario no existente por su ID de Google}} \\ \hline 
+    Descripción                 & Se recupera un usuario no existente con su ID de Google \\ \hline
+    Entrada                     & ID de Google de un usuario no existente \\ \hline
+    Resultado esperado          & Usuario nuevo y asociado a la ID \\  \hline
+    \caption{Prueba unitaria de la API: Recuperación de un usuario no existente por su ID de Google}
+    \label{cp:u:api:recuperar_usuario_no_existente_googleid}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de un usuario existente por su ID de Google}} \\ \hline 
+    Descripción                 & Se recupera un usuario con su ID de Google \\ \hline
+    Entrada                     & ID de Google de un usuario \\ \hline
+    Resultado esperado          & Usuario asociado a la ID \\  \hline
+    \caption{Prueba unitaria de la API: Recuperación de un usuario existente por su ID de Google}
+    \label{cp:u:api:recuperar_usuario_googleid}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualización de un usuario}} \\ \hline 
+    Descripción                 & Se actualiza la información de un usuario \\ \hline
+    Entrada                     & Datos de usuario válidos \\ \hline
+    Resultado esperado          & Actualización del usuario en la base de datos \\
+                                & Retorno del usuario actualizado \\ \hline
+    \caption{Prueba unitaria de la API: Actualización de un usuario}
+    \label{cp:u:api:actualizar_usuario}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de vínculo}} \\ \hline 
+    Descripción                 & Se crea un vínculo entre dos usuarios \\ \hline
+    Entrada                     & ID del Paciente y el Cuidador a vincular \\ \hline
+    Resultado esperado          & Creación del vínculo entre los usuarios \\  \hline
+    \caption{Prueba unitaria de la API: Creación de vínculo}
+    \label{cp:u:api:crear_vinculo}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de vínculo inválida}} \\ \hline 
+    Descripción                 & Se intenta crear un vínculo inválido \\ \hline
+    Entrada                     & ID de dos Pacientes \\
+                                & ID de dos Cuidadores \\
+                                & ID de usuario sin rol \\
+                                & ID de Paciente con el máximo de vínculos \\
+                                & ID de Cuidador ya vinculado \\ \hline
+    Resultado esperado          & Error con el mensaje tocante \\  \hline
+    \caption{Prueba unitaria de la API: Creación de vínculo inválida}
+    \label{cp:u:api:crear_vinculo_invalido}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación de vínculo}} \\ \hline 
+    Descripción                 & Se elimina un vínculo entre dos usuarios \\ \hline
+    Entrada                     & ID de un Paciente y un Cuidador vinculados \\ \hline
+    Resultado esperado          & Eliminación del vínculo \\  \hline
+    \caption{Prueba unitaria de la API: Eliminación de vínculo}
+    \label{cp:u:api:eliminar_vinculo}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de Paciente vinculado de un Cuidador}} \\ \hline 
+    Descripción                 & Se recupera el Paciente vinculado de un Cuidador \\ \hline
+    Entrada                     & ID de un Cuidador vinculado \\ \hline
+    Resultado esperado          & Paciente vinculado del Cuidador \\  \hline
+    \caption{Prueba unitaria de la API: Recuperación de Paciente vinculado de un Cuidador}
+    \label{cp:u:api:recuperar_cared}
+\end{longtable}
+
+\newpage
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de Paciente vinculado de un Cuidador no vinculado}} \\ \hline 
+    Descripción                 & Se intenta recuperar el Paciente vinculado de un Cuidador no vinculado \\ \hline
+    Entrada                     & ID de un Cuidador no vinculado \\ \hline
+    Resultado esperado          & NULL \\  \hline
+    \caption{Prueba unitaria de la API: Recuperación de Paciente vinculado de un Cuidador no vinculado}
+    \label{cp:u:api:recuperar_cared_no_vinculo}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de Paciente vinculado inválida}} \\ \hline 
+    Descripción                 & Se intenta recuperar el Paciente vinculado de un no Cuidador \\ \hline
+    Entrada                     & ID de un usuario no Cuidador \\ \hline
+    Resultado esperado          & Error \\  \hline
+    \caption{Prueba unitaria de la API: Recuperación de Paciente vinculado inválida}
+    \label{cp:u:api:recuperar_cared_invalido}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de vínculos}} \\ \hline 
+    Descripción                 & Se recuperan los vínculos de un usuario \\ \hline
+    Entrada                     & ID de un usuario \\
+                                & ID de un usuario no vinculado \\ \hline
+    Resultado esperado          & Lista de usuarios asociados al usuario \\  \hline
+    \caption{Prueba unitaria de la API: Recuperación de vínculos}
+    \label{cp:u:api:recuperar_vinculos}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de rol de un usuario}} \\ \hline 
+    Descripción                 & Se recupera el rol de un usuario \\ \hline
+    Entrada                     & ID de un usuario  \\ \hline
+    Resultado esperado          & Rol del usuario \\  \hline
+    \caption{Prueba unitaria de la API: Recuperación de rol de un usuario}
+    \label{cp:u:api:recuperar_rol}
+\end{longtable}

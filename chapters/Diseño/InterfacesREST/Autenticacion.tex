@@ -1,0 +1,70 @@
+\subsection{Autenticación}
+
+% GET /auth/session/:token
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Inicio de sesión}} \\ \hline 
+    Descripción         & Inicia la sesión del usuario en el sistema con su token de autenticación en Google y responde con los tokens de la sesión y la información del usuario. Si el usuario no existe, lo crea. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /auth/session/:token \\ \hline
+    Método   & GET                  \\ \hline
+    Parámetros URL  & 
+    \textbf{token}: \emph{string}. Token de sesión obtenido tras la autenticación exitosa en el servicio de \emph{Google Auth} \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 200 OK          \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \textbf{session}: \emph{object}. \acrshort{dto} de la sesión iniciada (\ref{dto:session}) \\
+    & \textbf{user}: \emph{object}. Contiene toda la información del usuario en un \nameref{dto:user} (\ref{dto:user})
+    \\ \hline \hline
+    Errores & 400 BAD REQUEST si el token proporcionado no pasa la validación de Google. 
+    \\ \hline
+    \caption{Documentación del endpoint de inicio de sesión}
+    \label{api:inicio_sesion}
+\end{longtable}
+
+% DELETE /auth/session/:token
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Cierre de sesión}} \\ \hline 
+    Descripción         & Cierre la sesión del usuario en el sistema con su token de autenticación. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /auth/session/:token \\ \hline
+    Método   & DELETE                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros URL  & 
+    \textbf{token}: \emph{string}. Token de autenticación de la sesión a cerrar \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 204 NO CONTENT          \\ \hline \hline
+    Errores & 403 FORBIDDEN si el token proporcionado no pertenece al usuario realizando la petición. 
+    \\ \hline
+    \caption{Documentación del endpoint de cierre de sesión}
+    \label{api:cierre_sesion}
+\end{longtable}
+
+% GET /auth/refresh/:token
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Refresco de sesión}} \\ \hline 
+    Descripción         & Renueva la sesión de usuario y devuelve los nuevos tokens de sesión \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /auth/refresh/:token \\ \hline
+    Método   & GET                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750 \\ \hline
+    Parámetros URL  & 
+    \textbf{token}: \emph{string}. Token de refresco de la sesión a renovar \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 200 OK          \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \textbf{session}: \emph{object}. \acrshort{dto} de la sesión refrescada (\ref{dto:session}) \\ \hline \hline
+    Errores & 400 BAD REQUEST si no existe la sesión abierta a la que los tokens están asignados \\     
+        & 401 UNAUTHORIZED si los tokens proporcionados en la petición no son válidos \\
+        & 401 UNAUTHORIZED si el token de refresco está expirado \\
+        & 401 UNAUTHORIZED si el token de refresco es inválido.
+    \\ \hline
+    \caption{Documentación del endpoint de refresco de sesión}
+    \label{api:refresco_sesion}
+\end{longtable}

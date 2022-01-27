@@ -1,0 +1,61 @@
+\chapter{Manual de despliegue}
+\label{ch:manual_despliegue}
+
+\section{Creación del servicio}
+
+De cara a la realización del despliegue por primera vez es necesario acceder al \textbf{Portal de Azure}\footnote{\href{https://portal.azure.com/}{https://portal.azure.com/}}. En dicho portal se seleccionará la opción de crear un recurso de tipo \textbf{App Services}. La primera pestaña, \textbf{Datos básicos}, permite seleccionar las características más elementales del servicio a desplegar. A continuación se describen los campos a rellenar.
+
+\begin{itemize}
+    \item \textbf{Suscripción}, grupo de facturación de la cuenta que se utilizará para gestionar el pago de este recurso. En el caso de este proyecto será la suscripción \textbf{Azure para estudiantes} obtenida con los beneficios proporcionados por la cuenta corporativa de la universidad.
+    \begin{itemize}
+        \item \textbf{Grupo de recursos}, colección de recursos de una suscripción que comparten ciclo de vida, permisos y directivas. Si no existe ninguno, se puede crear en este paso. Se usará \textbf{4l1}, nombre en clave del proyecto.
+    \end{itemize}
+    \item \textbf{Nombre}, nombre que se desea dar al recurso. Emplearemos el mismo que el repositorio del servicio: \textbf{4l1service}.
+    \item \textbf{Publicar}, forma de publicación del sistema en el servicio. En el caso de este despliegue será por medio de \textbf{Código}.
+    \item \textbf{Pila de entorno en tiempo de ejecución}, entorno tecnológico en el que funcionará el sistema, en nuestro caso \textbf{Node 16 LTS}.
+    \item \textbf{Sistema operativo}, sobre el que se ejecutará el sistema. Al haber sido desarrollado en \textbf{Linux}, se usará ese entorno para replicar lo máximo posible el entorno de desarrollo.
+    \item \textbf{Región}, área de servidores en la que emplazar el sistema, por precios y cercanía se ha seleccionado \textbf{West Europe}.
+    \item \textbf{Plan de App Service}, plan de coste y características deseado. Al no realizarse un despliegue completo, un plan de pruebas como es \textbf{Básico B1} es suficiente.
+\end{itemize}
+
+Tras completar esta primera sección se puede avanzar a \textbf{Implementación}, en la cuál se ha de seleccionar la opción de \textbf{Habilitar la Integración continua}. Haciéndolo se desplegará una nueva sección en la que se podrá iniciar sesión con \textbf{GitHub} y seleccionar la organización, el repositorio y la rama que se desplegará el servicio. Este despliegue se hará sobre el repositorio del servicio (\textbf{4l1-service}) y su rama \textbf{main}. Automáticamente se creará un archivo con la configuración del flujo de trabajo de \textbf{GitHub Actions}. Este archivo es modificable, pero en el caso de este despliegue no es necesario realizarle modificaciones. Dicho archivo se puede ver en el \fref{ch:accion_despliegue} \nameref{ch:accion_despliegue}.
+
+El resto de secciones no será necesario modificarlas para este despliegue. En la última, \textbf{Revisar y crear}, se mostrará un resumen de todo lo que hemos seleccionado y podremos confirmar la creación del recurso. El propio servicio de Azure y GitHub Actions crearán el flujo que desplegará el código en el servidor. Sin embargo aún no será operativo.
+
+\section{Configuración de la aplicación}
+\label{sec:variables_entorno}
+
+En el lanzamiento en local de la \acrshort{api} durante el desarrollo se utilizan archivos de tipo \code{.env} para definir las variables de entorno del sistema. En este despliegue no se utilizarán ficheros, sino que se definirán dentro de la opción de \textbf{Configuración} de nuestro AppService recién creado. Deben definirse las variables de entorno listadas en el \fref{tab:variables_entorno}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|}  \hline
+        \textbf{Nombre}         & \textbf{Valor} \\ \hline
+        AUTH\textunderscore TOKEN\textunderscore EXPIRATION\textunderscore TIME         & 15m \\
+        AUTH\textunderscore TOKEN\textunderscore SECRET         & \emph{$<$generar clave entrópica$>$} \\
+        BOND\textunderscore TOKEN\textunderscore EXPIRATION\textunderscore TIME        & 1m \\ 
+        BOND\textunderscore TOKEN\textunderscore SECRET         & \emph{$<$generar clave entrópica$>$} \\ 
+        GOOGLE\textunderscore CLIENT\textunderscore ID         & \emph{$<$token de cliente de Google API$>$} \\ 
+        GOOGLE\textunderscore SERVER\textunderscore ID         & \emph{$<$token de servidor de Google API$>$} \\ 
+        JET\textunderscore LOGGER\textunderscore FORMAT         & LINE \\ 
+        JET\textunderscore LOGGER\textunderscore MODE         & FILE \\ 
+        JET\textunderscore LOGGER\textunderscore TIMESTAMP         & TRUE \\ 
+        MONGO\textunderscore URL         & \emph{$<$url conexión a MongoDB Atlas$>$} \\ 
+        NODE\textunderscore ENV         & production \\ 
+        REFRESH\textunderscore TOKEN\textunderscore EXPIRATION\textunderscore TIME         & 1d \\
+        REFRESH\textunderscore TOKEN\textunderscore SECRET         & \emph{$<$generar clave entrópica$>$} \\ \hline
+    \end{tabular}
+    \caption{Variables de entorno del servicio}
+    \label{tab:variables_entorno}
+\end{table}
+
+\section{Configuración de MongoDB Atlas}
+\label{sec:despliegue_mongo}
+
+De cara a finalizar el despliegue es necesario conectar la aplicación con el clúster que proporcionará la base de datos. Para ello se creará una base de datos desde la opción \textbf{Create} del portal de Cloud MongoDB\footnote{\href{https://cloud.mongodb.com/}{https://cloud.mongodb.com/}}. Se seleccionará un clúster de tipo \textbf{Dedicated} en algún servidor europeo sobre \textbf{Azure}. Se seleccionará un como \textbf{Cluster Tier} el \textbf{M0}, gratuito y suficiente para este despliegue. También es posible aumentar a otros sirviéndonos del crédito de estudiante. Se selecciona un nombre y finalmente se crea el clúster.
+
+Una vez el clúster esté desplegado será posible obtener la URL de conexión que se debe introducir como variable de entorno en el servicio. Sin embargo, eso no será suficiente para que el servidor pueda comunicarse con la base de datos. El clúster está protegido con una lista blanca de direcciones IP que se puede configurar en \textbf{Network Access}. Todas las direcciones IP de salida que lista el AppService en \textbf{Propiedades} deben ser añadidas a esta lista blanca. Una vez se haga y la actualización se procese, el despliegue será completo.
+
+\section{Integración continua}
+
+Gracias a la configuración de \textbf{GitHub Actions} en la creación del servicio todo lo necesario para la integración continua del sistema está ya creado. De cara a integrar cambios en la versión desplegada del sistema sólo es necesario lanzar una \emph{pull request} a la rama \textbf{main} del repositorio de la \acrshort{api} y unir el código. Esto lanzará de forma automática un flujo de trabajo que gestionará y llevará a cabo la actualización del código del servicio y reinicio.

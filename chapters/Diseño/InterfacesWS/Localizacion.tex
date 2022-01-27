@@ -1,0 +1,56 @@
+\subsection{Localización}
+
+% location:share
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{LOCATION\textunderscore SHARE}} \\ \hline 
+    Descripción         & Suscribe a un cliente a una sala de geolocalización. \\ \hline
+    Clave               & location:share \\ \hline
+    Tipo                & Cliente \\ \hline \hline
+    Mensaje de entrada  &      
+   \emph{object}. \acrshort{dto} con la información del usuario, del tipo \nameref{dto:usermin} (\fref{dto:usermin}). \\ \hline \hline
+    Emisión   & NOTIFY\textunderscore LOCATION\textunderscore SHARING\textunderscore START (\ref{ws:notify_location_sharing_start}) a los usuarios suscritos a la sala \\ \hline \hline
+    Errores     & Si el cliente no está conectado a una sala global \\ \hline
+    \caption{Documentación del evento Share de la sala Location}
+    \label{ws:location_subscribe}
+\end{longtable}
+
+\newpage
+
+% location:stop
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{LOCATION\textunderscore STOP}} \\ \hline 
+    Descripción         & Da de baja a un cliente de su sala de localización. \\ \hline
+    Clave               & location:stop \\ \hline
+    Tipo                & Retransmisión \\ \hline \hline
+    Mensaje de entrada  &      
+   \emph{object}. \acrshort{dto} con la información del usuario, del tipo \nameref{dto:usermin} (\fref{dto:usermin}). \\ \hline \hline
+    Emisión
+    & LOCATION\textunderscore STOP a los usuarios suscritos a la sala \\
+    & NOTIFY\textunderscore LOCATION\textunderscore SHARING\textunderscore STOP (\ref{ws:notify_location_sharing_stop}) a los usuarios asociados conectados \\ \hline \hline
+    Errores     & Si el cliente no está conectado a una sala de localización \\ \hline
+    \caption{Documentación del evento Stop de la sala Location}
+    \label{ws:location_stop}
+\end{longtable}
+
+\vspace{-20pt}
+% location:update
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{LOCATION\textunderscore UPDATE}} \\ \hline 
+    Descripción         & Comparte la ubicación de un usuario. \\ \hline
+    Clave               & location:update \\ \hline
+    Tipo                & Retransmisión \\ \hline \hline
+    Mensaje de entrada    
+   & \textbf{id}: \emph{string}. ID del usuario. \\
+   & \textbf{displayName}: \emph{string}. Nombre público del usuario. \\
+   & \textbf{position}: \emph{object}. Compuesto por \textbf{latitute}:\emph{number} y \textbf{longitude}:\emph{number}. La posición a compartir. \\ \hline \hline
+    Emisión
+    & LOCATION\textunderscore UPDATE al resto de usuarios suscritos a la sala \\ \hline \hline
+    Errores     & Si el cliente no está conectado a una sala de localización \\ \hline
+    \caption{Documentación del evento Update de la sala Location}
+    \label{ws:location_update}
+\end{longtable}
+
+\vspace{-30pt}

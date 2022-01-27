@@ -1,0 +1,115 @@
+\chapter{Requisitos iniciales}
+\label{ch:requisitos_iniciales}
+
+En la planificación inicial del sistema se han definido unos primeros requisitos generales a considerar para usar como base en todo el tramo de planificación.
+
+\begin{enumerate}[label*=RI\arabic*.]
+    \item El sistema ofrecerá una aplicación móvil.
+    \begin{enumerate}[label*=\arabic*.]
+        \item La aplicación estará disponible en Android.
+        \item La aplicación permitirá el inicio de sesión en la aplicación con una cuenta de Google.
+        \item La aplicación permitirá cerrar la sesión.
+        \item Los usuarios podrán cubrir su perfil con datos personales.
+        \item Los usuarios recién creados podrán elegir un rol.
+        \begin{enumerate}[label*=\arabic*.]
+            \item Paciente.
+            \item Cuidador.
+        \end{enumerate}
+        \item Los Pacientes y Cuidadores podrán vincularse.
+        \begin{enumerate}[label*=\arabic*.]
+            \item Un Paciente podrá tener varios Cuidadores.
+            \item Un Cuidador podrá tener sólo un Paciente.
+        \end{enumerate}
+        \item Los Pacientes y Cuidadores podrán desvincularse.
+        \item La aplicación ofrecerá una serie de herramientas a los usuarios registrados y vinculados.
+        \begin{enumerate}[label*=\arabic*.]
+            \item Los Pacientes podrán ver su ficha personal.
+            \item Los Cuidadores podrán ver la ficha personal de su Paciente vinculado.
+            \item Los Pacientes y sus Cuidadores podrán comunicarse en una sala de chat compartida.
+            \item Los Pacientes y sus Cuidadores podrán gestionar tareas para el Paciente.
+            \begin{enumerate}[label*=\arabic*.]
+                \item Los Pacientes y sus Cuidadores podrán crear una nueva tarea.
+                \item Los Pacientes y sus Cuidadores podrán consultar las tareas existentes.
+                \item Los Pacientes y sus Cuidadores podrán marcar una tarea como hecha.
+                \item Los Pacientes y sus Cuidadores podrán marcar una tarea como no hecha.
+                \item Los Pacientes podrán eliminar cualquier tarea.
+                \item Lo usuario de tipo Cuidador podrán eliminar las tareas que han creado ellos mismos.
+            \end{enumerate}
+            \item Los Pacientes y sus Cuidadores podrán compartir su ubicación.
+            \item Los Pacientes y sus Cuidadores podrán consultar en un mapa la ubicación compartida por los demás usuarios relacionados.
+            \item Los Pacientes y sus Cuidadores podrán consultar el listado de Cuidadores del paciente.
+            \begin{enumerate}[label*=\arabic*.]
+                \item Los Pacientes y sus Cuidadores podrán consultar los datos de los Cuidadores. 
+            \end{enumerate}
+            \item Los Pacientes y sus Cuidadores serán notificados de las acciones clave de los usuarios relacionados.
+            \item Los Pacientes y sus Cuidadores podrán consultar sus notificaciones pendientes.
+        \end{enumerate}
+    \end{enumerate}
+    \item El sistema contará con un servidor desplegado en la nube para manejar la lógica.
+    \item El servidor del sistema ofrecerá una \acrshort{api} \acrshort{rest}.
+    \begin{enumerate}[label*=\arabic*.]
+        \item La \acrshort{api} ofrecerá \glspl{endpoint} para la gestión de sesión de usuarios. 
+        \begin{enumerate}[label*=\arabic*.]
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para tramitar el inicio de sesión. 
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para refrescar la sesión.
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para cerrar la sesión.
+        \end{enumerate}
+        \item La \acrshort{api} ofrecerá \glspl{endpoint} para la gestión de información de usuarios. 
+        \begin{enumerate}[label*=\arabic*.]
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para actualizar los datos de un usuario. 
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para recuperar la información de un Paciente vinculado. 
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para recuperar la información de los Cuidadores de un Paciente. 
+        \end{enumerate}
+        \item La \acrshort{api} ofrecerá \glspl{endpoint} para la gestión de los vínculos de usuarios. 
+        \begin{enumerate}[label*=\arabic*.]
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para crear un código de vinculación. 
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para crear un vínculo entre un Paciente y un Cuidador.
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para eliminar un vínculo entre un Paciente y un Cuidador.
+        \end{enumerate}
+        \item La \acrshort{api} ofrecerá \glspl{endpoint} para la gestión de tareas. 
+        \begin{enumerate}[label*=\arabic*.]
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para crear una tarea. 
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para listar las tareas. 
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para eliminar una tarea.
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para marcar una tarea como completada.
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para marcar una tarea como no completada.
+        \end{enumerate}
+        \item La \acrshort{api} ofrecerá \glspl{endpoint} para la gestión de mensajes. 
+        \begin{enumerate}[label*=\arabic*.]
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para recuperar los mensajes más recientes.
+        \end{enumerate}
+        \item La \acrshort{api} ofrecerá \glspl{endpoint} para la gestión de notificaciones. 
+        \begin{enumerate}[label*=\arabic*.]
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para recuperar las notificaciones no leídas.
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para marcar una notificación como leída.
+            \item La \acrshort{api} ofrecerá un \gls{endpoint} para marcar todas las notificaciones como leídas.
+        \end{enumerate}
+    \end{enumerate}
+    \item El servidor del sistema ofrecerá un servicio de WebSocket para comunicación con la aplicación.
+    \begin{enumerate}[label*=\arabic*.]
+        \item El sistema permitirá establecer la conexión desde la aplicación.
+        \item El sistema gestionará las desconexiones.
+        \item El sistema gestionará eventos de una sala global.
+        \begin{enumerate}[label*=\arabic*.]
+            \item El sistema escuchará un evento de subscripción a la sala global.
+        \end{enumerate}
+        \item El sistema gestionará eventos de una sala de localización.
+        \begin{enumerate}[label*=\arabic*.]
+            \item El sistema escuchará un evento de subscripción a la sala de localización.
+            \item El sistema escuchará un evento de actualización de localización.
+            \item El sistema escuchará un evento de desconexión a la sala de localización.
+        \end{enumerate}
+        \item El sistema gestionará eventos de una sala de mensajería.
+        \begin{enumerate}[label*=\arabic*.]
+            \item El sistema escuchará un evento de subscripción a la sala de mensajería.
+            \item El sistema escuchará un evento de envío de mensajes.
+            \item El sistema escuchará un evento de desconexión a la sala de mensajería.
+        \end{enumerate}
+        \item El sistema gestionará eventos de una sala de notificaciones.
+        \begin{enumerate}[label*=\arabic*.]
+            \item El sistema escuchará un evento de subscripción a la sala de notificaciones.
+            \item El sistema escuchará un evento de comunicación de notificaciones.
+            \item El sistema escuchará un evento de desconexión a la sala de notificaciones.
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}

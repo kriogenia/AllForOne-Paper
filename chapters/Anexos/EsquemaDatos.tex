@@ -1,0 +1,100 @@
+\chapter{Modelado de datos}
+\label{ch:modelado_datos}
+
+En este anexo se proporciona el modelado de las entidades de datos definidos en \fref{ch:modelo_datos}, tanto en la \acrshort{api} como en la aplicación; así como otros tipos o entidades de datos que han sido referidas en secciones como \fref{ch:interfaces_comunicacion}.
+
+\section{Esquemas de la base de datos}
+
+La base de datos ha sido modelada con la API en mente al ser el sistema que se encargará de la gestión de la misma. Puesto que la base de datos será MongoDB y el lenguaje de la API será TypeScript se ha decidido usar la librería Typegoose (\fref{lib:api:typegoose}). 
+
+En esta librería se definen las entidades que se almacenarán en la base de datos por medio de esquemas que luego son convertidos a objetos y modelos con los que se llevarán a cabo las operaciones. La definición de los esquemas se lleva a cabo por medio de decoradores de Typescript a través de los que se anotan las características de la entidad y de sus propiedades y que se usarán por parte de la librería para la validación de los datos y la realización de las operaciones. Los esquemas modelados son los siguientes:
+
+\subsection{MessageSchema}
+\label{sch:message}
+\lstinputlisting[language=TypeScript, lastline=4, caption=Enumerado de MessageType]{code/Message.ts}
+\lstinputlisting[language=TypeScript, firstline=6, lastline=27, caption=Esquema de Message]{code/Message.ts}
+
+\subsection{TaskMessageSchema}
+\label{sch:task_message}
+\lstinputlisting[language=TypeScript, firstline=36, caption=Esquema de TaskMessage]{code/Message.ts}
+
+\subsection{TextMessageSchema}
+\label{sch:text_message}
+\lstinputlisting[language=TypeScript, firstline=29, lastline=34, caption=Esquema de TextMessage]{code/Message.ts}
+
+\subsection{NotificacionSchema}
+\label{sch:notification}
+\lstinputlisting[language=TypeScript, lastline=10, caption=Enumerado de Action]{code/Notification.ts}
+\lstinputlisting[language=TypeScript, firstline=12, caption=Esquema de Notification]{code/Notification.ts}
+
+\subsection{SessionSchema}
+\label{sch:session}
+\lstinputlisting[language=TypeScript, caption=Esquema de Session]{code/Session.ts}
+
+\subsection{UserSchema}
+\label{sch:user}
+\lstinputlisting[language=TypeScript, lastline=5, caption=Enumerado de Role]{code/User.ts}
+\lstinputlisting[language=TypeScript, firstline=7, lastline=12, caption=Esquema de Address]{code/User.ts}
+\lstinputlisting[language=TypeScript, firstline=14, caption=Esquema de User]{code/User.ts}
+
+\section{Tipos auxiliares y DTOs}
+
+De cara a las comunicaciones entre la \acrshort{api} y la aplicación también existen los siguientes tipos o \acrshort{dto}s representando súperconjuntos de las entidades o subconjuntos de las propiedades de dichas entidades. En este documento se han referenciado las siguientes:
+
+\subsection{Message}
+\label{dto:message}
+
+Conjunto unión de las entidades \nameref{ssec:task_message} (\fref{ssec:task_message}) y \nameref{ssec:text_message} (\fref{ssec:text_message}). Un elemento de tipo Message puede ser tanto una tarea como un mensaje de texto. También incluye a las representaciones parciales de estas entidades como \nameref{dto:taskmin}.
+
+\lstinputlisting[language=TypeScript, lastline=1, caption=Tipo de Message]{code/dto.ts}
+
+\subsection{TaskMinDto}
+\label{dto:taskmin}
+
+Representación mínima de una tarea. Contiene únicamente la información imprescindible para la creación y persistencia de una tarea. Será la información proporcionada por la aplicación a la \acrshort{api} cuando se cree una nueva tarea. El resto de campos obligatorios serán suministrados por la propia API o la base de datos en el momento de la persistencia.
+
+Los datos del autor de la tarea son agregados bajo un mismo objeto del tipo \nameref{dto:usermin} (\fref{dto:usermin}). El esquema definitivo de este es el siguiente:
+
+\lstinputlisting[language=TypeScript, firstline=3, lastline=10, caption=DTO mínimo de Task]{code/dto.ts}
+
+\subsection{TaskDto}
+\label{dto:taskmessage}
+
+Objeto representativo de una tarea completa. Contiene todos los campos relevantes para gestionar y mostrar una tarea desde el cliente. Se ignora el campo \textbf{room} al ser necesario únicamente para la gestión interna de la \acrshort{api}. Este objeto es una ampliación de \nameref{dto:taskmin} con la única adición de los campos de identidad y tipo. Por tanto, la representación del autor es también un objeto \nameref{dto:usermin} (\fref{dto:usermin}).
+
+\lstinputlisting[language=TypeScript, firstline=12, lastline=15, caption=DTO de Task]{code/dto.ts}
+
+\subsection{NotificationDto}
+\label{dto:notification}
+
+Objeto representativo de una notificación con la información necesaria para su gestión por parte de los usuarios individuales de la aplicación. No cuenta con el campo \textbf{interested} pues sólo es necesario para conocer los usuarios relacionados con la entidad en la recuperación de los datos.
+
+\lstinputlisting[language=TypeScript, firstline=17, lastline=23, caption=DTO de Notification]{code/dto.ts}
+
+\subsection{SessionDto}
+\label{dto:session}
+
+Objeto representativo de la sesión con los dos \glspl{token} necesarios para manejar la sesión y el instante de caducidad de la sesión. Contiene todos los datos del modelo (\fref{ssec:sesion}) y el esquema (\fref{sch:session}).
+
+\lstinputlisting[language=TypeScript, firstline=25, lastline=29, caption=DTO de Session]{code/dto.ts}
+
+\subsection{UserMinDto}
+\label{dto:usermin}
+
+Objeto mínimo representativo de un usuario para acompañar al resto de entidades en las comunicaciones para encapsular los datos del usuario. Únicamente contiene la \textbf{id} y el \textbf{displayName}.
+
+\lstinputlisting[language=TypeScript, firstline=31, lastline=34, caption=DTO mínimo de User]{code/dto.ts}
+
+\subsection{UserPublicDto}
+\label{dto:userpublic}
+
+Objeto compuesto únicamente con las propiedades de un usuario que pueden ser compartidos con sus usuarios. Es una ampliación respecto a \nameref{dto:usermin} y un subconjunto de las propiedades de \nameref{dto:user}, respecto al cual no cuenta con la \textbf{id} de la entidad.
+
+\lstinputlisting[language=TypeScript, firstline=36, lastline=43, caption=DTO público de User]{code/dto.ts}
+
+\subsection{UserDto}
+\label{dto:user}
+
+Objeto representativo de un usuario con la información necesaria para el funcionamiento de la aplicación móvil. Carece de las relaciones con los otros usuarios y de la \textbf{googleId} pues son únicamente necesarios para responder a las peticiones por parte de la \acrshort{api}. Es, por tanto, una versión ampliada de \nameref{dto:userpublic}.
+
+\lstinputlisting[language=TypeScript, firstline=45, lastline=47, caption=DTO de User]{code/dto.ts}

@@ -1,0 +1,91 @@
+\chapter{Análisis de riesgos}
+\label{ch:analisis_riesgos}
+
+A continuación se presentan los cuatro riesgos del proyecto detectados por el equipo de desarrollo. La descripción, análisis y respuesta al riesgo se han realizado siguiendo las indicaciones del PMBOK\cite{pmbok2013}.
+
+\section{Descripción de riesgos detectados}
+
+\subsection{Incapacidad de obtención de colaboración con asociaciones}
+
+\begin{itemize}
+    \item \textbf{Identificador}: Rsk-1
+    \item \textbf{Categoría}: Externo
+    \item \textbf{Subcategoría}: Subcontratistas y proveedores
+\end{itemize}
+
+Este riesgo parte de experiencia previa al comienzo del proyecto, basada en contactos preliminares que se intentaron antes de proponer la idea del mismo. 
+
+El posible riesgo radicaría en no poder contar con el apoyo o colaboración de alguna asociación de pacientes de Alzheimer que pudiese aportar una opinión experta o consejos de utilidad para el diseño de la aplicación. Es un riesgo concretamente por la \textbf{falta de formación específica} en este área del equipo de desarrollo, algo que podría perjudicar la calidad del producto entregado.
+
+Además, la alianza con una asociación de este estilo podría ser necesaria de cara a la realización de pruebas de usabilidad del sistema generado con usuarios objetivo. En caso de no obtenerla el proyecto tendría que ser entregado \textbf{sin una prueba de campo adecuada} a los objetivos y pretensiones iniciales.
+
+
+\vspace{20pt}
+\subsection{Inexperiencia del equipo de proyecto}
+
+\begin{itemize}
+    \item \textbf{Identificador}: Rsk-2
+    \item \textbf{Categoría}: Dirección de Proyectos
+    \item \textbf{Subcategoría}: Estimación y Planificación
+\end{itemize}
+
+Actualmente, la única experiencia del equipo de proyecto en la dirección y gestión de proyectos es el de la simulación realizada en la asignatura de DPPI\footnote{Dirección y Planificación de Proyectos Informáticos}. No existe una \textbf{experiencia práctica real} y esto puede manifestarse en forma de cálculos erróneos en la planificación del proyecto.
+
+El riesgo radica en la posibilidad de aparición de estos errores. Como podrían ser, por ejemplo, \textbf{malas estimaciones} del tiempo necesario para completar tareas. Las desviaciones de esto desembocarían en grandes problemas de la planificación y también afectaría, en cascada, al cálculo del presupuesto o al alcance y calidad conseguibles por el sistema.
+
+\subsection{Carencia de fondos}
+
+\begin{itemize}
+    \item \textbf{Identificador}: Rsk-3
+    \item \textbf{Categoría}: Organizativo
+    \item \textbf{Subcategoría}: Financiación
+\end{itemize}
+
+El riesgo en sí mismo no es la carencia de fondos, puesto que eso ya es un una característica conocida y definida de este proyecto. Sin embargo, sigue existiendo el riesgo de que dicha carencia de fondos sea problemática de cara a la consecución de la calidad deseada en el proyecto. La imposibilidad de costearse un servicio de alojamiento o de pagar ciertas \acrshort{api} o servicios de pago pueden suponer \textbf{complicaciones no previstas} para el proyecto inicialmente.
+
+\subsection{Falta de formación en tecnologías clave}
+
+\begin{itemize}
+    \item \textbf{Identificador}: Rsk-4
+    \item \textbf{Categoría}: Técnico
+    \item \textbf{Subcategoría}: Tecnología
+\end{itemize}
+
+En el desarrollo se utilizarán varias tecnologías con las que no se cuenta con experiencia de desarrollo previo. Algunas de estas \textbf{son clave} para el funcionamiento del sistema. Este hecho supone un riesgo al poder provocar impedimentos o retrasos en la generación de los componentes que trabajen con dichas tecnologías. Así como en errores de funcionamiento o concepto derivados del desconocimiento de las capacidades completas de las tecnologías a manejar.
+
+\section{Análisis de los riesgos}
+
+\begin{table}[H]
+    \centering
+    \makebox[\textwidth]{
+    \begin{tabular}{|l|c|c c c c|c|}
+        \hline
+        & & \multicolumn{4}{c|}{Impacto} & \\
+        Riesgo & Probabilidad & Presupuesto & Planificación & Alcance & Calidad & Impacto \\
+        \hline
+        Colaboración con asociaciones & Alta  & Mínima  & Medio   & Alto  & Alta    & 0.39 \\
+        Inexperiencia del equipo      & Media & Alto    & Crítico & Medio & Bajo    & 0.45 \\
+        Carencia de fondos            & Media & Crítico & Bajo    & Medio & Medio   & 0.45 \\
+        Formación en tecnologías      & Media & Bajo    & Alto    & Bajo  & Alto    & 0.28 \\
+        \hline
+    \end{tabular}}
+    \caption{Probabilidades y impacto de los riesgos}
+    \label{tab:riesgos}
+\end{table}
+
+\vspace{-20pt}
+En base a este análisis del impacto global de los riesgos detectados se ha resaltado la inexperiencia del equipo de proyecto y la carencia de fondos como los riesgos de \textbf{mayor prioridad} a paliar, pues son aquellos que pueden afectar en mayor medida al éxito del proyecto.
+
+\vspace{-20pt}
+\section{Respuesta a los riesgos}
+
+\vspace{-5pt}
+Para los distintos riesgos detectados se han propuesto las siguientes respuestas:
+
+\vspace{-5pt}
+\begin{itemize}
+    \item \textbf{Inexperiencia del equipo de proyecto}. Puesto que no existe la posibilidad de contratar una opinión más formada ni de adquirir la experiencia necesaria para paliar los posibles errores. Se ha decidido \textbf{mitigar} el riesgo. Se tendrá en cuenta desde el principio la posibilidad de fallar en el desarrollo de la planificación. Se tomarán medidas cautelares al respecto como dejar margen de tiempo prudencial antes de la fecha límite o guardar tiempo de vacaciones por si es necesario una dedicación extra para compensar los errores.
+    \item \textbf{Carencia de fondos}. En respuesta a este riesgo se ha decidido buscar la mayor \textbf{mitigación} posible por medio de la aceptación del uso de tecnologías de pago cuando sea necesario y existan de beneficios de estudiante que los puedan costear.
+    \item \textbf{Incapacidad de obtención de colaboración con asociaciones}. Ante la situación actual con la pandemia y la imposibilidad de retrasar el desarrollo en esperas o aras de conseguir la ansiada colaboración se ha decidido \textbf{asumir} la posibilidad de no lograr dicho apoyo.
+    \item \textbf{Falta de formación en tecnologías clave}. Para afrontar este problema se ha decidido intentar \textbf{eliminar} el riesgo por medio de llevar a cabo formación específica en las tecnologías que se consideren oportunas. La idea es adquirir suficiente bagaje antes de comenzar el desarrrollo para reducir al mínimo los riesgos de la inexperiencia del equipo desarrollador.
+\end{itemize}

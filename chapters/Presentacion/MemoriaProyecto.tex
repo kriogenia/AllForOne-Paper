@@ -1,0 +1,85 @@
+\chapter{Memoria del proyecto}
+\label{chap:memoria}
+
+\section{Resumen de la motivación, objetivos y alcance del proyecto}
+
+\textbf{La enfermedad de Alzheimer es un trastorno neurodegenerativo} que reduce grave y progresivamente las capacidades cognitivas de sus pacientes. Su duración media tras el diagnóstico es de diez años, a lo largo de los cuales se va produciendo un deterioro en la memoria, la independencia, los trastornos conductuales y las capacidades físicas del afectado.
+
+El diagnóstico de esta enfermedad es también el inicio de un cambio repentino en el entorno del diagnosticado. Actualmente no existe ningún tratamiento que detenga la enfermedad, aunque algunos fármacos contribuyan a retrasar el avance de la misma. Aún así, la mayor parte de los paliativos de la misma son de tipo \textbf{conductual} e involucran no solo al paciente sino también a \textbf{su entorno cercano}.
+
+El objetivo de este proyecto es el \textbf{desarrollo de un sistema software} que pueda facilitar algunos de los aspectos en los que familiares, amigos y demás allegados del paciente son clave para servirle de apoyo en las etapas tempranas de la enfermedad.
+
+El sistema a desarrollar será una \textbf{aplicación móvil} con funciones de contacto, gestión de tareas, geolocalización y mensajería. Todas estas funciones de la aplicación estarán respaldadas por \textbf{un servidor} desplegado en la nube que se encargará de la lógica subyacente y de la persistencia de los datos y la comunicación de estos entre usuarios. Dicho servidor ofrecerá dos interfaces de comunicación: una basada en WebSockets para los envíos de comunicaciones más inmediatas de los usuarios con otros usuarios y con el sistema; y otra \acrshort{http} con una \acrshort{api} \acrshort{rest} para el resto de operaciones.
+
+Para poder crear el sistema deseado será necesario utilizar \textbf{diversas tecnologías} como los anteriormente mencionados WebSockets, los sistemas de mapas y geolocalización, las corrutinas, las bases de datos NoSQL o los servicios en la nube. La mayor parte de esta son nuevas para el equipo de desarrollo y de esta forma representan un obstáculo a la vez que una oportunidad de aprendizaje.
+
+La creación del sistema se basará en la planificación, análisis y diseño presentados en este documento. Documento que junto al sistema descrito en las líneas previa conforman este proyecto de desarrollo de una \textbf{aplicación asimétrica móvil de asistencia para familias con personas afectadas de Alzheimer}.
+
+\section{Estructura del documento}
+
+El documento que nos ocupa consta de los siguientes secciones y capítulos:
+
+\begin{enumerate}
+    \item \textbf{Presentación}
+    \begin{enumerate}
+    	\item \textbf{\nameref{chap:memoria}}. Breve introducción al documento.
+    	\item \textbf{\nameref{ch:introduccion}}. Presentación general del proyecto que se desarrollará en este documento.
+    	\item \textbf{\nameref{ch:aspectos_teoricos}}. Explicación de conceptos de la especialidad importantes para la comprensión del proyecto.
+	\end{enumerate}
+    \item \textbf{Planificación}
+    \begin{enumerate}
+    	\item \textbf{\nameref{ch:requisitos_iniciales}}. Lista inicial de requisitos del sistema.
+    	\item \textbf{\nameref{ch:evaluacion_alternativas}}. Análisis de opciones tecnológicas para el desarrollo del proyecto.
+    	\item \textbf{\nameref{ch:analisis_riesgos}}. Perspectiva de riesgos del desarrollo y plan de actuación.
+    	\item \textbf{\nameref{ch:solucion_propuesta}}. Resumen del sistema a desarrollar.
+    	\item \textbf{\nameref{ch:planificacion_temporal}}. Propuesta de calendario para la realización del proyecto.
+    	\item \textbf{\nameref{ch:resumen_presupuesto}}. Puntos clave del presupuesto estimado.
+	\end{enumerate}
+    \item \textbf{Análisis}
+    \begin{enumerate}
+    	\item \textbf{\nameref{ch:requisitos}}. Listado definitivo de requisitos planeados para el sistema.
+    	\item \textbf{\nameref{ch:subsistemas}}. Definición de los diferentes subsistemas que conformarán \emph{AllForOne}.
+    	\item \textbf{\nameref{ch:analisis_interfaz_usuario}}. Propuesta de pantallas y de navegación para la aplicación.
+    	\item \textbf{\nameref{ch:analisis_diagrama_clases}}. Diseño previo de las clases que se estimará que tenga el sistema.
+    	\item \textbf{\nameref{ch:especificacion_plan_pruebas}}. Plan de desarrollo y realización de pruebas del sistema.
+    	\item \textbf{\nameref{ch:especificacion_plan_despliegue}}. Plan de despliegue del servidor.
+	\end{enumerate}
+    \item \textbf{Diseño}
+    \begin{enumerate}
+    	\item \textbf{\nameref{ch:arquitectura}}. Propuesta de arquitectura para el sistema.
+    	\item \textbf{\nameref{ch:diseño_clases}}. Diseño completo del sistema de clases y componentes.
+    	\item \textbf{\nameref{ch:modelo_datos}}. Definición de las entidades manejadas por las bases de datos.
+    	\item \textbf{\nameref{ch:interfaces_comunicacion}}. Definición de las \acrshort{api} de comunicación entre aplicación y servidor.
+    	\item \textbf{\nameref{ch:interaccion_estados}}. Explicación de las interacciones, procedimientos y estados relacionados con los casos de uso a implementar.
+    	\item \textbf{\nameref{ch:diseño_interfaz_usuario}}. Diseño definitivo de las pantallas de la aplicación.
+    	\item \textbf{\nameref{ch:especificacion_tecnica_plan_pruebas}}. Recolección de los casos de prueba anticipados para el desarrollo.
+	\end{enumerate}
+    \item \textbf{Implementación}
+    \begin{enumerate}
+    	\item \textbf{\nameref{ch:tecnologias}}. Enumeración y descripción de las tecnologías usadas en el desarrollo.
+    	\item \textbf{\nameref{ch:herramientas_desarrollo}}. Enumeración y descripción de las herramientas usadas para el desarrollo.
+    	\item \textbf{\nameref{ch:obstaculos}}. Descripción de los obstáculos encontrados a lo largo del desarrollo.
+    	\item \textbf{\nameref{ch:desarrollo_pruebas}}. Resultados y conclusiones del apartado de pruebas del proyecto.
+	\end{enumerate}
+    \item \textbf{Manuales}
+    \begin{enumerate}
+    	\item \textbf{\nameref{ch:manual_instalacion}}. Guía de instalación de la aplicación.
+    	\item \textbf{\nameref{ch:manual_usuario}}. Guía de uso de la aplicación.
+    	\item \textbf{\nameref{ch:manual_despliegue}}. Guía de procedimiento para el despliegue del servidor.
+    	\item \textbf{\nameref{ch:manual_desarrollador}}. Conjunto de guías de ayuda para la continuación del desarrollo.
+	\end{enumerate}
+    \item \textbf{Conclusión}
+    \begin{enumerate}
+    	\item \textbf{\nameref{ch:estado_sistema}}. Descripción del estado del sistema en el momento de la entrega.
+    	\item \textbf{\nameref{ch:conclusiones_personales}}. Experiencia personal del desarrollo y el proceso que condujo al mismo.
+    	\item \textbf{\nameref{ch:ampliaciones}}. Lista de posibles ampliaciones planeadas o propuestas para el sistema.
+	\end{enumerate}
+    \item \textbf{Anexos}
+    \begin{enumerate}
+    	\item \textbf{\nameref{ch:anexo_presupuesto}}. Versión detallada del presupuesto.
+    	\item \textbf{\nameref{ch:licencia}}. Licencia de uso del sistema desarrollado.
+    	\item \textbf{\nameref{ch:modelado_datos}}. Esquemas de las entidades modeladas.
+    	\item \textbf{\nameref{ch:accion_despliegue}}. Fichero de despliegue del servidor.
+    	\item \textbf{\nameref{ch:documentacion_adicional}}. Listado de documentación adicional entregada junto a este documento.
+	\end{enumerate}
+\end{enumerate}

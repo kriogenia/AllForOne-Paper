@@ -1,0 +1,86 @@
+\subsection{Feed}
+
+% GET /feed/messages
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperar grupo de mensajes}} \\ \hline 
+    Descripción         & Devuelve el grupo de mensajes especificado por el usuario. Cada grupo contiene hasta 25 mensajes. Los mensajes son devueltos en orden de más reciente a más antiguo. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /feed/messages \\ \hline
+    Método   & GET                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros consulta  & 
+    \textbf{page}: \emph{number}. \emph{Opcional}. Página de mensajes a recuperar, por defecto: 1. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 200 OK          \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \textbf{messages}: \emph{object array}. Lista de mensajes, los mensajes son de tipo \nameref{dto:message} (\ref{dto:message}).
+    \\ \hline \hline
+    Errores & 400 BAD REQUEST si el usuario no es paciente ni cuidador. \\
+        & 400 BAD REQUEST si lo solicita un cuidador no vinculado. \\ \hline
+    \caption{Documentación del endpoint de recuperación de mensajes}
+    \label{api:recuperar_mensajes}
+\end{longtable}
+
+\subsubsection{Notificaciones}
+
+% GET /feed/notifications
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperar notificaciones}} \\ \hline 
+    Descripción         & Devuelve las notificaciones no leídas del usuario. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /feed/notifications \\ \hline
+    Método   & GET                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros consulta  & 
+    \textbf{maxDays}: \emph{number}. \emph{Opcional}. Número máximo de días de antigüedad de las notificaciones devueltas. Por defecto, siete días. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 200 OK          \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \textbf{notifications}: \emph{object array}. Lista de \nameref{dto:notification} (\ref{dto:notification}).
+    \\ \hline 
+    \caption{Documentación del endpoint de recuperar notificaciones}
+    \label{api:recuperar_notificaciones}
+\end{longtable}
+
+% POST /feed/notifications/:id/read
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar notificación como leída}} \\ \hline 
+    Descripción         & Marca la notificación especificada como leída por el usuario. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /feed/notifications/:id/read \\ \hline
+    Método   & POST                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros URL  & 
+    \textbf{id}: \emph{string}. ID de la notificación. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 204 NO CONTENT          \\ \hline
+    \caption{Documentación del endpoint de marca una notificación como leída}
+    \label{api:leer_notificacion}
+\end{longtable}
+
+\vspace{-28pt}
+% POST /feed/notifications/read
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar todas las notificaciones como leídas}} \\ \hline 
+    Descripción         & Marca todas las notificaciones de un usuario como leídas. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /auth/notifications/read \\ \hline
+    Método   & POST                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 204 NO CONTENT          \\ \hline 
+    \caption{Documentación del endpoint de marcar todas las notificaciones como leídas}
+    \label{api:leer_notificaciones_todas}
+\end{longtable}
+
+\vspace{-38pt}

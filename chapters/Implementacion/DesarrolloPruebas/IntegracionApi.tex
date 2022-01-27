@@ -1,0 +1,74 @@
+\subsection{API}
+
+\begin{longtable}{ l l c }
+    \hline
+    Referencia & Caso & Resultado \\
+    \hline
+    \ref{cp:i:api:registro_usuario_correcto} & Registro de usuario correcto & PASA \\
+    \ref{cp:i:api:inicio_sesion_correcto} & Inicio de sesión correcto & PASA \\
+    \ref{cp:i:api:inicio_sesion_incorrecto} & Inicio de sesión incorrecto & PASA \\
+    \ref{cp:i:api:cierre_sesion_correcto} & Cierre de sesión correcto & PASA \\
+    \ref{cp:i:api:cierre_sesion_incorrecto} & Cierre de sesión incorrecto & PASA \\
+    \ref{cp:i:api:refresco_sesion_correcto} & Refresco de sesión correcto & PASA \\
+    \ref{cp:i:api:refresco_sesion_incorrecto} & Refresco de sesión incorrecto & PASA \\ \hline
+    \ref{cp:i:api:conexion_sala_localizacion} & Conexión a la sala de localización & PASA \\
+    \ref{cp:i:api:desconexion_sala_localizacion} & Desconexión de la sala de localización & PASA \\
+    \ref{cp:i:api:actualizacion_ubicacion} & Actualización de ubicación & PASA \\ \hline
+    \caption{Primera parte de los resultados de las pruebas de integración de la API}
+\end{longtable}
+
+\begin{figure}[H]
+\begin{longtable}{ l l c }
+    \hline
+    Referencia & Caso & Resultado \\
+    \hline
+    \ref{cp:i:api:recuperacion_mensajes_pacientes} & Recuperación de mensajes de Pacientes & PASA \\
+    \ref{cp:i:api:recuperacion_mensajes_cuidadores} & Recuperación de mensajes de Cuidadores correcta & PASA \\
+    \ref{cp:i:api:recuperacion_paginas_mensajes_concreta} & Recuperación de páginas de mensajes concreta & PASA \\
+    \ref{cp:i:api:recuperacion_mensajes_pagina_incorrecta} & Recuperación de mensajes con página incorrecta & PASA \\
+    \ref{cp:i:api:recuperacion_mensajes_usuario_incompleto} & Recuperación de mensajes con usuario incompleto & PASA \\
+    \ref{cp:i:api:recuperacion_mensajes_cuidador_incorrecta} & Recuperación de mensajes de Cuidador incorrecta & PASA \\
+    \ref{cp:i:api:conexion_sala_mensajeria} & Conexión a la sala de mensajería & PASA \\
+    \ref{cp:i:api:desconexion_sala_mensajeria} & Desconexión de la sala de mensajería & PASA \\
+    \ref{cp:i:api:envio_mensaje_texto} & Envío de un mensaje de texto & PASA \\
+    \ref{cp:i:api:envio_tarea} & Envío de una tarea & PASA \\ \hline
+    \ref{cp:i:api:marcar_notificacion_valida_leida} & Marcar una notificación válida como leída & PASA \\
+    \ref{cp:i:api:marcar_notificacion_invalida_leida} & Marcar una notificación inválida como leída & PASA \\
+    \ref{cp:i:api:marcar_notificaciones_leidas} & Marcar todas las notificaciones como leídas & PASA \\
+    \ref{cp:i:api:recuperacion_notificaciones_no_leidas_por_defecto} & Recuperación de notificaciones no leídas por defecto & PASA \\
+    \ref{cp:i:api:recuperacion_notificaciones_no_leidas_edad_especificada} & Recuperación de notificaciones no leídas de edad especificada & PASA \\ \hline
+    \ref{cp:i:api:creacion_tarea} & Creación de una tarea & PASA \\
+    \ref{cp:i:api:creacion_tarea_invalida} & Creación de una tarea inválida & PASA \\
+    \ref{cp:i:api:eliminacion_tarea_valida} & Eliminación de una tarea válida & PASA \\
+    \ref{cp:i:api:eliminacion_tarea_invalida} & Petición a DELETE /task de una tarea válida & PASA \\
+    \ref{cp:i:api:marcar_tarea_hecha} & Marcar tarea como hecha & PASA \\
+    \ref{cp:i:api:marcar_tarea_no_hecha} & Marcar tarea como no hecha & PASA \\
+    \ref{cp:i:api:marcar_tarea_hecha_hecha} & Marcar tarea hecha como hecha & PASA \\
+    \ref{cp:i:api:marcar_tarea_no_hecha_no_hecha} & Marcar tarea no hecha como no hecha & PASA \\
+    \ref{cp:i:api:recuperacion_tareas_paciente} & Recuperación de tareas de un Paciente & PASA \\
+    \ref{cp:i:api:recuperacion_tareas_cuidador} & Recuperación de tareas de un Cuidador & PASA \\
+    \ref{cp:i:api:recuperacion_tareas_edad_maxima} & Recuperación de tareas con edad máxima & PASA \\ \hline
+    \caption{Segunda parte de los resultados de las pruebas de integración de la API}
+\end{longtable}
+\end{figure}
+
+\begin{figure}[H]
+\begin{longtable}{ l l c }
+    \hline
+    Referencia & Caso & Resultado \\
+    \hline   
+    \ref{cp:i:api:actualizacion_usuario} & Actualización de usuario & PASA \\
+    \ref{cp:i:api:actualizacion_usuario_invalida} & Actualización de usuario inválida & PASA \\
+    \ref{cp:i:api:creacion_vinculo} & Creación de vínculo & PASA \\
+    \ref{cp:i:api:creacion_vinculo_invalida} & Creación de vínculo inválida & PASA \\
+    \ref{cp:i:api:eliminacion_vinculo_valida} & Eliminación de vínculo válida & PASA \\
+    \ref{cp:i:api:generacion_codigo_vinculacion} & Generación de código de vinculación & PASA \\
+    \ref{cp:i:api:recuperacion_vinculos_paciente} & Recuperación de vínculos de un Paciente & PASA \\
+    \ref{cp:i:api:recuperacion_vinculos_cuidador} & Recuperación de vínculos de un Cuidador & PASA \\
+    \ref{cp:i:api:recuperacion_vinculos_usuario_incompleto} & Recuperación de vínculos de un usuario incompleto & PASA \\
+    \ref{cp:i:api:recuperacion_paciente_cuidador_vinculado} & Recuperación de Paciente de un Cuidador vinculado & PASA \\
+    \ref{cp:i:api:recuperacion_paciente_cuidador_no_vinculado} & Recuperación de Paciente de un Cuidador no vinculado & PASA \\
+    \ref{cp:i:api:recuperacion_paciente_invalida} & Recuperación de Paciente inválida & PASA \\\hline
+    \caption{Tercera parte de los resultados de las pruebas de integración de la API}
+\end{longtable}
+\end{figure}

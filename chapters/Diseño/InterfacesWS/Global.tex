@@ -1,0 +1,33 @@
+El otro tipo de comunicación ofrecido por la API es la que se produce a través del WebSocket. Esta comunicación se produce de forma \textbf{no bidireccional} por medio de envío de mensajes de texto con una clave que indica el evento que invoca. Las peticiones de un cliente (mensajes de cliente o entrada) serán enviados al servidor y no se quedarán esperando una respuesta, y si esta se produce será por medio de otro evento enviado por el servidor (mensaje de servidor o salida). Si una solicitud de un cliente tiene algún error, el mensaje será ignorado. Algunos mensaje de cliente pueden ser remitidos por el servidor con la misma clave de evento, estos mensajes constituyen un nuevo tipo de comunicación llamado \textbf{retransmisión}.
+
+Todo cliente que se suscriba al socket debe unirse a una habitación global compartida entre todos los usuarios asociados. Es a través de esta sala que se gestiona la unión al resto de salas. La desconexión de esta sala supondría la desconexión del resto de salas. La sala global cuenta con dos eventos ilustrados en \fref{ws:global_subscribe} y \fref{ws:global_subscription}.
+
+% global:subscribe
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{GLOBAL\textunderscore SUBSCRIBE}} \\ \hline 
+    Descripción         & Suscribe a un cliente a una sala global. \\ \hline
+    Clave               & global:subscribe \\ \hline
+    Tipo                & Cliente \\ \hline \hline
+    Mensaje de entrada  &      
+   \emph{string}. ID del usuario solicitando unirse a la sala. \\ \hline \hline
+    Emisión   & GLOBAL\textunderscore SUBSCRIPTION (\ref{ws:global_subscription}) a los usuarios suscritos a la sala \\ \hline \hline
+    Errores     & Si el cliente no es Paciente ni Cuidador \\
+                & Si el cliente es un Cuidador no vinculado \\ \hline
+    \caption{Documentación del evento Subscribe de la sala Global}
+    \label{ws:global_subscribe}
+\end{longtable}
+
+% global:subscription
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{GLOBAL\textunderscore SUBSCRIPTION}} \\ \hline 
+    Descripción         & Notificación a los suscriptores de una sala acerca de la suscripción de un nuevo cliente. \\ \hline
+    Clave               & global:subscription \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión      
+    & \textbf{user}: \emph{string}. ID del nuevo suscriptor. \\
+    & \textbf{roomId}: \emph{string}. ID de la sala. \\ \hline
+    \caption{Documentación del evento Subscription de la sala Global}
+    \label{ws:global_subscription}
+\end{longtable}

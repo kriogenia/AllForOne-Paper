@@ -1,0 +1,94 @@
+\subsection{Aplicación móvil}
+
+\begin{longtable}{ l l c }
+    \hline
+    Referencia & Caso & Resultado \\
+    \hline
+    \ref{cp:u:app:actualizar_datos} & Actualizar datos del usuario & NO \\
+    \ref{cp:u:app:cerrar_sesion_usuario} & Cerrar la sesión de usuario & NO \\
+    \ref{cp:u:app:eliminar_vinculo} & Eliminar el vínculo con el Paciente vinculado & NO \\ \hline
+    \ref{cp:u:app:añadir_marcador} & Añadir un marcador & PASA \\
+    \ref{cp:u:app:comprobar_marcador} & Comprobar la existencia de un marcador & PASA \\
+    \ref{cp:u:app:eliminar_marcador} & Eliminar un marcador & PASA \\
+    \ref{cp:u:app:actualizar_marcador} & Actualizar un marcador & PASA \\ \hline
+    \ref{cp:u:app:añadir_notificacion} & Añadir una notificación & NO \\
+    \ref{cp:u:app:añadir_conjunto_notificaciones} & Añadir un conjunto de notificaciones & NO \\
+    \ref{cp:u:app:limpiar_lista_notificaciones} & Limpiar lista de notificaciones & NO \\
+    \ref{cp:u:app:cargar_lista_notificaciones} & Cargar lista de notificaciones & NO \\
+    \ref{cp:u:app:eliminar_notificacion} & Eliminar una notificación & NO \\
+    \ref{cp:u:app:eliminar_todas_notificaciones} & Eliminar todas las notificaciones & NO \\ \hline
+    \ref{cp:u:app:enviar_confirmacion_datos_usuario} & Enviar confirmación de datos de usuario & PASA \\
+    \ref{cp:u:app:gestionar_resultado_inicio_google} & Gestionar resultado de inicio de sesión en Google & PASA \\
+    \ref{cp:u:app:gestionar_resultado_inicio_google_erroneo} & Gestionar resultado de inicio de sesión en Google erróneo & PASA \\ \hline
+    \ref{cp:u:app:añadir_nuevo_marcador_vista} & Añadir un nuevo marcador & PASA \\
+    \ref{cp:u:app:recibir_actualizacion_posicion_no_existente} & Recibir una actualización de posición de marcador no existente & NO \\
+    \ref{cp:u:app:recibir_actualizacion_posicion_marcador} & Recibir una actualización de posición de marcador ya existente & NO \\ \hline  
+    \ref{cp:u:app:obtener_pagina_mensajes} & Obtener una página de mensajes & PASA \\
+    \ref{cp:u:app:enviar_tarea_feed} & Enviar una tarea por el feed & NO \\
+    \ref{cp:u:app:enviar_mensaje_feed} & Enviar un mensaje por el feed & NO \\
+    \ref{cp:u:app:recibir_actualizacion_tarea} & Recibir una actualización de tarea & NO \\
+    \ref{cp:u:app:recibir_eliminacion_tarea} & Recibir una eliminación de tarea & NO \\
+    \ref{cp:u:app:recibir_nuevo_mensaje} & Recibir un nuevo mensaje & NO \\ \hline
+    \caption{Primera parte de los resultados de las pruebas unitarias de la aplicación}
+\end{longtable}   
+
+\begin{figure}[H]
+\begin{longtable}{ l l c }
+    \hline
+    Referencia & Caso & Resultado \\
+    \hline    
+    \ref{cp:u:app:confirmar_creacion_tarea} & Confirmar creación de una tarea & PASA \\
+    \ref{cp:u:app:eliminacion_tarea_vista} & Eliminación una tarea & PASA \\
+    \ref{cp:u:app:eliminacion_tarea_invalida} & Eliminación una tarea inválida & PASA \\
+    \ref{cp:u:app:marcar_tarea_hecha_no_hecha} & Marcar tarea como hecha/no hecha & PASA \\
+    \ref{cp:u:app:obtener_lista_tareas} & Obtener la lista de tareas & PASA \\ \hline
+    \ref{cp:u:app:eliminar_vinculo_vista} & Eliminar un vínculo & NO \\
+    \ref{cp:u:app:obtener_codigo_qr_vinculacion} & Obtener un código QR de vinculación & NO \\
+    \ref{cp:u:app:obtener_vinulos_vista} & Obtener los vínculos & PASA \\ \hline
+    \ref{cp:u:app:actualizar_usuario_vista} & Actualizar usuario & NO \\
+    \ref{cp:u:app:enviar_codigo_vinculacion_vista} & Enviar código de vinculación & PASA \\
+    \ref{cp:u:app:obtener_lista_notificaciones_vista} & Obtener lista de notificaciones & NO \\
+    \ref{cp:u:app:obtener_paciente_vinculado_vista} & Obtener Paciente vinculado & PASA \\ \hline
+    \ref{cp:u:app:envio_mensajes_repo} & Envío de mensaje & NO \\
+    \ref{cp:u:app:recuperacion_mensajes_repo} & Recuperación de mensajes & PASA \\ \hline
+    \ref{cp:u:app:recuperacion_notificaciones_repo} & Recuperación de notificaciones & PASA \\
+    \ref{cp:u:app:marcado_notificacion_leida_repo} & Marcado de notificación como leída & PASA \\
+    \ref{cp:u:app:marcado_todas_notificaciones_leidas_repo} & Marcado de todas las notificaciones como leídas & PASA \\ \hline
+    \ref{cp:u:app:inicio_sesion_repo} & Inicio de sesión & PASA \\
+    \ref{cp:u:app:cierre_sesion_repo} & Cierre de sesión & PASA \\
+    \ref{cp:u:app:refresco_sesion_repo} & Refresco de sesión & PASA \\
+    \ref{cp:u:app:recuperacion_tareas_repo} & Recuperación de tareas & PASA \\
+    \ref{cp:u:app:guardado_tarea_repo} & Guardado de una tarea & PASA \\
+    \ref{cp:u:app:eliminacion_tarea_repo} & Eliminación de una tarea & PASA \\
+    \ref{cp:u:app:actualizacion_tarea_repo} & Actualización de una tarea & PASA \\ \hline
+    \ref{cp:u:app:actualizacion_usuario_repo} & Actualización de un usuario & PASA \\
+    \ref{cp:u:app:eliminar_vinculacion_repo} & Eliminar vinculación & PASA \\
+    \ref{cp:u:app:enviar_codigo_vinculacion_repo} & Enviar código de vinculación & PASA \\
+    \ref{cp:u:app:recuperacion_vinculos_repo} & Recuperación de vínculos & PASA \\
+    \ref{cp:u:app:recuperacion_paciente_repo} & Recuperación del Paciente vinculado & PASA \\
+    \ref{cp:u:app:solicitar_codigo_vinculacion_repo} & Solicitar código de vinculación & PASA \\ \hline
+    \ref{cp:u:app:obtencion_servicio} & Obtención de un servicio & PASA \\ \hline
+    \ref{cp:u:app:respuesta_inicio_sesion} & Procesar respuesta de inicio de sesión & PASA \\
+    \ref{cp:u:app:respuesta_refresco_sesion} & Procesar respuesta de refresco de sesión & PASA \\ \hline
+    \ref{cp:u:app:respuesta_recuperacion_notificaciones} & Procesar respuesta de recuperación de notificaciones & PASA \\
+    \ref{cp:u:app:respuesta_recuperacion_mensajes} & Procesar respuesta de recuperación de mensajes & PASA \\ \hline
+    \caption{Segunda parte de los resultados de las pruebas unitarias de la aplicación}
+\end{longtable}   
+\end{figure}    
+
+\begin{figure}[H]
+\begin{longtable}{ l l c }
+    \hline
+    Referencia & Caso & Resultado \\
+    \hline  
+    \ref{cp:u:app:respuesta_recuperacion_tareas} & Procesar respuesta de recuperación de tareas & PASA \\
+    \ref{cp:u:app:respuesta_publicacion_tareas} & Procesar respuesta de publicación de tareas & PASA \\ \hline
+    \ref{cp:u:app:respuesta_actualizacion_usuario} & Procesar respuesta de actualización de usuario & PASA \\
+    \ref{cp:u:app:respuesta_recuperacion_paciente_vinculado} & Procesar respuesta de recuperación de Paciente vinculado & PASA \\
+    \ref{cp:u:app:respuesta_recuperacion_vinculos} & Procesar respuesta de recuperación de vínculos & PASA \\
+    \ref{cp:u:app:respuesta_recuperacion_codigo_vinculacion} & Procesar respuesta de recuperación de código de vinculación & PASA \\ \hline
+    \caption{Tercera parte de los resultados de las pruebas unitarias de la aplicación}
+\end{longtable}  
+\end{figure} 
+
+En el desarrollo de pruebas de la aplicación no fueron posibles realizar todas las pruebas que estaban planeadas por limitaciones de tiempo. Dentro de las que sí pudieron implementadas se consiguió un éxito completo. Estas pruebas necesitan mayor trabajo.

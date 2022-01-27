@@ -1,0 +1,32 @@
+\chapter{Obstáculos}
+\label{ch:obstaculos}
+
+Durante la creación del sistema se encontraron una serie de dificultades que supusieron un obstáculo en la implementación y ralentizaron el desarrollo. Aquí se exponen las más importantes.
+
+\section{Comunicación cifrada}
+
+Una de las primeras funciones agregadas al sistema fue el establecimiento de la comunicación entre la \acrshort{api} y la aplicación móvil. En esa primera implementación se utilizó un prototipo de cada subsistema que realizase la comunicación más básica posible tanto a través del WebSocket como por medio de \acrshort{http}. Esos primeros intercambios resultaron en errores debido a la \textbf{falta de encriptación} de las respuestas de la \acrshort{api}.
+
+El siguiente paso en el intento de sobrepasar este problema fue el de lanzar Express como servidor \acrshort{https} con certificados generados en la máquina de ejecución local de dicho servidor. De cara a permitir esta comunicación dichos certificados debían ser también copiados en la aplicación móvil para añadirlos a una lista blanca de entidades confiables. Tras preparar todo, la comunicación siguió sin ser posible pues los certificados generados \textbf{no contaban con una fuente de confianza} y Android los rechazaba.
+
+Finalmente, y viendo que generar un servidor \acrshort{https} con certificados emitidos por fuentes confiables escapaba al alcance del proyecto se decidió \textbf{modificar la configuración de red} de la aplicación y permitir el tráfico de texto plano. Para reducir el peligro de esta decisión al mínimo se realizó dicha permisión únicamente a las direcciones IP locales y del servidor a desplegar. Tras este cambio, que se puede ver en el fichero \code{network\textunderscore security\textunderscore config.xml} se pudo realizar envío de información entre ambos subsistemas.
+
+\section{Ejecución en dispositivos móviles antes del despliegue}
+
+A lo largo del desarrollo era posible realizar la comunicación entre la \acrshort{api} y la aplicación móvil durante su ejecución en la misma máquina local por medio de la especificación de la IP \code{http://10.0.2.2} para conseguir que la aplicación pudiese encontrar al servidor, pues es la dirección que representa a la máquina local sobre la que se ejecuta el emulador.
+
+Sin embargo, esta dirección existe sólo como enrutamiento en los emuladores de \textbf{Android Studio}, pero no en los dispositivos móviles en los que se pueda ejecutar la aplicación, aunque sea a través de la conexión con el \acrshort{ide}. Es por esto, que a lo largo del desarrollo no fue posible probar la aplicación en un dispositivo móvil real hasta que se llevó a cabo el despliegue del servidor en la nube.
+
+\section{Despliegue del servidor}
+
+El despliegue del servidor en la nube no constó de un obstáculo sino que lo fue en sí mismo. Ante la falta de experiencia particular en despliegues de este tipo o en ingeniería DevOps la tarea resultó de \textbf{gran dificultad} y consumió una cantidad de tiempo mucho mayor a la esperada inicialmente. Dilatada especialmente por el propio tiempo que llevaba cada despliegue.
+
+De cara a poder lograr este despliegue en la nube fue necesario realizar una serie de cambios en el código del servidor que permitiesen que la compilación, ejecución y lanzamiento fuesen fructíferos. Se encontraron problemas en cada uno de estos pasos, los más resaltables fueron: 
+\begin{itemize}
+    \item A la hora de compilar se generaron rutas entre ficheros erróneas en la generación del código Javascript a partir de los alias de TypeScript, esto llevó a la necesidad de instalar librerías adicionales que cubriesen este error.
+    \item La ejecución de los archivos compilados también falló puesto que la acción de despliegue generada por Azure intentaba ejecutar el archivo equivocado.
+    \item Problemas al encontrar variables de entorno.
+    \item Incapacidad de conexión con la base de datos por el listado blanco de direcciones IP.
+\end{itemize}
+
+Finalmente, el despliegue fue posible con todos los pasos indicados en el \nameref{ch:manual_despliegue} (\fref{ch:manual_despliegue}), pero esta tarea consumió más tiempo del esperado en la \nameref{ch:planificacion_temporal} (\fref{ch:planificacion_temporal}).

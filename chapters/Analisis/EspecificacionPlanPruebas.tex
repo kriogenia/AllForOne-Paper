@@ -1,0 +1,24 @@
+\chapter{Especificación del plan de pruebas}
+\label{ch:especificacion_plan_pruebas}
+
+\section{Pruebas unitarias}
+
+Todas las funciones desarrolladas en la \acrshort{api}, a excepción de las funciones de manejo de \glspl{endpoint} y de eventos del WebSocket serán probadas con pruebas unitarias de forma exhaustiva antes de que dicha función pueda ser aceptada y añadida a la rama principal del desarrollo. Las pruebas unitarias de la \acrshort{api} se llevarán a cabo con la librería \textbf{Jest} (\fref{lib:api:jest}) apoyada en \textbf{ts-jest} (\fref{lib:api:ts_jest}) para dotarla de compatibilidad con Typescript.
+
+Todos los componentes que se relacionen con otros recibirán imitaciones (o \glspl{mock}) en vez de los componentes originales para garantizar su funcionamiento correcto de forma aislada. Para este proceso se usará la librería \textbf{MongoDB In-Memory Server} (\fref{lib:api:inmemory_server}) de cara a poder hacer una imitación de la base de datos con la que probar los componentes que se comuniquen con ella de forma aislada. El resto de imitaciones se creará con la utilidad de Jest.
+
+En la aplicación móvil se realizarán pruebas unitarias de todas las clases con la única excepción de las actividades al ser componentes muy acoplados y que tienen una pertenencia más cercana al ámbito de \nameref{sec:pruebas_integracion}. El resto de clases contarán con sus respectivas pruebas unitarias siguiendo la misma estrategia de imitación de cualquier componente acoplado. La librería de pruebas será \textbf{JUnit 4} (\fref{lib:app:junit4}) apoyada en \textbf{Mockk} (\fref{lib:app:mockk}) y \textbf{Mock Web Server} (\fref{lib:app:mockwebserver}) para la creación de todas las imitaciones necesarias, la primera para los componentes de la aplicación y la segunda para la replicar la comunicación con la \acrshort{api}.
+
+\section{Pruebas de integración}
+\label{sec:pruebas_integracion}
+
+Las pruebas de integración de la \acrshort{api} se irán creando según se complete la funcionalidad de los distintos \glspl{endpoint} y eventos del WebSocket intentando replicar interacciones completas con simulaciones de las peticiones que se esperan recibir de la aplicación. La simulación de las peticiones \acrshort{http} se realizará con la librería \textbf{SuperTest} (\ref{lib:api:supertest}), las de los eventos WebSocket con el cliente suministrado en la librería de SocketIO (\fref{lib:api:socket_io}). En la realización de todas estas pruebas se seguirá imitando la base de datos con el mismo \gls{mock} de las pruebas unitarias. De ser posible dentro del tiempo de desarrollo se crearía otra colección en la base de datos en la nube y se realizarían en dicho entorno de pruebas.
+
+Las pruebas de integración de la aplicación se corresponderán con los casos de uso presentados en el \fref{chap:casos_uso} y se llevarán a cabo con la librería \textbf{Espresso} (\fref{lib:app:espresso}) de Android. Igual que en el caso de las pruebas unitarias se simularán las comunicaciones con la \acrshort{api} por medio de la misma librería de imitación. La opción óptima pasaría por el despliegue de una \acrshort{api} de pruebas con la que realizar las comunicaciones, sin embargo, la logística y las limitaciones de este desarrollo deja esa posibilidad fuera del alcance.
+
+\section{Pruebas de sistema}
+Las pruebas de sistema se empezarán a realizar en la etapa final del desarrollo y una vez la \acrshort{api} haya sido desplegada en la nube como se indicará en el \fref{sec:despliegue_api}. Se realizarán con la aplicación instalada en móviles con Android de diferentes marcas y versiones del sistema operativo y contra la \acrshort{api} desplegada. Se probarán manualmente todos los casos de uso del \fref{chap:casos_uso} y otras posibilidades que se consideren oportunas. Para probar las funciones de comunicación se realizarán pruebas con hasta tres usuarios interconectados.
+
+\section{Pruebas de usabilidad}
+
+Se desconoce si este plan de pruebas podrá ser ejecutado en el proyecto actual por diversas imposibilidades en la obtención de colaboración por parte de asociaciones especializadas. En caso de conseguir la colaboración de alguna asociación de enfermos con Alzheimer se crearán dos cuestionarios con una serie de preguntas acerca de las funciones y la usabilidad de la aplicación. Uno de los cuestionarios irá dirigido a pacientes de Alzheimer y el otro a los cuidadores de los mismos.

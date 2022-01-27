@@ -1,0 +1,185 @@
+\subsection{Paquetes de Node}
+
+\subsubsection{arr-union}
+\label{lib:api:arr_union}
+
+Desarrollado por Jon Schlinkert, proporciona facilidades para generar uniones de arrays.
+
+Para más información: \href{https://www.npmjs.com/package/arr-union}{https://www.npmjs.com/package/arr-union}
+
+\subsubsection{command-line-args}
+\label{lib:api:command_line_args}
+
+Librería para la gestión e implementación de la lectura y manejo de los argumentos en línea de comandos empleado en la aplicación para establecer un comando de lanzamiento para especificar uno de los entornos de ejecución de la aplicación.
+
+Para más información: \href{https://www.npmjs.com/package/command-line-args}{https://www.npmjs.com/package/command-line-args}
+
+\subsubsection{dotenv}
+\label{lib:api:dotenv}
+
+Módulo sin dependencias enfocado en la carga de variables de entorno a través de ficheros de extensión \code{.env} proporcionando acceso a las mismas desde cualquier punto de la aplicación. De esta forma permite la modificación sencilla de las mismas y la carga selectiva según entornos definidos. En la \acrshort{api} se ha utilizado para definir entornos de desarrollo, pruebas y producción con valores distintos para definir características como el puerto de despliegue, el tiempo de caducidad de los diferentes \glspl{token} o las direcciones de conexión.
+
+Para más información: \href{https://www.npmjs.com/package/dotenv}{https://www.npmjs.com/package/dotenv}
+
+\subsubsection{ESLint}
+\label{lib:api:eslint}
+Paquete de desarrollo. ESLint es una herramienta de análisis estático de código para la identificación de patrones problemáticos en archivos de código Javascript y TypeScript. Funciona entorno a una serie de reglas configurables que responden a diferentes tipos y permiten cubrir problemas de calidad y estilo. Junto a esta librería se instalaron también los siguientes paquetes: \textbf{eslint-import-resolver-typescript}, para resolver la importación de paquetes con aliases de rutas de TypeScript; \textbf{eslint-plugin-import}, para añadir soporte para la sintaxis de importación y exportación de módulos de EcmaScript6\cite{ecma262}; \textbf{eslint-plugin-node}, para proporcionar reglas adicionales para el framework de Node.js; \textbf{@typescript-eslint/eslint-plugin}, para incluir reglas para bases de código TypeScript; y \textbf{@typescript-eslint/parser}, para permitir el análisis del código TypeScript.
+
+\begin{wrapfigure}[6]{l}{0.2\textwidth}
+    \vspace{-20pt}
+    \centering
+    \includegraphics[width=0.15\textwidth]{Implementación/eslint-icon.png}
+    \vspace{-15pt}
+    \caption{Logo de ESLint}
+\end{wrapfigure}
+
+Durante el desarrollo se especificó la necesidad de pasar de forma limpia el escaneo de ESLint con el archivo de configuración del proyecto antes de que nuevo código se juntase con el código anterior, garantizando que el código principal siempre estuviese libre de estos errores. En un inicio se planteaba añadir esta comprobación al proceso de despliegue de la aplicación pero al final se desestimó por tema de tiempo y por el tamaño del equipo de desarrollo. 
+
+Para más información: \href{https://eslint.org/}{https://eslint.org/}
+
+\subsubsection{Express}
+\label{lib:api:express}
+
+Entorno de trabajo de desarrollo de aplicaciones web para \nameref{lib:node}. Es un proyecto gratuito y de código libre bajo la licencia MIT. El énfasis de su diseño apunta a la construcción de aplicaciones web dinámicas y \acrshort{api}s. Su extensivo uso dentro del ecosistema de Node.js lo convierte en el framework de facto estándar de esta plataforma. Ha sido usado en el sistema para toda la infraestructura de la \acrshort{api} \acrshort{rest}.
+
+Entre las características que ofrece se encuentra un sistema de enrutamiento robusto y funcional con apoyo en el uso de \gls{middleware}; una serie de herramientas de ayuda para la comunicación \acrshort{http} como un sistema de caché entre otras cosas; y énfasis en ofrecer alto rendimiento. Está presente en la mayoría de pilas de desarrollo Javascript como son MEAN\footnote{MongoDB-Express-Angular-Node}, MERN\footnote{MongoDB-Express-React-Node} o MEVN\footnote{MongoDB-Express-Vue-Node}.
+
+Para más información: \href{https://expressjs.com/}{https://expressjs.com/}
+
+\subsubsection{Google Auth Library}
+\label{lib:api:google_auth_library}
+
+Biblioteca de cliente oficial de Google para la autorización y autenticación con las \acrshort{api} de Google y OAuth2.0\cite{rfc6749}. Empleada en la \acrshort{api} para la validación de las autenticaciones con Google realizadas en la aplicación móvil.
+
+Para más información: \href{https://cloud.google.com/nodejs/docs/reference/google-auth-library/latest}{https://cloud.google.com/nodejs/docs/reference/google-auth-library/latest}
+
+\subsubsection{Helmet}
+\label{lib:api:helmet}
+
+\Gls{middleware} para \nameref{lib:api:express} que ayuda a aumentar la seguridad de los \glspl{endpoint} de la misma añadiendo automáticamente una serie de cabeceras a las comunicaciones \acrshort{http}. En el sistema se utiliza en la versión de producción.
+
+Para más información: \href{https://helmetjs.github.io/}{https://helmetjs.github.io/}
+
+\subsubsection{http-status-codes}
+\label{lib:api:http_status_codes}
+
+Ofrece los códigos de estado \acrshort{http} como constantes para una implementación más sencilla y léxica de estos.
+
+Para más información: \href{https://www.npmjs.com/package/http-status-codes}{https://www.npmjs.com/package/http-status-codes}
+
+\subsubsection{Jest}
+\label{lib:api:jest}
+
+\begin{wrapfigure}[6]{r}{0.2\textwidth}
+    \vspace{-20pt}
+    \centering
+    \includegraphics[width=0.15\textwidth]{Implementación/jest-icon.png}
+    \vspace{-15pt}
+    \caption{Logo de Jest}
+\end{wrapfigure}
+
+Paquete para pruebas. Desarrollado y mantenido por Facebook, Jest un entorno de pruebas para Javascript con enfoque en la simplicidad y el soporte de aplicaciones web complejas. Permite el desarrollo de pruebas de todos los niveles sin requerir un gran número de configuraciones como las otras alternativas de pruebas para Javascript. Ha sido el entorno utilizado para probar la \gls{api} a todos los niveles.
+
+Para más información: \href{https://jestjs.io/}{https://jestjs.io/}
+
+\subsubsection{Jet-Logger}
+\label{lib:api:jet_logger}
+
+Jet-Logger es la herramienta de registro utilizada a lo largo de toda la \acrshort{api} para llevar control del flujo, llamadas o errores en este subsistema. Se puede configurar por medio de variables de entorno o por código, en el desarrollo se empleó la primera opción. Permite especificar como salida la consola, un archivo o algún otro mecanismo personalizado y las funciones de registro que expone son \code{info} (información), \code{imp} (importante), \code{warn} (advertencia) y \code{err} (error).
+
+Para más información: \href{https://www.npmjs.com/package/jet-logger}{https://www.npmjs.com/package/jet-logger}
+
+\subsubsection{jsonwebtoken}
+\label{lib:api:jsonwebtoken}
+
+Ofrece una interfaz para la implementación de \acrshort{json} Web Tokens\cite{rfc7519} en el sistema. En síntesis, ofrece funciones para firmar un nuevo \gls{token}, para verificarlo o para descodificarlo. Dichos \glspl{token} pueden ser personalizados especificando el algoritmo de codificación, el tiempo de expiración y demás campos del estándar. Al firmar y descodificar estos \glspl{token} se usa una clave privada que en el caso de nuestro sistema se define en las variables de entorno.
+
+Para más información: \href{https://jwt.io/libraries}{https://jwt.io/libraries}
+
+\subsubsection{MongoDB In-Memory Server}
+\label{lib:api:inmemory_server}
+
+Paquete para pruebas que despliega un servidor en memoria real de MongoDB de forma programática desde el \nameref{lib:node}. En el desarrollo permitió la realización de pruebas con consultas u operaciones de MongoDB desde un entorno controlado, manipulable e independiente, ahorrando la necesidad de desplegar un entorno o clúster para test.
+
+Para más información: \href{https://github.com/nodkz/mongodb-memory-server}{https://github.com/nodkz/mongodb-memory-server}
+
+\subsubsection{Mongoose}
+\label{lib:api:mongoose}
+
+Mongoose es la librería por excelencia de Javascript para la gestión de bases de datos de MongoDB. Mongoose proporciona una solución basada en esquemas que permite especificar y dotar de tipos a las entidades de la base de datos, además de otras funciones como la validación automática de las mismas o funciones para la construcción de peticiones válidas entre otras cosas.
+
+Para más información: \href{https://mongoosejs.com/}{https://mongoosejs.com/}
+
+\subsubsection{morgan}
+\label{lib:api:morgan}
+
+Proporciona un \gls{middleware} para registrar las peticiones \acrshort{http} recibidas en la aplicación.
+
+Para más información: \href{https://www.npmjs.com/package/morgan}{https://www.npmjs.com/package/morgan}
+
+\subsubsection{Socket.IO}
+\label{lib:api:socket_io}
+
+Socket.IO es una biblioteca de Javascript para aplicación web en tiempo real que permite establecer comunicaciones bidireccionales en tiempo real entre clientes web y servidores. Está compuesta por dos partes: primero, la librería para \nameref{lib:node} que proporciona la lógica para el despliegue en el lado del servidor y sobre la que se cimenta la WebSocket \acrshort{api} del sistema; y el segundo, la librería para el lado de los clientes que funciona sobre navegadores o sobre entornos de prueba, como fue el caso en este desarrollo, en el cuál se empleó para realizar los test de integración de la WebSocket \acrshort{api}.
+
+Para más información: \href{https://socket.io/}{https://socket.io/}
+
+\subsubsection{SuperTest}
+\label{lib:api:supertest}
+
+Paquete para pruebas con la motivación de proporcionar una abstracción de alto nivel para realizar pruebas con comunicaciones \acrshort{http} sin eliminar la opción de realizar pruebas con \acrshort{api}s de bajo nivel. En el desarrollo fue la base de todas las pruebas de integración la \acrshort{rest} \acrshort{api}.
+
+Para más información: \href{https://www.npmjs.com/package/supertest}{https://www.npmjs.com/package/supertest}
+
+\subsubsection{ts-jest}
+\label{lib:api:ts_jest}
+
+Paquete para pruebas que ha permitido producir pruebas con Jest utilizando TypeScript.
+
+Para más información: \href{https://kulshekhar.github.io/ts-jest/}{https://kulshekhar.github.io/ts-jest/}
+
+\subsubsection{ts-node-dev}
+\label{lib:api:ts_node_dev}
+
+Paquete para el entorno de desarrollo. Ofrece una utilidad para el reinicio rápido y automático del servidor al detectar cambios en los archivos de desarrollo. Es similar a otros paquetes que ofrece utilidades similares como \textbf{nodemon}, pero con ventajas para el desarrollo en TypeScript al compartir el proceso de compilación entre reinicios, lo que se traduce en una mejora de velocidad para los reinicios respecto a estas alternativas.
+
+Para más información: \href{https://www.npmjs.com/package/ts-node-dev}{https://www.npmjs.com/package/ts-node-dev}
+
+\subsubsection{tsconfig-paths}
+\label{lib:api:tsconfig_paths}
+
+Paquete para el entorno de desarrollo. TypeScript permite especificar mapeados de rutas para crear alias que reduzcan la navegación de las importaciones de módulos. Sin embargo, estos alias no se traducen correctamente en las ejecuciones con \code{node} o, como es el caso de este desarrollo, \code{ts-node}. Este paquete resuelve ese problema y permite dichos lanzamientos con los alias declarados.
+
+Para más información: \href{https://www.npmjs.com/package/tsconfig-paths}{https://www.npmjs.com/package/tsconfig-paths}
+
+\subsubsection{tscpaths}
+\label{lib:api:tscpaths}
+
+Librería que ofrece una funcionalidad similar y complementaria a la anterior. Este paquete resuelve los mismos alias reemplazándolos por las rutas absolutas a las que equivalen en tiempo de compilación evitando problemas al ejecutar la versión compilada en Javascript, que será la versión de producción desplegada en el servidor.
+
+Para más información: \href{https://www.npmjs.com/package/tscpaths}{https://www.npmjs.com/package/tscpaths}
+
+\subsubsection{Typegoose}
+\label{lib:api:typegoose}
+
+Aunque \nameref{lib:api:mongoose} (\ref{lib:api:mongoose}) funciona perfectamente con TypeScript \emph{out-of-the-box}, su implementación no aprovecha como debería las capacacidades del superset y las herramientas que proporciona. Un desarrollo con Mongoose y TypeScript requiere definir el modelo de Mongoose y una interfaz TypeScript aparte para poder analizar su tipo en la compilación. Esto implica que cualquier cambio al modelo requiere también modificar la interfaz, lo que puede provocar errores de consistencia.
+
+Typegoose existe para solucionar el problema, proporcionando la capacidad de decorar interfaces TypeScript de forma que genere los esquemas y modelos de datos a partir de estos, requiriendo con ello una única declaración de la entidad que garantiza la consistencia entre el esquema almacenado y los tipos empleados en el código. Typegoose ha sido por tanto la librería de diseño de las entidades de la base de datos en la \acrshort{api}.
+
+Para más información: \href{https://typegoose.github.io/typegoose/}{https://typegoose.github.io/typegoose/}
+
+\subsubsection{TypeScript}
+\label{lib:api:typescript}
+
+\textbf{Véase \fref{lib:typescript}}. El uso de TypeScript en un proyecto requiere la instalación de esta librería en el mismo. Además de este paquete se instalaron también como paquetes de desarrollo una serie de librerías para proporcionar las interfaces y tipos TypeScript a paquetes Javascript utilizados en el proyecto que carecían de estas declaraciones. Estas librerías son creadas y publicadas por usuarios en un repositorio ofrecido por Microsoft llamado DefinitelyTyped\footnote{\href{https://github.com/DefinitelyTyped/DefinitelyTyped}{https://github.com/DefinitelyTyped/DefinitelyTyped}}. Los tipos de dicha base de código son publicados en \acrshort{npm} bajo el espacio de nombres \code{@types}.
+
+Las bibliotecas de los que se instalaron dependencias de tipos fueron: \nameref{lib:api:command_line_args}, \nameref{lib:api:express}, \nameref{lib:api:jest}, \nameref{lib:api:jsonwebtoken}, \nameref{lib:api:morgan}, \nameref{lib:node} y \nameref{lib:api:supertest}
+
+Para más información: \href{https://www.typescriptlang.org/}{https://www.typescriptlang.org/}
+
+\subsubsection{Yarn}
+\label{lib:api:yarn}
+
+Gestor de paquetes desarrollado por \textbf{Facebook} para entornos. \nameref{lib:node}. Es una alternativa a \acrshort{npm}, el gestor por defecto de Node.js que ya viene instalado con el mismo. Ha sido el gestor de dependencias elegido en el desarrollo de la \acrshort{api}. La principal ventaja de Yarn y que ha motivado su uso en el proyecto es la mejora de velocidad que ofrece respecto a NPM\cite{yarnNpm}, sobre todo a la hora de hacer instalaciones cacheadas (donde llega a ofrecer una mejora del 200\%) o reinstalaciones (de 28 segundos a menos de 2). De cara a la funcionalidad ambos son muy similares con pequeñas diferencias pero características casi idénticas.
+
+Para más información: \href{https://yarnpkg.com/}{https://yarnpkg.com/}

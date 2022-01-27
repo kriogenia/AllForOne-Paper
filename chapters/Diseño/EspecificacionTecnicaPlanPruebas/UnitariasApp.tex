@@ -1,0 +1,752 @@
+\subsection{Aplicación móvil}
+
+\subsubsection{Gestor de ajustes}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualizar datos del usuario}} \\ \hline 
+    Descripción                 & Se ejecuta la actualización de datos del usuario \\ \hline
+    Resultado esperado          & Llamada a la actualización de los datos en el modelo de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Actualizar datos del usuario}
+    \label{cp:u:app:actualizar_datos}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Cerrar la sesión de usuario}} \\ \hline 
+    Descripción                 & Se ejecuta la función de cierre de sesión \\ \hline
+    Resultado esperado          & Llamada al cierre de sesión en repositorio y el modelo de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Cerrar la sesión de usuario}
+    \label{cp:u:app:cerrar_sesion_usuario}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminar el vínculo con el Paciente vinculado}} \\ \hline 
+    Descripción                 & Se ejecuta la función de borrado de vínculos \\ \hline
+    Resultado esperado          & Llamada al borrado de vínculo en repositorio y el modelo de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Eliminar el vínculo con el Paciente vinculado}
+    \label{cp:u:app:eliminar_vinculo}
+\end{longtable}
+    
+\subsubsection{Gestor de marcadores}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Añadir un marcador}} \\ \hline 
+    Descripción                 & Se añade un marcador al gestor \\ \hline
+    Entrada                     & Un marcador de usuario \\ \hline
+    Resultado esperado          & El marcador es añadido a la lista de marcadores \\ \hline
+    \caption{Prueba unitaria de la aplicación: Añadir un marcador}
+    \label{cp:u:app:añadir_marcador}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Comprobar la existencia de un marcador}} \\ \hline 
+    Descripción                 & Se comprueba si un marcador existe ya en el gestor \\ \hline
+    Entrada                     & Un marcador de usuario existente \\
+                                & Un marcador de usuario no existente \\\hline
+    Resultado esperado          & Verdadero o falso según el marcador exista o no \\ \hline
+    \caption{Prueba unitaria de la aplicación: Comprobar la existencia de un marcador}
+    \label{cp:u:app:comprobar_marcador}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminar un marcador}} \\ \hline 
+    Descripción                 & Se intenta eliminar un marcador del gestor \\ \hline
+    Entrada                     & Un marcador de usuario existente \\
+                                & Un marcador de usuario no existente \\\hline
+    Resultado esperado          & El marcador es eliminado si existe e ignorado si no \\ \hline
+    \caption{Prueba unitaria de la aplicación: Eliminar un marcador}
+    \label{cp:u:app:eliminar_marcador}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualizar un marcador}} \\ \hline 
+    Descripción                 & Se intenta actualizar un marcador del gestor \\ \hline
+    Entrada                     & Un marcador de usuario existente \\
+                                & Un marcador de usuario no existente \\\hline
+    Resultado esperado          & El marcador es actualizado si existe e ignorado si no \\ \hline
+    \caption{Prueba unitaria de la aplicación: Actualizar un marcador}
+    \label{cp:u:app:actualizar_marcador}
+\end{longtable}
+    
+\vspace{-10pt}
+\subsubsection{Gestor de notificaciones}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Añadir una notificación}} \\ \hline 
+    Descripción                 & Se añade una notificación al gestor \\ \hline
+    Entrada                     & Una notificación \\ \hline
+    Resultado esperado          & La notificación es añadida a la lista de notificaciones \\ \hline
+    \caption{Prueba unitaria de la aplicación: Añadir una notificación}
+    \label{cp:u:app:añadir_notificacion}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Añadir un conjunto de notificaciones}} \\ \hline 
+    Descripción                 & Se añade un conjunto de notificaciones al gestor \\ \hline
+    Entrada                     & Un conjunto de notificaciones \\ \hline
+    Resultado esperado          & Las notificaciones son añadidas a la lista de notificaciones \\ \hline
+    \caption{Prueba unitaria de la aplicación: Añadir un conjunto de notificaciones}
+    \label{cp:u:app:añadir_conjunto_notificaciones}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Limpiar lista de notificaciones}} \\ \hline 
+    Descripción                 & Se limpia la lista de notificaciones del gestor \\ \hline
+    Entrada                     & Lista de notificaciones con notificaciones \\
+                                & Lista de notificaciones vacía \\ \hline
+    Resultado esperado          & La lista de notificaciones queda vacía \\ \hline
+    \caption{Prueba unitaria de la aplicación: Limpiar lista de notificaciones}
+    \label{cp:u:app:limpiar_lista_notificaciones}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Cargar lista de notificaciones}} \\ \hline 
+    Descripción                 & Se llama a la carga de notificaciones \\ \hline
+    Resultado esperado          & Se llama al repositorio y las notificaciones obtenidas son añadidas a la lista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Cargar lista de notificaciones}
+    \label{cp:u:app:cargar_lista_notificaciones}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminar una notificación}} \\ \hline 
+    Descripción                 & Se elimina una notificación \\ \hline
+    Entrada                     & Notificación existente \\
+                                & Notificación no existente \\ \hline
+    Resultado esperado          & Si existe se llama al repositorio para leer la notificación y se borra de la lista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Eliminar una notificación}
+    \label{cp:u:app:eliminar_notificacion}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminar todas las notificaciones}} \\ \hline 
+    Descripción                 & Se elimina todas las notificaciones \\ \hline
+    Entrada                     & Lista de notificaciones con notificaciones \\
+                                & Lista de notificaciones vacía \\ \hline
+    Resultado esperado          & Se llama al repositorio para leer todas las notificaciones existentes y la lista queda vacía \\ \hline
+    \caption{Prueba unitaria de la aplicación: Eliminar todas las notificaciones}
+    \label{cp:u:app:eliminar_todas_notificaciones}
+\end{longtable}
+
+\vspace{-30pt}
+\subsubsection{Modelo de vista de configuración}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Enviar confirmación de datos de usuario}} \\ \hline 
+    Descripción                 & Se llama al envío de la confirmación de datos del usuario \\ \hline
+    Entrada                     & Un objeto Usuario \\ \hline
+    Resultado esperado          & Se llama al repositorio para la actualización y se invoca el cambio a la pantalla principal \\ \hline
+    \caption{Prueba unitaria de la aplicación: Enviar confirmación de datos de usuario}
+    \label{cp:u:app:enviar_confirmacion_datos_usuario}
+\end{longtable}
+
+\subsection{Modelo de vista de lanzamiento}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Gestionar resultado de inicio de sesión en Google}} \\ \hline 
+    Descripción                 & Se ejecuta la llamada que gestiona el inicio de sesión a partir del inicio de sesión con Google  \\ \hline
+    Entrada                     & Token de sesión de Google \\ \hline
+    Resultado esperado          & Se llama al repositorio para inicar sesión y se invoca el cambio a la pantalla principal \\ \hline
+    \caption{Prueba unitaria de la aplicación: Gestionar resultado de inicio de sesión en Google}
+    \label{cp:u:app:gestionar_resultado_inicio_google}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Gestionar resultado de inicio de sesión en Google erróneo}} \\ \hline 
+    Descripción                 & Se maneja un intento inicio de sesión con Google fallido \\ \hline
+    Entrada                     & Token de sesión de Google inválida \\ \hline
+    Resultado esperado          & Lanzamiento de mensaje de error \\ \hline
+    \caption{Prueba unitaria de la aplicación: Gestionar resultado de inicio de sesión en Google erróneo}
+    \label{cp:u:app:gestionar_resultado_inicio_google_erroneo}
+\end{longtable}
+    
+\vspace{-10pt}
+\subsubsection{Modelo de vista de localización}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Añadir un nuevo marcador}} \\ \hline 
+    Descripción                 & Se añade un nuevo marcador al mapa \\ \hline
+    Entrada                     & Nueva localización \\ \hline
+    Resultado esperado          & Se crea un marcador, se añade al gestor y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Añadir un nuevo marcador}
+    \label{cp:u:app:añadir_nuevo_marcador_vista}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recibir una actualización de posición de marcador no existente}} \\ \hline 
+    Descripción                 & Se gestiona la llegada de una actualización de posición de un marcador no conocido \\ \hline
+    Entrada                     & Nueva localización \\ \hline
+    Resultado esperado          & Se crea un marcador, se añade al gestor y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recibir una actualización de posición de marcador no existente}
+    \label{cp:u:app:recibir_actualizacion_posicion_no_existente}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recibir una actualización de posición de marcador ya existente}} \\ \hline 
+    Descripción                 & Se gestiona la llegada de una actualización de posición de un marcador ya existente \\ \hline
+    Entrada                     & Localización actualizada \\ \hline
+    Resultado esperado          & Se actualiza el marcador respectivo y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recibir una actualización de posición de marcador ya existente}
+    \label{cp:u:app:recibir_actualizacion_posicion_marcador}
+\end{longtable}
+    
+\subsubsection{Modelo de vista de mensajería}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Obtener una página de mensajes}} \\ \hline 
+    Descripción                 & Se gestiona la petición de una nueva página de mensajes \\ \hline
+    Entrada                     & Primera página \\
+                                & Página más avanzada \\
+                                & Página inválida \\\hline
+    Resultado esperado          & Se llama al repositorio y se actualiza la lista de mensajes \\ \hline
+    \caption{Prueba unitaria de la aplicación: Obtener una página de mensajes}
+    \label{cp:u:app:obtener_pagina_mensajes}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Enviar una tarea por el feed}} \\ \hline 
+    Descripción                 & Se envía una tarea a través del feed \\ \hline
+    Entrada                     & Una tarea \\\hline
+    Resultado esperado          & Se llama al repositorio para el envío \\ \hline
+    \caption{Prueba unitaria de la aplicación: Enviar una tarea por el feed}
+    \label{cp:u:app:enviar_tarea_feed}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Enviar un mensaje por el feed}} \\ \hline 
+    Descripción                 & Se envía un mensaje a través del feed \\ \hline
+    Entrada                     & Un mensaje \\\hline
+    Resultado esperado          & Se llama al repositorio para el envío \\ \hline
+    \caption{Prueba unitaria de la aplicación: Enviar un mensaje por el feed}
+    \label{cp:u:app:enviar_mensaje_feed}
+\end{longtable}
+
+\newpage
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recibir una actualización de tarea}} \\ \hline 
+    Descripción                 & Se gestiona la llegada de una actualización de una tarea \\ \hline
+    Entrada                     & Tarea existente actualizada \\
+                                & Tarea no existente actualizada \\ \hline
+    Resultado esperado          & Se actualiza la tarea si existe y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recibir una actualización de tarea}
+    \label{cp:u:app:recibir_actualizacion_tarea}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recibir una eliminación de tarea}} \\ \hline 
+    Descripción                 & Se gestiona la llegada de una actualización de posición de un marcador ya existente \\ \hline
+    Entrada                     & Localización actualizada \\ \hline
+    Resultado esperado          & Se actualiza el marcador respectivo \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recibir una eliminación de tarea}
+    \label{cp:u:app:recibir_eliminacion_tarea}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recibir un nuevo mensaje}} \\ \hline 
+    Descripción                 & Se gestiona la llegada de una actualización de posición de un marcador ya existente \\ \hline
+    Entrada                     & Localización actualizada \\ \hline
+    Resultado esperado          & Se actualiza el marcador respectivo \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recibir un nuevo mensaje}
+    \label{cp:u:app:recibir_nuevo_mensaje}
+\end{longtable}
+    
+\vspace{-20pt}
+\subsubsection{Modelo de vista de tareas}
+
+\vspace{-5pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Confirmar creación de una tarea}} \\ \hline 
+    Descripción                 & Se confirma la creación de una tarea \\ \hline
+    Entrada                     & Propiedades una tarea \\ \hline
+    Resultado esperado          & Se llama al repositorio, se añade a la lista de tareas y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Confirmar creación de una tarea}
+    \label{cp:u:app:confirmar_creacion_tarea}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación una tarea}} \\ \hline 
+    Descripción                 & Se elimina una de las tareas listadas por un usuario capaz de ello \\ \hline
+    Entrada                     & Tarea a eliminar \\ \hline
+    Resultado esperado          & Se llama al repositorio, se elimina de la lista y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Eliminación una tarea}
+    \label{cp:u:app:eliminacion_tarea_vista}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación una tarea inválida}} \\ \hline 
+    Descripción                 & Se elimina una de las tareas listadas por un usuario que no puede hacerlo \\ \hline
+    Entrada                     & Tarea a eliminar \\ \hline
+    Resultado esperado          & Mensaje de error \\ \hline
+    \caption{Prueba unitaria de la aplicación: Eliminación una tarea inválida}
+    \label{cp:u:app:eliminacion_tarea_invalida}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar tarea como hecha/no hecha}} \\ \hline 
+    Descripción                 & Se marca una de las tareas listadas por un usuario como hecha o no hecha \\ \hline
+    Entrada                     & Tarea hecha \\
+                                & Tarea no hecha \\ \hline
+    Resultado esperado          & Se llama al repositorio, se modifica la tarea y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Marcar tarea como hecha/no hecha}
+    \label{cp:u:app:marcar_tarea_hecha_no_hecha}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Obtener la lista de tareas}} \\ \hline 
+    Descripción                 & Se gestiona la petición de la lista de tareas \\ \hline
+    Resultado esperado          & Se llama al repositorio, se almacena la lista y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Obtener la lista de tareas}
+    \label{cp:u:app:obtener_lista_tareas}
+\end{longtable}
+    
+\vspace{-15pt}
+\subsubsection{Modelo de vista de vínculos}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminar un vínculo}} \\ \hline 
+    Descripción                 & Se gestiona la eliminación de un vínculo \\ \hline
+    Resultado esperado          & Se llama al repositorio \\
+                                & Se elimina de la lista y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Eliminar un vínculo}
+    \label{cp:u:app:eliminar_vinculo_vista}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Obtener un código QR de vinculación}} \\ \hline 
+    Descripción                 & Se gestiona la petición de un código QR de vinculación \\ \hline
+    Resultado esperado          & Se llama al repositorio, se transforma el código a QR, se almacena y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Obtener un código QR de vinculación}
+    \label{cp:u:app:obtener_codigo_qr_vinculacion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Obtener los vínculos}} \\ \hline 
+    Descripción                 & Se gestiona la petición de la lista de vínculos \\ \hline
+    Resultado esperado          & Se llama al repositorio, se almacena la lista y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Obtener los vínculos}
+    \label{cp:u:app:obtener_vinulos_vista}
+\end{longtable}
+    
+\subsubsection{Modelo de vista principal}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualizar usuario}} \\ \hline 
+    Descripción                 & Se gestiona la petición de actualización de datos del usuario \\ \hline
+    Resultado esperado          & Se llama al repositorio, se actualizan los datos y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Actualizar usuario}
+    \label{cp:u:app:actualizar_usuario_vista}
+\end{longtable}
+    
+\vspace{-20pt}    
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Enviar código de vinculación}} \\ \hline 
+    Descripción                 & Se envía un código de vinculación para completar un vínculo \\ \hline
+    Entrada                     & Código \\ \hline
+    Resultado esperado          & Se llama al repositorio y se lanza una petición de obtención de Paciente vinculado \\ \hline
+    \caption{Prueba unitaria de la aplicación: Enviar código de vinculación}
+    \label{cp:u:app:enviar_codigo_vinculacion_vista}
+\end{longtable}
+    
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Obtener lista de notificaciones}} \\ \hline 
+    Descripción                 & Se gestiona la petición de la lista de notificaciones \\ \hline
+    Resultado esperado          & Se llama al repositorio, se almacena la lista y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Obtener lista de notificaciones}
+    \label{cp:u:app:obtener_lista_notificaciones_vista}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Obtener Paciente vinculado}} \\ \hline 
+    Descripción                 & Se gestiona la petición de los datos del Paciente vinculado \\ \hline
+    Resultado esperado          & Se llama al repositorio, se almacenan los datos y se invoca una actualización de vista \\ \hline
+    \caption{Prueba unitaria de la aplicación: Obtener Paciente vinculado}
+    \label{cp:u:app:obtener_paciente_vinculado_vista}
+\end{longtable}
+
+\subsubsection{Repositorio de mensajes}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Envío de mensaje}} \\ \hline 
+    Descripción                 & Se envía un mensaje por el socket \\ \hline
+    Entrada                     & Mensaje de texto \\ \hline
+    Resultado esperado          & Se invoca al cliente con el evento y el mensaje  \\ \hline
+    \caption{Prueba unitaria de la aplicación: Envío de mensaje}
+    \label{cp:u:app:envio_mensajes_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de mensajes}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación de la lista de mensajes \\ \hline
+    Entrada                     & Token de sesión \\ \hline
+    Resultado esperado          & Se llama al servicio y se convierte la respuesta en una lista de mensajes \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recuperación de mensajes}
+    \label{cp:u:app:recuperacion_mensajes_repo}
+\end{longtable}
+    
+\vspace{-25pt}
+\subsubsection{Repositorio de notificaciones}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de notificaciones}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación de la lista de notificaciones \\ \hline
+    Entrada                     & Token de sesión \\ \hline
+    Resultado esperado          & Se llama al servicio y se convierte la respuesta en una lista de notificaciones \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recuperación de notificaciones}
+    \label{cp:u:app:recuperacion_notificaciones_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcado de notificación como leída}} \\ \hline 
+    Descripción                 & Se manda una petición de marcado de una notificación como leída \\ \hline
+    Entrada                     & Notificación y token de sesión \\ \hline
+    Resultado esperado          & Se llama al servicio  \\ \hline
+    \caption{Prueba unitaria de la aplicación: Marcado de notificación como leída}
+    \label{cp:u:app:marcado_notificacion_leida_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcado de todas las notificaciones como leídas}} \\ \hline 
+    Descripción                 & Se manda una petición de marcado de todas las notificaciones como leída \\ \hline
+    Entrada                     & Token de sesión \\ \hline
+    Resultado esperado          & Se llama al servicio  \\ \hline
+    \caption{Prueba unitaria de la aplicación: Marcado de todas las notificaciones como leídas}
+    \label{cp:u:app:marcado_todas_notificaciones_leidas_repo}
+\end{longtable}
+
+\subsubsection{Repositorio de sesión}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Inicio de sesión}} \\ \hline 
+    Descripción                 & Se manda una petición de inicio de sesión \\ \hline
+    Entrada                     & Token de Google \\ \hline
+    Resultado esperado          & Se llama al servicio  y se convierte la respuesta en una sesión \\ \hline
+    \caption{Prueba unitaria de la aplicación: Inicio de sesión}
+    \label{cp:u:app:inicio_sesion_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Cierre de sesión}} \\ \hline 
+    Descripción                 & Se manda una petición de cierre de sesión \\ \hline
+    Entrada                     & Token de sesión \\ \hline
+    Resultado esperado          & Se llama al servicio  \\ \hline
+    \caption{Prueba unitaria de la aplicación: Cierre de sesión}
+    \label{cp:u:app:cierre_sesion_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Refresco de sesión}} \\ \hline 
+    Descripción                 & Se manda una petición de marcado de refresco de sesión \\ \hline
+    Entrada                     & Token de sesión y de refresco \\ \hline
+    Resultado esperado          & Se llama al servicio  y se convierte la respuesta en una sesión \\ \hline
+    \caption{Prueba unitaria de la aplicación: Refresco de sesión}
+    \label{cp:u:app:refresco_sesion_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\subsubsection{Repositorio de tareas}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de tareas}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación de la lista de tareas \\ \hline
+    Entrada                     & Token de sesión \\ \hline
+    Resultado esperado          & Se llama al servicio y se convierte la respuesta en una lista de tareas \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recuperación de tareas}
+    \label{cp:u:app:recuperacion_tareas_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Guardado de una tarea}} \\ \hline 
+    Descripción                 & Se manda una petición de publicación de una tarea \\ \hline
+    Entrada                     & Token de sesión y una tarea \\ \hline
+    Resultado esperado          & Se llama al servicio y se convierte la respuesta en una tarea \\ \hline
+    \caption{Prueba unitaria de la aplicación: Guardado de una tarea}
+    \label{cp:u:app:guardado_tarea_repo}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación de una tarea}} \\ \hline 
+    Descripción                 & Se manda una petición de eliminación de una tarea \\ \hline
+    Entrada                     & Token de sesión y una tarea \\ \hline
+    Resultado esperado          & Se llama al servicio \\ \hline
+    \caption{Prueba unitaria de la aplicación: Eliminación de una tarea}
+    \label{cp:u:app:eliminacion_tarea_repo}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualización de una tarea}} \\ \hline 
+    Descripción                 & Se manda una petición de actualización de una tarea \\ \hline
+    Entrada                     & Token de sesión y una tarea \\ \hline
+    Resultado esperado          & Se llama al servicio y se convierte la respuesta en una tarea \\ \hline
+    \caption{Prueba unitaria de la aplicación: Actualización de una tarea}
+    \label{cp:u:app:actualizacion_tarea_repo}
+\end{longtable}
+
+\subsubsection{Repositorio de usuario}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualización de un usuario}} \\ \hline 
+    Descripción                 & Se manda una petición de actualización de un usuario \\ \hline
+    Entrada                     & Token de sesión y un usuario \\ \hline
+    Resultado esperado          & Se llama al servicio y se convierte la respuesta en un usuario \\ \hline
+    \caption{Prueba unitaria de la aplicación: Actualización de un usuario}
+    \label{cp:u:app:actualizacion_usuario_repo}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminar vinculación}} \\ \hline 
+    Descripción                 & Se manda una petición de eliminación de vínculo con otro usuario \\ \hline
+    Entrada                     & Token de sesión y un usuario \\ \hline
+    Resultado esperado          & Se llama al servicio \\ \hline
+    \caption{Prueba unitaria de la aplicación: Eliminar vinculación}
+    \label{cp:u:app:eliminar_vinculacion_repo}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Enviar código de vinculación}} \\ \hline 
+    Descripción                 & Se manda una petición con un código de vinculación \\ \hline
+    Entrada                     & Token de sesión y el código \\ \hline
+    Resultado esperado          & Se llama al servicio \\ \hline
+    \caption{Prueba unitaria de la aplicación: Enviar código de vinculación}
+    \label{cp:u:app:enviar_codigo_vinculacion_repo}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de vínculos}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación de la lista de vínculos \\ \hline
+    Entrada                     & Token de sesión \\ \hline
+    Resultado esperado          & Se llama al servicio y se convierte la respuesta en una lista de usuarios \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recuperación de vínculos}
+    \label{cp:u:app:recuperacion_vinculos_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación del Paciente vinculado}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación del Paciente vinculado \\ \hline
+    Entrada                     & Token de sesión \\ \hline
+    Resultado esperado          & Se llama al servicio y se convierte la respuesta en un usuario \\ \hline
+    \caption{Prueba unitaria de la aplicación: Recuperación del Paciente vinculado}
+    \label{cp:u:app:recuperacion_paciente_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Solicitar código de vinculación}} \\ \hline 
+    Descripción                 & Se manda una petición de código de vinculación \\ \hline
+    Entrada                     & Token de sesión \\ \hline
+    Resultado esperado          & Se llama al servicio y se convierte la respuesta en una cadena de texto \\ \hline
+    \caption{Prueba unitaria de la aplicación: Solicitar código de vinculación}
+    \label{cp:u:app:solicitar_codigo_vinculacion_repo}
+\end{longtable}
+
+\vspace{-15pt}
+\subsubsection{Factoría de servicios}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Obtención de un servicio}} \\ \hline 
+    Descripción                 & Se crea un servicio del tipo especificado \\ \hline
+    Entrada                     & Diferentes tipos de servicios \\ \hline
+    Resultado esperado          & Se obtiene el servicio esperado \\ \hline
+    \caption{Prueba unitaria de la aplicación: Obtención de un servicio}
+    \label{cp:u:app:obtencion_servicio}
+\end{longtable}
+    
+\vspace{-15pt}
+\subsubsection{Servicio de autenticación}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de inicio de sesión}} \\ \hline 
+    Descripción                 & Se envía una petición de inicio de sesión y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de inicio de sesión}
+    \label{cp:u:app:respuesta_inicio_sesion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de refresco de sesión}} \\ \hline 
+    Descripción                 & Se envía una petición de refresco de sesión y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de inicio de sesión}
+    \label{cp:u:app:respuesta_refresco_sesion}
+\end{longtable}
+    
+\vspace{-21pt}
+\subsubsection{Servicio de mensajería}
+
+\vspace{-5pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de recuperación de notificaciones}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación de notificaciones y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de recuperación de notificaciones}
+    \label{cp:u:app:respuesta_recuperacion_notificaciones}
+\end{longtable}
+
+\vspace{-16pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de recuperación de mensajes}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación de mensajes y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de recuperación de mensajes}
+    \label{cp:u:app:respuesta_recuperacion_mensajes}
+\end{longtable}
+    
+\vspace{-21pt}
+\subsubsection{Servicio de tareas}
+
+\vspace{-5pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de recuperación de tareas}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación de tareas y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de recuperación de tareas}
+    \label{cp:u:app:respuesta_recuperacion_tareas}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de publicación de tareas}} \\ \hline 
+    Descripción                 & Se envía una petición de publicación de tareas y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de publicación de tareas}
+    \label{cp:u:app:respuesta_publicacion_tareas}
+\end{longtable}
+    
+\vspace{-20pt}
+\subsubsection{Servicio de usuarios}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de actualización de usuario}} \\ \hline 
+    Descripción                 & Se envía una petición de actualización de usuario y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de actualización de usuario}
+    \label{cp:u:app:respuesta_actualizacion_usuario}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de recuperación de Paciente vinculado}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación de Paciente vinculado y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de recuperación de Paciente vinculado}
+    \label{cp:u:app:respuesta_recuperacion_paciente_vinculado}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de recuperación de vínculos}} \\ \hline 
+    Descripción                 & Se envía una petición de recuperación de vínculos y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de recuperación de vínculos}
+    \label{cp:u:app:respuesta_recuperacion_vinculos}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Procesar respuesta de recuperación de código de vinculación}} \\ \hline 
+    Descripción                 & Se envía una petición de código de vinculación y se procesa la respuesta \\ \hline
+    Entrada                     & Petición válida \\
+                                & Petición inválida \\ \hline
+    Resultado esperado          & Respuesta del servidor convertida en el objeto correspondiente \\ \hline
+    \caption{Prueba unitaria de la aplicación: Procesar respuesta de recuperación de código de vinculación}
+    \label{cp:u:app:respuesta_recuperacion_codigo_vinculacion}
+\end{longtable}

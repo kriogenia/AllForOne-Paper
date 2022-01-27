@@ -1,0 +1,380 @@
+\subsection{RSU. Requisitos de sesión de usuario}
+
+\begin{enumerate}[label*=RSU \arabic*.]
+    \item Los usuarios podrán iniciar sesión en la aplicación mediante autenticación con su cuenta de Google.
+    \item Los inicios de sesión serán validados con una petición a la \acrshort{api} \acrshort{rest} con el \gls{token} obtenido de la validación con Google.
+    \begin{enumerate}[label*=\arabic*.]
+        \item Si el inicio de sesión es inválido el usuario será notificado del error y se le permitirá reintentarlo.
+        \item \label{req:inicio_sesion} Si el inicio de sesión es válido y el usuario ya está registrado, se creará la sesión del usuario.
+        \begin{enumerate}[label*=\arabic*.]
+            \item \label{req:sesion} La \acrshort{api} \acrshort{rest} creará y almacenará la sesión del usuario. Dicha sesión estará compuesta por:
+            \begin{enumerate}[label*=\arabic*.]
+                \item \label{req:token_sesion}  \Gls{token} de sesión para realizar las peticiones. Tendrá un tiempo de validez de TIEMPO\textunderscore VALIDEZ\textunderscore TOKEN\textunderscore SESIÓN.
+                \item \label{req:token_refresco} \Gls{token} de refresco de sesión para mantener la sesión activa y obtener un nuevo par de \glspl{token}. Tendrá un tiempo de validez de TIEMPO\textunderscore VALIDEZ\textunderscore TOKEN\textunderscore REFRESCO.
+            \end{enumerate}
+            \item La sesión pasará a ser inválida cuando caduque su \labelcref{req:token_refresco}.
+            \item \label{req:info_sesion} La \acrshort{api} \acrshort{rest} enviará a la aplicación la información de sesión del usuario.
+            \begin{enumerate}[label*=\arabic*.]
+                \item \Gls{token} de sesión (\labelcref{req:token_sesion}).
+                \item \Gls{token} de refresco de sesión (\labelcref{req:token_refresco}).
+                \item Instante de caducidad de la sesión.
+            \end{enumerate}
+            \item El usuario será redirigido a la pantalla principal de la aplicación.
+        \end{enumerate}
+        \item \label{req:registro} Si el inicio de sesión es válido y el usuario es nuevo se le redirigirá a la actividad de creación de usuarios.
+        \begin{enumerate}[label*=\arabic*.]
+            \item \label{req:nombre_usuario} El usuario deberá indicar un nombre válido.
+            \item \label{req:rol_usuario} El usuario deberá seleccionar un rol entre los posibles:
+            \begin{enumerate}[label*=\arabic*.]
+                \item Paciente
+                \item Cuidador
+            \end{enumerate}
+            \item \label{req:info_adicional} El usuario podrá añadir información adicional a su perfil.
+            \begin{itemize}
+                \item Teléfono de contacto
+                \item Teléfono de contacto alternativo
+                \item Dirección de correo electrónico
+                \item Dirección física. Conformada por dos campos para componer la dirección postal, un campo para la localidad y un campo para la región.
+            \end{itemize}
+            \item La aplicación pedirá confirmación al usuario de los datos insertados.
+            \begin{enumerate}[label*=\arabic*.]
+                \item Si el usuario confirma los datos insertados, los datos serán enviados a la \acrshort{api} \acrshort{rest} para su almacenamiento y validación.
+                \item Si el usuario no es válido, la \acrshort{api} \acrshort{rest} responderá con un mensaje de error.
+                \item Si el usuario es válido, la \acrshort{api} \acrshort{rest} responderá a la petición con un mensaje de éxito y el perfil completo del usuario.
+                \item Tras la creación exitosa del perfil, el usuario será dado de alta siguiendo \labelcref{req:inicio_sesion}.
+            \end{enumerate}
+        \end{enumerate}
+        \item La sesión podrá ser renovada con una solicitud a la \acrshort{api} \acrshort{rest} con el \gls{token} de refresco de sesión mientras este siga siendo válido.
+            \begin{enumerate}[label*=\arabic*.]
+                \item Refrescar una sesión generará una tupla como la de \labelcref{req:sesion} y sustituirá la almacenada anteriormente.
+                \item La \acrshort{api} \acrshort{rest} responderá con la información de la sesión de usuario como en \labelcref{req:info_sesion}.
+                \item Al refrescar una sesión los \glspl{token} anteriores quedarán invalidados.
+            \end{enumerate}
+    \end{enumerate}
+    \item \label{req:cierre_sesion} Los usuarios con la sesión iniciada podrán cerrar sesión en la aplicación.
+    \begin{enumerate}[label*=\arabic*.]
+        \item La aplicación enviará la petición de cierre de sesión a la \acrshort{api} \acrshort{rest} con el \gls{token} de autenticación.
+        \item La \acrshort{api} \acrshort{rest} eliminará la sesión almacenada y confirmará la acción a la aplicación.
+        \item Si el cierre de sesión es exitoso el usuario será redirigido a la pantalla de inicio de sesión.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{RGU. Requisitos de gestión de usuarios}
+
+\begin{enumerate}[label*=RGU \arabic*.]
+    \item \label{req:consultar_info_paciente} Los usuarios podrán ver la información del Paciente vinculado en la pantalla principal.
+    \begin{enumerate}[label*=\arabic*.]
+        \item La información a mostrar será suministrada por la \acrshort{api} \acrshort{rest}.
+        \item En el caso de Pacientes se les mostrará su propia información.
+        \item La información mostrada será:
+        \begin{itemize}
+            \item Nombre.
+            \item Teléfono de contacto.
+            \item Teléfono de contacto alternativo.
+            \item Dirección de correo electrónico.
+            \item Dirección postal.
+        \end{itemize}
+        \item \label{req:accion_contactos} Los datos de contacto de la tarjeta proporcionarán atajos para usarlos:
+        \begin{enumerate}[label*=\arabic*.]
+            \item Los números de teléfono desplegarán el dial del teléfono con el número marcado.
+            \item El correo electrónico abrirá una aplicación de correo electrónico con un nuevo correo preparado para ser enviado a la dirección.
+            \item La dirección postal desplegará Google Maps con la dirección ya buscada.
+        \end{enumerate}
+    \end{enumerate}
+    \item Los usuarios podrán actualizar su información.
+    \begin{enumerate}[label*=\arabic*.]
+        \item El usuario actualizará los campos que prefiera de:
+        \begin{itemize}
+            \item Nombre.
+            \item Teléfono de contacto.
+            \item Teléfono de contacto alternativo.
+            \item Dirección de correo electrónico.
+            \item Dirección postal.
+        \end{itemize}
+        \item Cuando el usuario confirme la actualización, los datos serán enviados a la \acrshort{api} \acrshort{rest} para validación.
+        \item La \acrshort{api} \acrshort{rest} confirmará los cambios efectuados y responderá con la información completa del usuario.
+        \item La aplicación se actualizará con los nuevos datos del usuario.
+        \item \label{req:noti_actualizar} Una notificación será enviada a los usuarios vinculados acerca de la actualización de los datos del usuario.
+    \end{enumerate}
+    \item La aplicación permitirá a los usuarios establecer vínculos con otros usuarios.
+    \begin{enumerate}[label*=\arabic*.]
+        \item Los Pacientes podrán vincular MAX\textunderscore VINCULOS\textunderscore PACIENTE usuarios de tipo Cuidador.
+        \item Los Cuidadores podrán vincular MAX\textunderscore VINCULOS\textunderscore CUIDADOR Pacientes.
+        \item \label{req:vinculo_paciente} Los Pacientes podrán generar un código QR para vincularse.
+        \begin{enumerate}[label*=\arabic*.]
+            \item El código QR representará un token provisto por la \acrshort{api} \acrshort{rest}.
+            \item El token caducará en TIEMPO\textunderscore CADUCIDAD\textunderscore TOKEN\textunderscore VINCULACIÓN.
+        \end{enumerate}
+        \item \label{req:vinculo_cuidador} Los Cuidadores podrán escanear el código QR de un Paciente para completar el vínculo.
+        \begin{enumerate}[label*=\arabic*.]
+            \item El código leído será enviado a la \acrshort{api} \acrshort{rest}.
+            \item La \acrshort{api} \acrshort{rest} validará el token y que el vínculo sea válido.
+            \begin{enumerate}[label*=\arabic*.]
+                \item Si el vínculo no es válido, una respuesta de error será emitida
+                \item Si el vínculo es válido, se creará el vínculo entre ambos usuarios.
+            \end{enumerate}
+        \end{enumerate}
+        \item \label{req:noti_nuevo_vinculo} La \acrshort{api} \acrshort{rest} emitirá una notificación de la creación del vínculo al resto de usuarios asociados.
+    \end{enumerate}
+    \item \label{req:borrar_vinculo} Los usuarios con vínculos activos podrán eliminar sus vínculos actuales a través de la aplicación.
+    \begin{enumerate}[label*=\arabic*.]
+        \item La petición se realizará con una llamada a la \acrshort{api} \acrshort{rest}.
+        \item La \acrshort{api} \acrshort{rest} validará la petición y enviará una respuesta de confirmación.
+        \item La \acrshort{api} \acrshort{rest} emitirá una notificación de la eliminación del vínculo al resto de usuarios asociados antes de la eliminación del vínculo.
+    \end{enumerate}
+    \item \label{req:consultar_info_cuidador} La aplicación permitirá listar en la aplicación los Cuidadores relacionados de los usuarios.
+    \begin{enumerate}[label*=\arabic*.]
+        \item La aplicación listará a los Pacientes sus Cuidadores vinculados.
+        \item La aplicación listará a los Cuidadores el resto de Cuidadores vinculados por su Paciente.
+        \item El listado de Cuidadores será proporcionado por una petición a la \acrshort{api} \acrshort{rest}.
+        \item Con cada Cuidador listado se mostrará su información de contacto:
+        \begin{itemize}
+            \item Teléfono de contacto.
+            \item Teléfono de contacto alternativo.
+            \item Dirección de correo electrónico.
+            \item Dirección postal.
+        \end{itemize}
+        \item Desde el listado, la aplicación permitirá a los usuarios los mismos atajos de funcionalidad que \labelcref{req:accion_contactos}.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{RGT. Requisitos de gestión de tareas}
+
+\begin{enumerate}[label*=RGT \arabic*.]
+    \item \label{req:crear_tarea} Los Pacientes y sus Cuidadores podrán crear una nueva tarea desde la aplicación.
+    \begin{enumerate}[label*=\arabic*.]
+        \item Las tareas contarán con la siguiente información:
+        \begin{enumerate}[label*=\arabic*.]
+            \item Un identificador único, obligatorio y generado en el proceso de persistencia de la tarea.
+            \item Título, obligatorio.
+            \item Creador, obligatorio y rellenado automáticamente por la aplicación.
+            \item Descripción, opcional.
+            \item Instante de creación, obligatorio y rellenado automáticamente por la aplicación.
+            \item Instante de la última actualización, obligatorio y por defecto será creada con el mismo valor que el instante de creación.
+            \item Estado de la tarea. Puede ser completa o incompleta. Obligatorio, por defecto será creada como incompleta.
+        \end{enumerate}
+        \item Las tareas creadas en la aplicación se enviarán a la \acrshort{api} \acrshort{rest} para su validación y persistencia.
+        \begin{enumerate}[label*=\arabic*.]
+            \item Si la tarea es inválida, la \acrshort{api} \acrshort{rest} emitirá un mensaje de error y no persistirá la tarea.
+            \item Si la tarea es válida, la \acrshort{api} \acrshort{rest} responderá con un mensaje de éxito con la información completa de la tarea creada.
+        \end{enumerate}
+        \item La creación de una tarea la añadirá a la lista de tareas del Paciente involucrado.
+        \item \label{req:noti_nueva_tarea} El sistema emitirá una notificación de la tarea creada a los usuarios asociados.
+    \end{enumerate}
+    \item \label{req:listar_tarea} Los Pacientes y sus Cuidadores podrán consultar las tareas existentes en la aplicación.
+    \begin{enumerate}[label*=\arabic*.]
+        \item \label{req:tarea_relevancia} La lista de tareas será suministrada por la \acrshort{api} \acrshort{rest}. Se listarán todas las tareas del paciente que se consideren relevantes. Una tarea es relevante si cumple alguna de las siguientes condiciones:
+        \begin{enumerate}[label*=\arabic*.]
+            \item Si la tarea está incompleta.
+            \item Si la última actualización de la tarea entra dentro del margen de días especificado por el usuario.
+        \end{enumerate}
+        \item \label{req:info_tarea} Las tareas listadas mostrarán el título, el creador, la descripción, el estado y las fechas de creación y actualización.
+        \item Las tareas completas e incompletas serán visualmente diferenciables.
+        \item Por defecto, las tareas aparecerán listadas de más recientes a más antiguas.
+        \item Las tareas se podrán gestionar desde el listado.
+    \end{enumerate}
+    \item \label{req:marcar_tarea_hecha} Los Pacientes y sus Cuidadores podrán marcar una tarea del Paciente como hecha desde la aplicación.
+    \begin{enumerate}[label*=\arabic*.]
+        \item El usuario deberá confirmar que quiere marcar la tarea como hecha.
+        \item La petición de actualización se hará a la \acrshort{api} \acrshort{rest}, que la validará.
+        \begin{enumerate}[label*=\arabic*.]
+            \item Si la petición no es válida, la \acrshort{api} \acrshort{rest} emitirá un mensaje de error.
+            \item Si la petición es válida, la \acrshort{api} \acrshort{rest} emitirá una respuesta de confirmación.
+        \end{enumerate}
+        \item La tarea se actualizará visualmente para reflejar su nuevo estado.
+        \item La tarea se seguirá mostrando aunque pierda relevancia (véase \labelcref{req:tarea_relevancia}) hasta que la lista sea refrescada. Permitiendo deshacer la acción.
+        \item \label{req:noti_tarea_hecha} El sistema notificará el cambio en el estado a los usuarios asociados.
+    \end{enumerate}
+    \item \label{req:marcar_tarea_no_hecha} Los Pacientes y sus Cuidadores podrán marcar una tarea como no hecha desde la aplicación.
+    \begin{enumerate}[label*=\arabic*.]
+        \item El usuario deberá confirmar que quiere desmarcar la tarea como hecha.
+        \item La petición de actualización se hará a la \acrshort{api} \acrshort{rest}, que la validará.
+        \begin{enumerate}[label*=\arabic*.]
+            \item Si la petición no es válida, la \acrshort{api} \acrshort{rest} emitirá un mensaje de error.
+            \item Si la petición es válida, la \acrshort{api} \acrshort{rest} emitirá una respuesta de confirmación.
+        \end{enumerate}
+        \item La tarea se actualizará visualmente para reflejar su nuevo estado.
+        \item \label{req:noti_tarea_no_hecha} El sistema notificará el cambio en el estado a los usuarios asociados.
+    \end{enumerate}
+    \item \label{req:eliminar_tarea} Los usuarios podrán eliminar tareas en la aplicación.
+    \begin{enumerate}[label*=\arabic*.]
+        \item Los Pacientes podrán eliminar cualquiera de sus tareas.
+        \item Los Cuidadores sólo podrán eliminar las tareas creadas por ellos.
+        \item El usuario deberá confirmar que quiere eliminar la tarea.
+        \item La petición de eliminación se hará a la \acrshort{api} \acrshort{rest}, que la validará.
+        \begin{enumerate}[label*=\arabic*.]
+            \item Si la petición no es válida, la \acrshort{api} \acrshort{rest} emitirá un mensaje de error.
+            \item Si la petición es válida, la \acrshort{api} \acrshort{rest} emitirá una respuesta de confirmación.
+        \end{enumerate}
+        \item \label{req:noti_tarea_eliminada} El sistema notificará a los usuarios vinculados de la eliminación de la tarea.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{RSV. Requisitos de servicio de mensajería}
+
+\begin{enumerate}[label*=RSV \arabic*.]
+    \item La aplicación ofrecerá una sala de mensajería a los usuarios vinculados.
+    \item La aplicación se conectará a un WebSocket de la \acrshort{api} de la sala.
+    \item Los participantes de la sala de mensajería serán el Paciente y todos sus Cuidadores vinculados.
+    \item Los mensajes de la sala pueden ser de tres tipos:
+    \begin{enumerate}[label*=\arabic*.]
+        \item Mensajes de texto.
+        \item Tareas.
+        \item Notificaciones.
+    \end{enumerate}
+    \item \label{req:listar_mensaje} La sala de mensajería mostrará, a los usuarios que se conecten, los mensajes más recientes.
+    \begin{enumerate}[label*=\arabic*.]
+        \item Los mensajes al abrir la sala serán servidos por la \acrshort{api} \acrshort{rest}.
+        \item La \acrshort{api} \acrshort{rest} servirá los CANTIDAD\textunderscore GRUPO\textunderscore MENSAJES mensajes más recientes.
+        \item Los participantes podrán cargar mensajes más antiguos.
+        \item Al solicitar mensajes más antiguos la \acrshort{api} \acrshort{rest} servirá los CANTIDAD\textunderscore GRUPO\textunderscore MENSAJES mensajes más recientes siguientes.
+        \item La aplicación mostrará los nuevos mensajes entrantes en tiempo real.
+        \item Los mensajes entrantes serán servidos a través del WebSocket.
+        \item Los mensajes salientes y entrantes serán visualmente diferentes.
+        \item Los tipos de mensajes será visualmente diferentes.
+        \item Los mensajes serán agrupados por fecha de emisión.
+    \end{enumerate}
+    \item \label{req:envio_mensaje} Los participantes de una sala de mensajería podrán enviar mensajes de texto al resto de pacientes.
+    \begin{enumerate}[label*=\arabic*.]
+        \item El mensaje saliente se enviará a través del WebSocket.
+        \item La \acrshort{api} persistirá el mensaje y lo reenviará por el WebSocket al resto de participantes.
+        \item El mensaje saliente se añadirá a la lista de mensajes mostrados.
+    \end{enumerate}
+    \item Los participantes de una sala de mensajería podrán gestionar tareas a través de la sala.
+    \begin{enumerate}[label*=\arabic*.]
+        \item Las tareas serán tratadas como mensajes.
+        \item Los participantes podrán crear una tarea que se enviará por la sala de mensajería igual que en \labelcref{req:envio_mensaje}.
+        \item Las tareas creadas de esta forma cumplirán las mismas pautas que en \labelcref{req:crear_tarea}
+        \item Las tareas mostradas en la sala de mensajería podrán ser marcadas como hechas como en \labelcref{req:marcar_tarea_hecha}
+        \item Las tareas mostradas en la sala de mensajería podrán ser desmarcadas como hechas como en \labelcref{req:marcar_tarea_no_hecha}
+        \item Las tareas mostradas en la sala de mensajería podrán ser eliminadas como en \labelcref{req:eliminar_tarea}
+        \begin{enumerate}[label*=\arabic*.]
+            \item Las tareas eliminadas mientras el usuario esté conectado serán eliminadas de la lista.
+            \item La eliminación de una tarea por cualquier medio será comunicada a los usuarios conectados a la sala con una notificación.
+        \end{enumerate}
+        \item Las acciones sobre las tareas de la sala serán enviadas a la API a través del WebSocket.
+        \item La \acrshort{api} ejecutará la petición y enviará un mensaje al resto de participantes de la sala que actualice la tarea.
+    \end{enumerate}
+    \item Los participantes serán desconectados del WebSocket de la sala al abandonarla.
+    \item La sala de mensajería mostrará notificaciones de la conexión y desconexión de usuarios de la sala al resto de usuarios conectados.
+\end{enumerate}
+
+\subsection{RSG. Requisitos del sistema de geolocalización}
+
+\begin{enumerate}[label*=RSG \arabic*.]
+    \item La aplicación servirá un mapa con un servicio de geolocalización mutua entre usuarios conectados.
+    \item La aplicación utilizará la \acrshort{api} de Google Maps.
+    \item \label{req:compartir_ubicacion} A través de la aplicación los usuarios podrán compartir su ubicación.
+    \begin{enumerate}[label*=\arabic*.]
+        \item La aplicación solicitará permiso al usuario para utilizar el \acrshort{gps} integrado en el teléfono móvil.
+        \begin{enumerate}[label*=\arabic*.]
+            \item Si el usuario deniega acceso al \acrshort{gps}, un mensaje de error será mostrado y la función no se llevará a cabo.
+            \item Si el usuario permite el acceso, se empezará a compartir la ubicación y se mostrará el mapa.
+        \end{enumerate}
+        \item La aplicación se conectará a un WebSocket compartido con el resto de usuarios relacionados.
+        \item La ubicación comenzará a compartirse automáticamente al iniciar el servicio de geolocalización.
+        \item La ubicación del usuario será enviada a la \acrshort{api} través del WebSocket en intervalos regulares de INTERVALO\textunderscore COMPARTIR\textunderscore UBICACIÓN.
+        \item La posición actual del usuario se mostrará en un mapa.
+        \item Cada actualización de la ubicación del usuario modificará su posición visual en el mapa.
+        \item \label{req:noti_ubicacion_empezar} Cuando un usuario empiece a compartir su ubicación, una notificación será enviada al resto de usuarios conectados.
+    \end{enumerate}
+    \item Los usuarios compartiendo ubicación podrán dejar de hacerlo abandonando el mapa del servicio.
+    \begin{enumerate}[label*=\arabic*.]
+        \item Si un usuario abandona el servicio, la aplicación se desconectará del WebSocket.
+        \item\label{req:noti_ubicacion_parar}  Cuando un usuario se desconecta del servicio, una notificación será enviada al resto de usuarios conectados.
+        \item La notificación de un usuario dejando de compartir su ubicación eliminará la notificación previa del comienzo de la función.
+    \end{enumerate}
+    \item \label{req:ver_ubicaciones} Los usuarios conectados al servicio podrán ver la ubicación de otros usuarios conectados.
+    \begin{enumerate}[label*=\arabic*.]
+        \item Las ubicaciones ajenas se recibirán en tiempo real.
+        \item Las ubicaciones del resto de usuarios se recibirán a través del WebSocket.
+        \item La aplicación mostrará un aviso en pantalla cuando la lista de usuarios conectados al servicio cambie. 
+        \begin{enumerate}[label*=\arabic*.]
+            \item Cuando un usuario entre al servicio.
+            \item Cuando un usuario abandone el servicio.
+        \end{enumerate}
+        \item Las ubicaciones del resto de usuarios se mostrará con un marcador diferenciado.
+        \begin{enumerate}[label*=\arabic*.]
+            \item El marcador contendrá la información del usuario respectivo.
+            \item La actualización de las ubicaciones desplazará el marcador asociado al usuario a la nueva ubicación.
+            \item Cuando un usuario se desconecte, su marcador será retirado del mapa.
+        \end{enumerate}
+    \end{enumerate}
+    \item Los usuarios podrán desplazarse por el mapa.
+    \item Los usuarios podrán hacer acercar o alejar la vista en el mapa.
+    \item Los usuarios podrán centrar el mapa sobre su ubicación.
+\end{enumerate}
+
+\subsection{RSN: Requisitos del sistema de notificaciones}
+
+\begin{enumerate}[label*=RSN \arabic*.]
+    \item \label{req:notificaciones} La aplicación notificará a los usuarios acerca de diversos sucesos de interés.
+    \begin{enumerate}[label*=\arabic*.]
+        \item Un nuevo vínculo genera un nuevo usuario asociado (véase \labelcref{req:noti_nuevo_vinculo})
+        \item Un usuario asociado ha actualizado sus datos personales (véase \labelcref{req:noti_actualizar})
+        \item Un usuario asociado ha creado una nueva tarea (véase \labelcref{req:noti_nueva_tarea}).
+        \item Un usuario asociado ha eliminado una tarea (véase \labelcref{req:noti_tarea_eliminada}).
+        \item Un usuario asociado ha marcado una tarea como hecha (véase \labelcref{req:noti_tarea_hecha}).
+        \item Un usuario asociado ha desmarcado una tarea como hecha (véase \labelcref{req:noti_tarea_no_hecha}).
+        \item Un usuario asociado ha comenzado a compartir su ubicación (véase \labelcref{req:noti_ubicacion_empezar}).
+        \item Un usuario asociado ha dejado de compartir su ubicación (véase \labelcref{req:noti_ubicacion_parar}).
+    \end{enumerate}
+    \item La aplicación se unirá a un WebSocket para recibir las notificaciones.
+    \item Las notificaciones pueden ser pendientes o no, dependiendo de si el usuario las ha leído.
+    \item La aplicación mostrará la cantidad de notificaciones pendientes del usuario.
+    \item \label{req:consultar_notificaciones} El usuario podrá ver en la aplicación sus notificaciones pendientes:
+    \begin{enumerate}[label*=\arabic*.]
+        \item La lista de notificaciones será servida por la \acrshort{api} \acrshort{rest}.
+        \item Las notificaciones aparecerán agrupadas por fecha de emisión.
+        \item \label{req:leer_notificaciones} Las notificaciones podrán ser marcadas como leídas individualmente o todas a la vez.
+        \item Las notificaciones referentes a funciones de la aplicación podrán ser usadas para navegar a dicha función.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{RNF: Requisitos no funcionales}
+
+\begin{enumerate}[label*=RNF \arabic*.]
+    \item La aplicación estará disponible en Android 8.1 y versiones posteriores del sistema operativo.
+    \item La aplicación estará disponible en los siguientes idiomas:
+    \begin{itemize}
+        \item Inglés
+        \item Español
+        \item Gallego
+    \end{itemize}
+    \item La \acrshort{api} debe estar alojada en la nube.
+    \begin{enumerate}[label*=\arabic*.]
+        \item El sistema de la nube de alojamiento debe ser Microsoft Azure.
+        \item La disponibilidad de la API debe ser superior al 99\%. Esto corresponde a una disponibilidad de 8672 horas y 24 minutos por año.
+        \item La velocidad de respuesta a peticiones de la \acrshort{api} no debe exceder los TIEMPO\textunderscore MAXIMO\textunderscore RESPUESTA\textunderscore API.
+    \end{enumerate}
+    \item La base de datos debe estar alojada en la nube.
+    \begin{enumerate}[label*=\arabic*.]
+        \item El sistema de base de datos en la nube debe ser MongoDB Atlas.
+        \item La disponibilidad de la base de datos debe ser superior al 99\%. Esto corresponde a una disponibilidad de 8672 horas y 24 minutos por año.
+    \end{enumerate}
+    \item El sistema conectará con las siguientes \acrshort{api}s de terceros:
+    \begin{enumerate}[label*=\arabic*.]
+        \item Google OAuth 2.0.
+        \item Google Maps for Android.
+    \end{enumerate}
+    \item Los usuarios únicamente necesitarán un conocimiento mínimo en el manejo de móviles inteligentes.
+\end{enumerate}
+
+\subsection{Valores de requisitos}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l|l}
+    ID & Valor \\ \hline 
+    CANTIDAD\textunderscore GRUPO\textunderscore MENSAJES & 30 \\ 
+    INTERVALO\textunderscore COMPARTIR\textunderscore UBICACIÓN & 5 segundos \\  
+    MAX\textunderscore VINCULOS\textunderscore CUIDADOR & 1 \\
+    MAX\textunderscore VINCULOS\textunderscore PACIENTE & 6 \\     
+    TIEMPO\textunderscore MAXIMO\textunderscore RESPUESTA\textunderscore API & 10 segundos \\ 
+    TIEMPO\textunderscore VALIDEZ\textunderscore TOKEN\textunderscore SESIÓN & 1 hora \\ 
+    TIEMPO\textunderscore VALIDEZ\textunderscore TOKEN\textunderscore REFRESCO & 24 horas \\
+    TIEMPO\textunderscore VALIDEZ\textunderscore TOKEN\textunderscore VINCULACION & 1 minuto
+    \end{tabular}
+    \caption{Valores especificados en requisitos}
+\end{table}
+

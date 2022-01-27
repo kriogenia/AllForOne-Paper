@@ -1,0 +1,38 @@
+\chapter{Aspectos teóricos}
+\label{ch:aspectos_teoricos}
+
+En este capítulo se presentarán una definición de una serie de conceptos de la especialidad que son clave en la comprensión del proyecto que nos aborda.
+
+\section{API REST}
+
+En el año 2000, Roy Fielding publicó \emph{Architectural Styles and the Design of Network-based Software Architectures}\cite{fielding2000architectural}, disertación en la que presentó al mundo la transferencia de estado representacional o \acrshort{rest}.
+
+\acrshort{rest} es una propuesta de arquitectura para aplicaciones web basada en la comunicación de representaciones del estado en las peticiones siguiendo las especificaciones \acrshort{http}. En una petición \acrshort{rest} un cliente hace una petición al servidor con una serie de encabezados y parámetros que serán usados en el extremo solicitado para procesarla y responder a la petición con una representación del recurso solicitado y una nueva serie de encabezados con información acerca de la petición como el código de estado o el formato de la respuesta.
+
+Por otro lado, una \acrshort{api} es una interfaz de programación de aplicaciones utilizada en la definición, diseño e integración de software para especificar los requisitos en las dos partes de la comunicación entre los sistemas software que la emplean para garantizar el éxito de la transferencia.
+
+Una \acrshort{api} \acrshort{rest} es, por tanto, una serie de definiciones y protocolos que se adapta a la arquitectura \acrshort{rest}, permitiendo una interacción con la que los clientes puedan transferir y recibir recursos de un servidor por medio de peticiones \acrshort{http} sin estado, esto es que cada una es independiente de todas las demás. La comunicación entre un cliente y un servidor con una \acrshort{api} \acrshort{rest} se realiza por medio de extremos o \glspl{endpoint}.
+
+Los recursos de una \acrshort{api} \acrshort{rest} deben, a su vez, seguir una interfaz de comunicación estándar que facilite la comunicación total con el servicio a la vez que permite el manejo y gestión del recurso a partir de la representación transferida en la comunicación.
+
+\section{WebSocket}
+
+El protocolo WebSocket es una interfaz de comunicación a través de un único canal \acrshort{tcp}. Este protocolo ofrece una comunicación en tiempo real a través de una \acrshort{api} que permite que los extremos de la comunicación (cliente y servidor) puedan enviarse mensajes sin una petición previa del receptor. WebSocket fue estandarizado en 2011 con el \emph{RFC 6455}\cite{rfc6455} por el \acrshort{ietf}.
+
+La comunicación de los WebSocket se realiza a través de \Gls{uri} con un nuevo esquema que comienza por \code{ws:} o \code{wss:}, según sean para transmisiones no encriptadas o encriptadas respectivamente, equivalentes a las similares de \acrshort{http}. Dichos enlaces son utilizados para establecer un canal de comunicación, cerrarlo o para utilizarlo para enviar un mensaje.
+
+Las \acrshort{api} de comunicación por medio de WebSocket lo aplican por medio de un patrón de suscripción, asignando a los identificadores de los diferentes tipos de mensaje un punto de escucha con una función o servicio a ejecutar cuando se reciba un nuevo mensaje. El envío de mensajes de un cliente a un servidor es elemental, pero la comunicación servidor-cliente puede ser única o de difusión, enviando el mismo mensaje a una serie de clientes conectados.
+
+\section{NoSQL}
+
+El término NoSQL (del inglés \emph{Not only \acrshort{sql}}) engloba una serie de tecnologías de bases de datos que se apartan del clásico modelo de gestión de bases de datos relacionales cuyo principal representante es \acrshort{sql}. Las características comunes son que permiten la consulta sin necesidad de emplear \acrshort{sql}, están diseñadas para favorecer la escalabilidad sacrificando la consistencia o atomicidad y apuestan por la flexibilidad.
+
+Existen muchos tipos de sistemas de gestión NoSQL siendo los más resaltables:
+\begin{enumerate}
+	\item \textbf{Bases de datos documentales}, basadas en el almacenamiento de documentos asociados a una clave única. La gran fortaleza de estas bases de datos radica en la capacidad de guardar y recuperar grandes volúmenes de datos con facilidad y gran flexibilidad. Los documentos más habituales son de formato \acrshort{json} (conjunto de pares clave-valor, clave-matriz o clave-documento). Un ejemplo de este tipo de bases de datos es MongoDB\footnote{\href{https://www.mongodb.com/}{https://www.mongodb.com/}} (\fref{ssec:mongodb}).
+	\item \textbf{Bases de datos de grafos}, enfocados en las relaciones entre entidades. Su mayor ventaja radica en la rápida navegación y agregación de datos que basan con sus relaciones, mucho más ágil que los \emph{\gls{join}} de \acrshort{sql}. La base de datos de grafos más popular es Neo4J\footnote{\href{https://neo4j.com/}{https://neo4j.com/}}.
+	\item \textbf{Almacenes de clave-valor}. La bases de datos más atómicas. Almacenan pares de clave y valor sin mayor estructura o relación, lo que las hace muy veloces para la recuperación de información básica conocida y un complemento habitual de otras bases de datos para proporcionar una caché de acceso veloz a datos habitualmente solicitados. Redis\footnote{\href{https://redis.io/}{https://redis.io/}}, por ejemplo, es una base de datos clave-valor que funciona en memoria.
+	\item \textbf{Bases de datos orientadas a columnas}. En las bases de datos \acrshort{sql} que almacenan los datos en filas, favoreciendo el acceso a las propiedades completas de una entidad. En una base de datos columnar, la disposición favorece el acceso a los conjunto de propiedades de las entidades, haciéndolas destacar en la evaluación de grandes volúmenes de datos, sacrificando rendimiento en las transacciones. Una base de datos de este estilo es Apache Cassandra\footnote{\href{https://cassandra.apache.org/}{https://cassandra.apache.org/}}. 
+\end{enumerate}
+
+Otros tipos de bases de datos NoSQL son, por ejemplo, las bases de datos orientadas a objetos o las bases de datos multivalor entre otras.

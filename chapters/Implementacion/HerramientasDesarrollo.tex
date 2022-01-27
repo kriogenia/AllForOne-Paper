@@ -1,0 +1,153 @@
+\chapter{Herramientas de desarrollo}
+\label{ch:herramientas_desarrollo}
+
+\section{Entornos de desarrollo}
+
+\subsection{Android Studio}
+\label{ssec:android_studio}
+
+\acrshort{ide} oficial para el sistema operativo \textbf{Android}. Está construido sobre la plataforma \textbf{IntelliJ IDEA} de JetBrains con un enfoque específico para el desarrollo en Android. Entre otras herramientas que ofrece para este objetivo se encuentran: emuladores del sistema operativo, plantillas de actividades Android o un editor de interfaces de usuario del sistema operativo entre otras cosas. Fue la plataforma utilizada durante todo el desarrollo de la aplicación móvil.
+
+Para más información: \href{https://developer.android.com/studio}{https://developer.android.com/studio}
+
+\subsection{Overleaf}
+\label{ssec:overleaf}
+
+Editor colaborativo en la nube de \textbf{\nameref{lib:latex}} que permite redactar, editar y publicar documentos de diversas índoles con dicha tecnología. Tiene herramientas de revisión de texto, de historial de cambios y de chat entre colaboradores, entre otras cosas. También ofrece una serie de plantillas colgadas por usuarios o por editoriales oficiales, con las cuáles también cuenta con pasarelas para el envío de directo de enlaces o documentos para solicitar la publicación. Fue la plataforma utilizada en gran parte de la redacción de este documento.
+
+Para más información: \href{https://www.overleaf.com/}{https://www.overleaf.com/}
+
+\subsection{Vim}
+
+\begin{wrapfigure}[6]{r}{0.25\textwidth}
+    \vspace{-5pt}
+    \centering
+    \includegraphics[width=0.2\textwidth]{Implementación/vim-icon.png}
+    \vspace{-10pt}
+    \caption{Logo de Vim}
+\end{wrapfigure}
+
+Vim es un editor de texto en pantalla gratis y de código libre para sistemas \textbf{Unix} creado por \textbf{Bram Moolenaar} y lanzado en 1991. Está basado en el editor \textbf{vi} con añadidos y funcionalidades extra. Ha sido un herramienta de apoyo en el desarrollo de todos los subsistemas desde la línea de comandos de la plataforma \nameref{so:fedora_workstation}.
+
+Para más información: \href{https://www.vim.org/}{https://www.vim.org/}
+
+\subsection{Visual Studio Code}
+\label{ssec:vs_code}
+
+Visual Studio Code, también conocido como \textbf{VSCode} es un editor de código desarrollador por \textbf{Microsoft} para sistemas Windows, Linux y macOS. En el año 2021 fue elegido como el entorno de desarrollo favorito de los usuarios de StackOverflow\cite{stackOverflow2021}. Su código está disponible en GitHub de forma pública bajo una licencia MIT. Busca ser un \acrshort{ide} ligero con las herramientas básicas, como depuración, resaltado de sintaxis, refactorización de código o conclusión de código, que pueda ser ampliamente expandido con extensiones disponibles en un \emph{marketplace}; de esta forma es un entorno compatible con prácticamente cualquier lenguaje y tecnología existente.
+
+\begin{wrapfigure}[6]{l}{0.2\textwidth}
+    \vspace{-25pt}
+    \centering
+    \includegraphics[width=0.15\textwidth]{Implementación/vscode-icon.png}
+    \vspace{-10pt}
+    \caption{Logo de Visual Studio Code}
+\end{wrapfigure}
+
+Es por este motivo que este editor fue ampliamente utilizado durante el desarrollo completo del sistema. VSCode fue la plataforma principal de implementación de la \acrshort{api} (\nameref{lib:typescript}), de gran parte de la redacción de este documento (\nameref{lib:latex}) y de alguna sección de la aplicación móvil (\nameref{lib:kotlin}). Además, se utilizó también como interfaz de comunicación con el servidor desplegado en Azure.
+
+Para más información: \href{https://code.visualstudio.com/}{https://code.visualstudio.com/}
+
+\section{Herramientas}
+
+\subsection{Git}
+
+Git es un software gratuito y libre de control de versiones desarrollado por \textbf{Linus Torvalds}. Los software de control de versiones permiten monitorizar los cambios realizados a una serie de ficheros y son una de las herramientas principales de los desarrollos de software colaborativos. Se ha utilizado en conjunción de con \nameref{ssec:github} (\fref{ssec:github}) para la publicación y gestión de los cambios en el desarrollo del sistema.
+
+Para más información: \href{https://git-scm.com/}{https://git-scm.com/}
+
+\subsection{GitHub Actions}
+\label{tool:github_actions}
+
+GitHub Actions es una plataforma de \textbf{integración continua y entrega continua} (CI/CD por sus siglas en inglés) que permite la automatización de la compilación, ejecución de pruebas y el despliegue de sistemas. Permite la creación de flujos de trabajo que construyen y comprueban el código en cada solicitud y el despliegue en producción del resultado de las mezclas de este. Ha sido utilizado en el proyecto para automatizar el despliegue de la \acrshort{api} en la nube.
+
+Para más información: \href{https://github.com/features/actions}{https://github.com/features/actions}
+
+\subsection{Insomnia}
+
+Aplicación de escritorio multiplataforma enfocada en el diseño y prueba de \acrshort{api}s \acrshort{http}. Insomnia ofrece una interfaz de usuario simple para la creación de peticiones personalizadas y fácilmente editables con muchas características avanzadas como facilidades para la autenticación, generación de código o declaración de variables de entorno. Fue utilizada para probar maunalmente la \acrshort{api} \acrshort{rest} sin necesidad de utilizar la aplicación móvil o de construir una batería de pruebas de integración.
+
+Para más información: \href{https://insomnia.rest/}{https://insomnia.rest/}
+
+\subsection{Mendeley}
+
+Herramienta para la gestión de referencias bibliográficas. Permite la importación de documentos, creación de citas y anotaciones, guardado de referencias y su acceso desde cualquier lugar a través de la nube. Está disponible en diversidad de formas, como por ejemplo, de aplicación de escritorio o de extensión de navegador. Ha sido empleada en el proyecto para la creación de la biblioteca de referencias que se usaron en este documento.
+
+Para más información: \href{https://www.mendeley.com/}{https://www.mendeley.com/}
+
+\subsection{PlantUML}
+\label{ssec:plant_uml}
+
+Proyecto de código abierto para el dibujado de diagramas UML usando descripciones de texto simples y de lectura sencilla. Permite crear diagramas de secuencia, de casos de uso, de clases, de objetos, de actividades, de componentes, de despliegue y de estados. Las imágenes producidas se pueden generar en formatos PNG, SVG y LaTeX. Es compatible con multitud de tecnologías y entornos. En el desarrollo se ha utilizado con el \emph{plugin} de \nameref{ssec:android_studio} para la generación de parte de los diagramas de esta documentación.
+
+Para más información: \href{https://plantuml.com/es/}{https://plantuml.com/es/}
+
+\subsection{ProjectLibre}
+
+ProjectLibre es un software de gestión de proyectos gratuito y de código abierto. Actualmente está disponible únicamente como aplicación de escritorio, pero ya cuenta con una versión en la nube en camino. El objetivo de este software es el de ofrecer una alternativa gratuita y libre a Microsoft Project. En este desarrollo fue utilizado precisamente con ese fin, con el de reemplazar dicho software con una opción menos privativa con la que generar y gestionar la planificación del proyecto.
+
+Para más información: \href{https://www.projectlibre.com/}{https://www.projectlibre.com/}
+
+\section{Referencias}
+
+\subsection{Guías para desarrolladores de Android}
+
+A la hora de desarrollar la aplicación móvil el principal punto de referencia fue la guía para desarrolladores de Android que ofrece Google. Entre otras cosas ofrece laboratorios de código, cursos, vídeos y ejemplos de multitud de aspectos del desarrollo en este sistema operativo. Esta documentación ha sido de ayuda en el proyecto en aspectos como el aprendizaje de la arquitectura \acrshort{mvvm}, del \emph{data-binding} de las vistas o del uso de las corrutinas de Kotlin.
+
+Para más información: \href{https://developer.android.com/guide}{https://developer.android.com/guide}
+
+\subsection{Guía de estilo Material Design}
+\label{ssec:guia_material_design}
+
+Material es un conjunto de guías, componentes y herramientas para favorecer la implementación de interfaces de usuario que sigan las mejores prácticas posibles de diseño. Soportada por una comunidad de código libre, Material es una línea de colaboración entre diseñadores y desarrolladores que facilita la creación de interfaces de usuario impecables. Sus guías son muy completas y visuales, con explicaciones detalladas de los razonamientos detrás de los consejos y ejemplos de aplicaciones que los aplican.
+
+Para más información: \href{https://material.io/design}{https://material.io/design}
+
+\newpage
+\section{Sitios web}
+
+\subsection{Color Tool}
+\label{ssec:color_tool}
+
+Herramienta ofrecida por Material Design (\fref{ssec:guia_material_design}) para la generación de paletas de colores de una aplicación. El usuario selecciona los colores principales que quiere utilizar y Color Tool le ofrecerá los colores que deben completar su tema siguiendo las directrices de Material Design. También tiene información y muestras del nivel de accesibilidad de la paleta creada. El tema de colores de la aplicaicón fue creada con esta herramienta.
+
+Para más información: \href{https://material.io/resources/color/}{https://material.io/resources/color/}
+
+\subsection{Diagrams.net}
+
+Antiguamente conocida como \textbf{Draw.io}. Es un software de creación de diagramas en líneas. Permite crear gráficos de flujo, diagramas UML y o diagramas de red entre otros muchos tipos. Permite importar y exportar los diagramas en varios almacenamientos en la nube y el trabajo colaborativo. Todos los diagramas de este documento que no fueron creadas con \nameref{ssec:plant_uml} lo fueron con la versión web de este software.
+
+Para más información: \href{https://app.diagrams.net/}{https://app.diagrams.net/}
+
+\subsection{GitHub}
+\label{ssec:github}
+
+\begin{wrapfigure}[6]{r}{0.2\textwidth}
+    \vspace{-25pt}
+    \centering
+    \includegraphics[width=0.15\textwidth]{Implementación/github-icon.png}
+    \vspace{-10pt}
+    \caption{Logo de GitHub}
+\end{wrapfigure}
+
+GitHub es un sitio web comprado por \textbf{Microsoft} en 2018 por 7,5 millardos de dólares. Es un proveedor de alojamiento en Internet para desarrollos de software y versiones de control que empleen Git. Ofrece toda la funcional de gestión de código y del control de versiones que ofrece Git con una serie de características propias adicionales como \nameref{tool:github_actions}. Ha sido el portal en el que se ha alojado todo el código del proyecto durante su desarrollo.
+
+Para más información: \href{https://github.com/}{https://github.com/}
+
+\subsection{Portal de Azure}
+
+Portal dedicado a la gestión de la nube Azure. Permite crear, administrar y supervisar todas las aplicaciones alojadas en el servicio de la nube de \textbf{Microsoft}. Aunque existen alternativas para esto como la \textbf{Azure CLI} o \nameref{ssec:vs_code}, en este desarrollo ha sido la vía alternativa para la gestión del servidor en el que se desplegó la \acrshort{api}.
+
+Para más información: \href{https://azure.microsoft.com/es-es/features/azure-portal/}{https://azure.microsoft.com/es-es/features/azure-portal/}
+
+\subsection{Portal de MongoDB Atlas}
+
+Sitio web ofrecido por MongoDB para al gestión e interacción con su servicio de bases de datos en la nube, MongoDB Atlas. Desde este portal se pueden los diferentes clústers, establecer los requisitos y accesos o acceder a los datos y modificarlos entre otras cosas. Ha sido la vía de gestión de la base de datos durante el desarrollo.
+
+Para más información: \href{https://www.mongodb.com/atlas/database}{https://www.mongodb.com/atlas/database}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.25\textwidth]{Implementación/mongodb-atlas-icon.png}
+    \caption{Logo de MongoDB Atlas}
+\end{figure}

@@ -1,0 +1,166 @@
+\documentclass[12pt, twoside, openany]{book}
+
+\usepackage[spanish, es-tabla]{babel} % Language
+\usepackage[utf8]{inputenc} % Codification
+
+\usepackage{graphicx} % To include graphics and images
+\usepackage{wrapfig}  % Allow to wrap graphics with text     
+\graphicspath{ {images/} } % Images path
+
+\usepackage[a4paper,top=30mm,left=30mm,right=25mm,bottom=25mm,headheight=20mm]{geometry} % Page margins
+
+% Format packages
+\usepackage{adjustbox}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{stackengine}
+\usepackage{array}
+\usepackage{xurl}
+\usepackage{float}
+\usepackage{changepage}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{svg}
+\usepackage{rotating}
+
+\usepackage{hyperref}           % Hrefs and links
+\usepackage{listings}           % Code blocks
+\usepackage[spanish]{cleveref}  % Local refs
+\usepackage{xcolor}             % Colors
+\usepackage{pdfpages}           % Insert pdf pages
+\usepackage{lipsum}             % Text placeholder
+\usepackage{todonotes}          % TODOs
+
+% Enumerations
+\usepackage[shortlabels]{enumitem}
+
+% Package for acronyms and glossary generation
+\usepackage[acronym]{glossaries}
+
+% Starts Glossary recollection and definition
+\makeglossaries
+\input{Glosario}
+
+% Document configuration
+\input{Configuracion.tex}
+
+% Metadata
+\author{Ricardo Soto Estévez}{Grado en Ingeniería Informática del Software}
+\setTitle{Aplicación asimétrica móvil de asistencia para familias con personas afectadas de Alzheimer}
+\setSubtitle{Trabajo Fin de Grado}
+\setUniversity{Universidad de Oviedo}
+\director{Miguel Sánchez Santillán}{Dr.~}{Lenguajes y Sistemas Informáticos}
+
+%%% Document start %%%
+\begin{document}
+
+\rmfamily % Romana font
+
+% Cover page
+\input{Portada.tex}
+
+% Opening pages
+\input{chapters/Declaracion}
+\input{chapters/Agradecimientos}
+\input{chapters/Resumen}                                    
+\input{chapters/PalabrasClave}
+\input{chapters/Abstract}                               
+\input{chapters/Keywords}
+
+% Table of contents
+\newpage
+\addcontentsline{toc}{chapter}{Índice de contenido}
+\tableofcontents
+\newpage
+
+% Table of figures
+\addcontentsline{toc}{chapter}{Índice de figuras}
+\listoffigures
+\newpage
+
+% List of tables
+\addcontentsline{toc}{chapter}{Índice de tablas}
+\listoftables
+
+% List of listings
+\addcontentsline{toc}{chapter}{Índice de fragmentos}
+\lstlistoflistings
+
+\justifying % Justified text
+
+\setlength{\parskip}{\baselineskip} % Paragraphe separation of one line
+\onehalfspacing % Line space of 1,5 
+
+\part{Presentación}
+\input{chapters/Presentacion/MemoriaProyecto}               
+\input{chapters/Presentacion/Introduccion}                  % REV?
+\input{chapters/Presentacion/AspectosTeoricos}
+
+\part{Planificación}                                        
+\input{chapters/Planificación/RequisitosIniciales}
+\input{chapters/Planificación/EvaluacionAlternativas}       
+\input{chapters/Planificación/AnalisisRiesgos}              
+\input{chapters/Planificación/DescripcionSolucionPropuesta} 
+\input{chapters/Planificación/PlanificacionTemporal}        
+\input{chapters/Planificación/ResumenPresupuesto}           
+
+\part{Análisis}                                             
+\input{chapters/Analisis/RequisitosDelSistema}
+\input{chapters/Analisis/IdentificacionSubsistemas}
+\input{chapters/Analisis/EspecificacionCasosUso}            
+\input{chapters/Analisis/AnálisisInterfazUsuario}              
+\input{chapters/Analisis/DiagramaClases}
+\input{chapters/Analisis/EspecificacionPlanPruebas}
+\input{chapters/Analisis/EspecificacionPlanDespliegue}      
+
+\part{Diseño}
+\input{chapters/Diseño/ArquitecturaSistema}                 
+\input{chapters/Diseño/DiseñoClases}                        
+\input{chapters/Diseño/ModeloDatos}                        
+\input{chapters/Diseño/InterfacesComunicacion}              
+\input{chapters/Diseño/InteraccionYEstados}                 
+\input{chapters/Diseño/InterfazUsuario}                     
+\input{chapters/Diseño/EspecificacionTecnicaPlanPruebas}    
+
+\part{Implementación}
+\input{chapters/Implementacion/Tecnologías}                 
+\input{chapters/Implementacion/HerramientasDesarrollo}      
+\input{chapters/Implementacion/Obstáculos}                 
+\input{chapters/Implementacion/DesarrolloPruebas}          
+
+\part{Manuales}
+\input{chapters/Manuales/ManualInstalacion}                
+\input{chapters/Manuales/ManualUsuario}                     
+\input{chapters/Manuales/ManualDespliegue}                  
+\input{chapters/Manuales/ManualDesarrollador}               
+
+\part{Conclusión}                                            %  RE-READING ↓
+\input{chapters/Conclusion/EstadoSistema}                   
+\input{chapters/Conclusion/ConclusionesPersonales}          
+\input{chapters/Conclusion/Ampliaciones}                    
+
+\part{Anexos}            
+\input{chapters/Anexos/Presupuesto}                         
+\input{chapters/Anexos/Licencia}
+\input{chapters/Anexos/EsquemaDatos}
+\input{chapters/Anexos/ArchivoDespliegue}
+\input{chapters/Anexos/DocumentacionAdicional}              % REV - names
+
+% Glossary and acronyms
+\newpage
+\addcontentsline{toc}{chapter}{Glosario}
+\printglossary
+\newpage
+\addcontentsline{toc}{chapter}{Siglas}
+\printglossary[type=\acronymtype]
+
+% Bibliography
+\newpage
+\addcontentsline{toc}{chapter}{Bibliografía} % Adds reference to the chapter mentioning it
+\bibliographystyle{ieeetr} % IEEE bibliography format
+\bibliography{library} % Bibliography database
+
+\end{document}

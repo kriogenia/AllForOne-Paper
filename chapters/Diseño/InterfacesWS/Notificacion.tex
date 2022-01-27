@@ -1,0 +1,95 @@
+\subsection{Notificación}
+\vspace{-10pt}
+
+Los eventos de notificaciones no cuentan con su propia sala sino que son emitidas a través de la sala global y son todos de tipo servidor pues son mensajes generados por el usuario a raíz de acciones transversales que son comunicadas a los usuarios relevantes.
+
+%notify:bond_created
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{NOTIFY\textunderscore BOND\textunderscore CREATED}} \\ \hline 
+    Descripción         & Notifica la creación de un vínculo. \\ \hline
+    Clave               & notify:bond\textunderscore created \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión    &
+   \emph{object}. \acrshort{dto} de la notificación, del tipo \nameref{dto:notification} (\fref{dto:notification}). \\ \hline
+    \caption{Documentación del evento Notify Bond Created de la sala Global}
+    \label{ws:notify_bond_created}
+\end{longtable}
+
+%notify:bond_deleted
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{NOTIFY\textunderscore BOND\textunderscore DELETED}} \\ \hline 
+    Descripción         & Notifica la eliminación de un vínculo. \\ \hline
+    Clave               & notify:bond\textunderscore deleted \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión    &
+   \emph{object}. \acrshort{dto} de la notificación, del tipo \nameref{dto:notification} (\fref{dto:notification}). \\ \hline
+    \caption{Documentación del evento Notify Bond Deleted de la sala Global}
+    \label{ws:notify_bond_deleted}
+\end{longtable}
+
+%notify:task_deleted
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{NOTIFY\textunderscore TASK\textunderscore DELETED}} \\ \hline 
+    Descripción         & Notifica la eliminación de una tarea. \\ \hline
+    Clave               & notify:task\textunderscore deleted \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión    &
+   \emph{object}. \acrshort{dto} de la notificación, del tipo \nameref{dto:notification} (\fref{dto:notification}). \\ \hline
+    \caption{Documentación del evento Notify Task Deleted de la sala Global}
+    \label{ws:notify_task_deleted}
+\end{longtable}
+
+%notify:task_done
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{NOTIFY\textunderscore TASK\textunderscore DONE}} \\ \hline 
+    Descripción         & Notifica el cambio de una tarea a hecha. \\ \hline
+    Clave               & notify:task\textunderscore done \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión    &
+   \emph{object}. \acrshort{dto} de la notificación, del tipo \nameref{dto:notification} (\fref{dto:notification}). \\ \hline
+    \caption{Documentación del evento Notify Task Done de la sala Global}
+    \label{ws:notify_task_done}
+\end{longtable}
+
+%notify:task_undone
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{NOTIFY\textunderscore TASK\textunderscore UNDONE}} \\ \hline 
+    Descripción         & Notifica el cambio de una tarea a no hecha. \\ \hline
+    Clave               & notify:task\textunderscore undone \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión    &
+   \emph{object}. \acrshort{dto} de la notificación, del tipo \nameref{dto:notification} (\fref{dto:notification}). \\ \hline
+    \caption{Documentación del evento Notify Task Undone de la sala Global}
+    \label{ws:notify_task_undone}
+\end{longtable}
+
+%notify:location_sharing_start
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{NOTIFY\textunderscore LOCATION\textunderscore SHARING\textunderscore START}} \\ \hline 
+    Descripción         & Notifica que un usuario asociado ha comenzado a compartir su ubicación. \\ \hline
+    Clave               & notify:location\textunderscore sharing\textunderscore start \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión    &
+   \emph{object}. \acrshort{dto} de la notificación, del tipo \nameref{dto:notification} (\fref{dto:notification}). \\ \hline
+    \caption{Documentación del evento Notify Location Sharing Start de la sala Global}
+    \label{ws:notify_location_sharing_start}
+\end{longtable}
+
+%notify:location_sharing_stop
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{NOTIFY\textunderscore LOCATION\textunderscore SHARING\textunderscore STOP}} \\ \hline 
+    Descripción         & Notifica que un usuario asociado ha dejado de compartir su ubicación. \\ \hline
+    Clave               & notify:location\textunderscore sharing\textunderscore stop \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión    &
+   \emph{object}. \acrshort{dto} de la notificación, del tipo \nameref{dto:notification} (\fref{dto:notification}). \\ \hline
+    \caption{Documentación del evento Notify Location Sharing Stop de la sala Global}
+    \label{ws:notify_location_sharing_stop}
+\end{longtable}

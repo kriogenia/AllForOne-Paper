@@ -1,0 +1,136 @@
+\subsection{Usuarios}
+
+% PATCH /user/:id
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualizar usuario}} \\ \hline 
+    Descripción         & Actualiza la información de un usuario. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /user/:id \\ \hline
+    Método   & PATCH                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros URL  & 
+    \textbf{id}: \emph{string}. Identificador único del usuario. \\ \hline
+    Cuerpo &
+    \emph{object}. Propiedades a actualizar del usuario en un \acrshort{dto} de tipo \nameref{dto:userpublic} (\ref{dto:userpublic}). \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 201 CREATED         \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \emph{object}. Información del usuario de tipo \nameref{dto:user} (\ref{dto:user}) \\ \hline \hline
+    Errores & 403 FORBIDDEN si el solicitante no es el usuario que intenta actualizar.
+    \\ \hline
+    \caption{Documentación del endpoint de actualización de información de usuarios}
+    \label{api:actualizar_usuario}
+\end{longtable}
+
+% GET /user/bonds/token 
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Generar token de vinculación}} \\ \hline 
+    Descripción         & Devuelve un token de vinculación válido del usuario. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /user/bonds/token \\ \hline
+    Método   & GET                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline  \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 200 OK         \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \textbf{code}: \emph{string}. Token de vinculación. \\ \hline
+    \caption{Documentación del endpoint de generación de tokens de vinculación}
+    \label{api:generar_token_vinculacion}
+\end{longtable}
+
+\newpage
+% POST /user/bonds/token 
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Establecer vínculos}} \\ \hline 
+    Descripción         & Valida el token de vinculación enviado y crea el vínculo entre los dos usuarios si es correcto. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /user/bonds/token \\ \hline
+    Método   & POST                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros URL  & 
+    \textbf{code}: \emph{string}. Token de vinculación. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 200 OK         \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \textbf{message}: \emph{string}. Mensaje de confirmación de la acción. \\ \hline \hline
+    Errores & 400 BAD REQUEST si el token ha expirado. \\
+            & 400 BAD REQUEST si el Paciente ya tiene el máximo de vínculos \\
+            & 400 BAD REQUEST si el Cuidador ya está vinculado \\
+            & 403 FORBIDDEN si el usuario es un Paciente
+    \\ \hline
+    \caption{Documentación del endpoint de establecimiento de vínculos}
+    \label{api:establecer_vinculo}
+\end{longtable}
+
+% DELETE /user/bonds/:id 
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminar vínculos}} \\ \hline 
+    Descripción         & Elimina el vínculo con el usuario especificado. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /user/bonds/:id \\ \hline
+    Método   & DELETE                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Cuerpo  & 
+    \textbf{id}: \emph{string}. ID del usuario a desvincular. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 204 NO CONTENT         \\ \hline \hline
+    \caption{Documentación del endpoint de eliminación de vínculos}
+    \label{api:eliminar_vinculo}
+\end{longtable}
+
+\newpage
+% GET /user/:id/cared 
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperar Paciente vinculado}} \\ \hline 
+    Descripción         & Recupera la información del Paciente vinculado al usuario. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /user/:id/cared \\ \hline
+    Método   & GET                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros URL  & 
+    \textbf{id}: \emph{string}. Identificador único del usuario. \\ \hline  \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 200 OK         \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \textbf{cared}: \emph{object}. Información del Paciente vinculado en un \acrshort{dto} de tipo \nameref{dto:user} (\ref{dto:user}). \\ \hline \hline
+    Errores & 400 BAD REQUEST si el usuario no es un Cuidador. \\
+            & 403 FORBIDDEN si el solicitante no es el usuario del que pretende obtener el Paciente vinculado. \\ \hline
+    \caption{Documentación del endpoint de actualización de información de usuarios}
+    \label{api:recuperar_paciente}
+\end{longtable}
+
+% GET /user/bonds 
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperar información de asociados}} \\ \hline 
+    Descripción         & Devuelve la información de contacto de los usuarios asociados con el solicitante. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /user/bonds \\ \hline
+    Método   & GET                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 200 OK         \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \textbf{bonds}: \emph{object array}. Lista de información de contacto de los asociados del usuario. Enviados en \acrshort{dto}s de tipo \nameref{dto:userpublic} (\ref{dto:userpublic}) \\ \hline \hline
+    Errores & 400 BAD REQUEST si el usuario no es Paciente ni Cuidador \\
+            & 403 FORBIDDEN si el solicitante no es el usuario que intenta actualizar.
+    \\ \hline
+    \caption{Documentación del endpoint de recuperación de información de asociados}
+    \label{api:recuperar_asociados}
+\end{longtable}

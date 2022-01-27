@@ -1,0 +1,113 @@
+\subsection{Tareas}
+
+\vspace{-10pt}
+% POST /tasks 
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Crear tarea}} \\ \hline 
+    Descripción         & Persiste y completa la tarea enviada. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /tasks \\ \hline
+    Método   & POST                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Cuerpo  & \emph{object}. Tarea a persistir con las propiedades de \nameref{dto:taskmin} (\ref{dto:taskmin}). \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 201 CREATED          \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \emph{object}. \acrshort{dto} de la tarea creada con las propiedades de \nameref{dto:taskmessage} (\ref{dto:taskmessage}). \\ \hline \hline
+    Errores & 400 BAD REQUEST si el usuario es un Cuidador no vinculado.
+    \\ \hline
+    \caption{Documentación del endpoint de crear una tarea}
+    \label{api:crear_tarea}
+\end{longtable}
+
+% GET /tasks 
+\begin{table}[H]
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperar tareas relevantes}} \\ \hline 
+    Descripción         & Devuelve la lista de tareas relevantes del usuario. Una tarea relevante es aquella incompleta o que ha sido actualizada alguna vez en el margen de días máximo especificado en la petición. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /tasks \\ \hline
+    Método   & GET                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros consulta  & 
+    \textbf{maxDays}: \emph{number}. \emph{Opcional}. Número de días máximo desde la última actualización de las tareas completadas para considerarlas relevantes. Por defecto, 3 días. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 200 OK          \\ \hline
+    Content-type    & application-json  \\ \hline
+    Cuerpo  & 
+    \textbf{tasks}: \emph{object array}. Lista de tareas recuperadas de tipo \nameref{dto:taskmessage} (\ref{dto:taskmessage}). \\ \hline \hline
+    Errores & 400 BAD REQUEST si el usuario es un Cuidador no vinculado
+    \\ \hline
+    \caption{Documentación del endpoint de recuperar tareas relevantes}
+    \label{api:recuperar_tarea}
+\end{longtable}
+\end{table}
+
+% DELETE /tasks/:id
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminar tarea}} \\ \hline 
+    Descripción         & Elimina la tarea especificada. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /tasks/:id \\ \hline
+    Método   & DELETE                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros URL  & 
+    \textbf{id}: \emph{string}. Identificador único de la tarea a eliminar. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 204 NO CONTENT          \\ \hline \hline
+    Errores & 403 FORBIDDEN si el usuario no tiene permisos para eliminar la tarea
+    \\ \hline
+    \caption{Documentación del endpoint de eliminar una tarea}
+    \label{api:eliminar_tarea}
+\end{longtable}
+
+% POST /tasks:/:id/done
+\begin{table}[H]
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar tarea como hecha}} \\ \hline 
+    Descripción         & Marca la tarea especificada como hecha. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /tasks/:id/done \\ \hline
+    Método   & POST                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros URL  & 
+    \textbf{id}: \emph{string}. Identificador único de la tarea a actualizar. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 204 NO CONTENT          \\ \hline  \hline
+    Errores & 403 FORBIDDEN si el usuario no tiene permisos para actualizar la tarea
+    \\ \hline
+    \caption{Documentación del endpoint de marcar una tarea como hecha}
+    \label{api:marcar_tarea_hecha}
+\end{longtable}
+\end{table}
+
+% DELETE /tasks:/:id/done
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar tarea como no hecha}} \\ \hline 
+    Descripción         & Marca la tarea especificada como no hecha. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Petición}}  \\ \hline 
+    URL      & /tasks/:id/done \\ \hline
+    Método   & DELETE                  \\ \hline
+    Encabezados  & 
+    \textbf{Authorization}: Token de sesión según RFC6750. \\ \hline
+    Parámetros URL  & 
+    \textbf{id}: \emph{string}. Identificador único de la tarea a actualizar. \\ \hline \hline
+    \multicolumn{2}{|l|}{\emph{Respuesta}} \\ \hline 
+    Código          & 204 NO CONTENT          \\ \hline \hline
+    Errores & 403 FORBIDDEN si el usuario no tiene permisos para actualizar la tarea
+    \\ \hline
+    \caption{Documentación del endpoint de marcar una tarea como no hecha}
+    \label{api:marcar_tarea_no_hecha}
+\end{longtable}
+
+\newpage

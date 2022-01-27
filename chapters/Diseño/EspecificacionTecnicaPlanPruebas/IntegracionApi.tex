@@ -1,0 +1,530 @@
+\subsection{API}
+
+\subsubsection{Autenticación}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Registro de usuario correcto}} \\ \hline 
+    Descripción                 & Petición a GET /auth/session correcta de un usuario nuevo \\ \hline
+    Entrada                     & Petición con googleId no registrado \\ \hline
+    Resultado esperado          & Respuesta con un usuario nuevo y una sesión nueva \\ \hline
+    \caption{Prueba de integración de la API: Registro de usuario correcto}
+    \label{cp:i:api:registro_usuario_correcto}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Inicio de sesión correcto}} \\ \hline 
+    Descripción                 & Petición a GET /auth/session correcta de un usuario ya existente \\ \hline
+    Entrada                     & Petición con googleId registrado \\ \hline
+    Resultado esperado          & Respuesta con el usuario y una sesión nueva \\ \hline
+    \caption{Prueba de integración de la API: Inicio de sesión correcto}
+    \label{cp:i:api:inicio_sesion_correcto}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Inicio de sesión incorrecto}} \\ \hline 
+    Descripción                 & Petición a GET /auth/session incorrecta \\ \hline
+    Entrada                     & Petición sin token \\ \hline
+    Resultado esperado          & Respuesta con estado 404: Not Found \\ \hline
+    \caption{Prueba de integración de la API: Inicio de sesión incorrecto}
+    \label{cp:i:api:inicio_sesion_incorrecto}
+\end{longtable}
+
+\newpage
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Cierre de sesión correcto}} \\ \hline 
+    Descripción                 & Petición a DELETE /auth/session de un usuario autenticado con su token de sesión \\ \hline
+    Entrada                     & Petición con token de autenticación del propio usuario \\ \hline
+    Resultado esperado          & Eliminación de la sesión en la base de datos \\
+                                & Respuesta sin contenido \\ \hline
+    \caption{Prueba de integración de la API: Cierre de sesión correcto}
+    \label{cp:i:api:cierre_sesion_correcto}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Cierre de sesión incorrecto}} \\ \hline 
+    Descripción                 & Petición a DELETE /auth/session de un usuario con un token de sesión diferente al suyo \\ \hline
+    Entrada                     & Petición con token de autenticación de otro usuario \\ \hline
+    Resultado esperado          & Respuesta con estado 403: Forbidden \\ \hline
+    \caption{Prueba de integración de la API: Cierre de sesión incorrecto}
+    \label{cp:i:api:cierre_sesion_incorrecto}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Refresco de sesión correcto}} \\ \hline 
+    Descripción                 & Petición a GET /auth/refresh correcta \\ \hline
+    Entrada                     & Petición con tokens válidos \\ \hline
+    Resultado esperado          & Respuesta con con una nueva sesión \\ \hline
+    \caption{Prueba de integración de la API: Refresco de sesión correcto}
+    \label{cp:i:api:refresco_sesion_correcto}
+\end{longtable}
+
+\vspace{-15pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Refresco de sesión incorrecto}} \\ \hline 
+    Descripción                 & Petición a GET /auth/refresh incorrecta \\ \hline
+    Entrada                     & Petición con tokens inválidos \\ \hline
+    Resultado esperado          & Respuesta con estado 401: Unauthorized \\ \hline
+    \caption{Prueba de integración de la API: Refresco de sesión incorrecto}
+    \label{cp:i:api:refresco_sesion_incorrecto}
+\end{longtable}
+
+\vspace{-15pt}
+\subsubsection{Localización}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Conexión a la sala de localización}} \\ \hline 
+    Descripción                 & Evento location:share de un usuario \\ \hline
+    Entrada                     & ID y nombre del usuario \\ \hline
+    Resultado esperado          & Unión satisfactoria a la sala de localización \\ \hline
+    \caption{Prueba de integración de la API: Conexión a la sala de localización}
+    \label{cp:i:api:conexion_sala_localizacion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Desconexión de la sala de localización}} \\ \hline 
+    Descripción                 & Evento location:stop de un usuario conectado \\ \hline
+    Entrada                     & ID y nombre del usuario \\ \hline
+    Resultado esperado          & Abandono satisfactorio de la sala de localización \\ \hline
+    \caption{Prueba de integración de la API: Desconexión de la sala de localización}
+    \label{cp:i:api:desconexion_sala_localizacion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualización de ubicación}} \\ \hline 
+    Descripción                 & Evento location:update de un usuario \\ \hline
+    Entrada                     & Ubicación actualizada \\ \hline
+    Resultado esperado          & Reenvío de la ubicación \\ \hline
+    \caption{Prueba de integración de la API: Actualización de ubicación}
+    \label{cp:i:api:actualizacion_ubicacion}
+\end{longtable}
+
+\vspace{-15pt}
+\subsubsection{Mensajes}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de mensajes de Pacientes}} \\ \hline 
+    Descripción                 & Petición a GET /feed/messages correcta de un Paciente \\ \hline
+    Entrada                     & Petición sin página y usuario Paciente \\ \hline
+    Resultado esperado          & Respuesta con los mensajes esperados \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de mensajes de Pacientes}
+    \label{cp:i:api:recuperacion_mensajes_pacientes}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de mensajes de Cuidadores correcta}} \\ \hline 
+    Descripción                 & Petición a GET /feed/messages correcta de un Cuidador \\ \hline
+    Entrada                     & Petición sin página y usuario Cuidador \\ \hline
+    Resultado esperado          & Respuesta con los mensajes esperados \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de mensajes de Cuidadores correcta}
+    \label{cp:i:api:recuperacion_mensajes_cuidadores}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de páginas de mensajes concreta}} \\ \hline 
+    Descripción                 & Petición a GET /feed/messages correcta con una página específica \\ \hline
+    Entrada                     & Petición con página y usuario Paciente \\ \hline
+    Resultado esperado          & Respuesta con los mensajes esperados \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de páginas de mensajes concreta}
+    \label{cp:i:api:recuperacion_paginas_mensajes_concreta}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de mensajes con página incorrecta}} \\ \hline 
+    Descripción                 & Petición a GET /feed/messages con una página inválida \\ \hline
+    Entrada                     & Petición con página -1 y usuario Paciente \\ \hline
+    Resultado esperado          & Respuesta con los mensajes de la primera página \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de mensajes con página incorrecta}
+    \label{cp:i:api:recuperacion_mensajes_pagina_incorrecta}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de mensajes con usuario incompleto}} \\ \hline 
+    Descripción                 & Petición a GET /feed/messages de un usuario sin rol \\ \hline
+    Entrada                     & Petición sin página y usuario Blank \\ \hline
+    Resultado esperado          & Respuesta con estado 404: Bad Request \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de mensajes con usuario incompleto}
+    \label{cp:i:api:recuperacion_mensajes_usuario_incompleto}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de mensajes de Cuidador incorrecta}} \\ \hline 
+    Descripción                 & Petición a GET /feed/messages de un Cuidador sin vínculo \\ \hline
+    Entrada                     & Petición sin página y usuario Cuidador no vinculado \\ \hline
+    Resultado esperado          & Respuesta con estado 404: Bad Request \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de mensajes de Cuidador incorrecta}
+    \label{cp:i:api:recuperacion_mensajes_cuidador_incorrecta}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Conexión a la sala de mensajería}} \\ \hline 
+    Descripción                 & Evento feed:join de un usuario \\ \hline
+    Entrada                     & ID y nombre del usuario \\ \hline
+    Resultado esperado          & Unión satisfactoria a la sala de mensajería \\ \hline
+    \caption{Prueba de integración de la API: Conexión a la sala de mensajería}
+    \label{cp:i:api:conexion_sala_mensajeria}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Desconexión de la sala de mensajería}} \\ \hline 
+    Descripción                 & Evento feed:leave de un usuario conectado \\ \hline
+    Entrada                     & ID y nombre del usuario \\ \hline
+    Resultado esperado          & Abandono satisfactorio de la sala de mensajería \\ \hline
+    \caption{Prueba de integración de la API: Desconexión de la sala de mensajería}
+    \label{cp:i:api:desconexion_sala_mensajeria}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Envío de un mensaje de texto}} \\ \hline 
+    Descripción                 & Evento feed:send de un mensaje de texto \\ \hline
+    Entrada                     & Mensaje enviado \\ \hline
+    Resultado esperado          & Almacenamiento del mensaje en la base de datos \\
+                                & Reenvío del mensaje \\ \hline
+    \caption{Prueba de integración de la API: Envío de un mensaje de texto}
+    \label{cp:i:api:envio_mensaje_texto}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Envío de una tarea}} \\ \hline 
+    Descripción                 & Evento feed:send de una tarea \\ \hline
+    Entrada                     & Tarea enviada \\ \hline
+    Resultado esperado          & Almacenamiento de la tarea en la base de datos \\
+                                & Reenvío de la tarea \\ \hline
+    \caption{Prueba de integración de la API: Envío de una tarea}
+    \label{cp:i:api:envio_tarea}
+\end{longtable}
+
+\subsubsection{Notificaciones}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar una notificación válida como leída}} \\ \hline 
+    Descripción                 & Petición a POST /feed/notifications/:/read con una notificación válida \\ \hline
+    Entrada                     & Petición con notificación no leída \\ \hline
+    Resultado esperado          & La notificación marcados como leída por el usuario \\
+                                & Respuesta sin contenido \\ \hline
+    \caption{Prueba de integración de la API: Marcar una notificación válida como leída}
+    \label{cp:i:api:marcar_notificacion_valida_leida}
+\end{longtable}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar una notificación inválida como leída}} \\ \hline 
+    Descripción                 & Petición a POST /feed/notifications/:/read con una notificación inválida \\ \hline
+    Entrada                     & Petición con notificación ya leída \\
+                                & Petición sin notificación \\ \hline
+    Resultado esperado          & Respuesta con estado 404: Bad Request \\ \hline
+    \caption{Prueba de integración de la API: Marcar una notificación inválida como leída}
+    \label{cp:i:api:marcar_notificacion_invalida_leida}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar todas las notificaciones como leídas}} \\ \hline 
+    Descripción                 & Petición a POST /feed/notifications/read de un usuario \\ \hline
+    Entrada                     & Petición válida \\ \hline
+    Resultado esperado          & Todas las notificaciones del usuario marcados como leídas \\
+                                & Respuesta sin contenido \\ \hline
+    \caption{Prueba de integración de la API: Marcar todas las notificaciones como leídas}
+    \label{cp:i:api:marcar_notificaciones_leidas}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de notificaciones no leídas por defecto}} \\ \hline 
+    Descripción                 & Petición a GET /feed/notifications de un usuario \\ \hline
+    Entrada                     & Petición válida sin edad máxima \\ \hline
+    Resultado esperado          & Respuesta con las notificaciones esperadas \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de notificaciones no leídas por defecto}
+    \label{cp:i:api:recuperacion_notificaciones_no_leidas_por_defecto}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de notificaciones no leídas de edad especificada}} \\ \hline 
+    Descripción                 & Petición a GET /feed/notifications de un usuario \\ \hline
+    Entrada                     & Petición válida con edad máxima especificada \\ \hline
+    Resultado esperado          & Respuesta con las notificaciones esperadas \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de notificaciones no leídas de edad especificada}
+    \label{cp:i:api:recuperacion_notificaciones_no_leidas_edad_especificada}
+\end{longtable}
+
+\vspace{-15pt}
+\subsubsection{Tareas}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de una tarea}} \\ \hline 
+    Descripción                 & Petición a POST /task con una tarea válida \\ \hline
+    Entrada                     & Petición con tarea válida \\ \hline
+    Resultado esperado          & Respuesta con la tarea creada \\ \hline
+    \caption{Prueba de integración de la API: Creación de una tarea}
+    \label{cp:i:api:creacion_tarea}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de una tarea inválida}} \\ \hline 
+    Descripción                 & Petición a POST /task con una tarea inválida \\ \hline
+    Entrada                     & Petición con tarea sin campo obligatorio \\ \hline
+    Resultado esperado          & Respuesta con estado 404: Bad Request \\ \hline
+    \caption{Prueba de integración de la API: Creación de una tarea inválida}
+    \label{cp:i:api:creacion_tarea_invalida}
+\end{longtable}
+
+\vspace{-5pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación de una tarea válida}} \\ \hline 
+    Descripción                 & Petición a DELETE /task de una tarea válida\\ \hline
+    Entrada                     & Petición con tarea válida \\ \hline
+    Resultado esperado          & Respuesta con las notificaciones esperadas \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de notificaciones no leídas de edad especificada}
+    \label{cp:i:api:eliminacion_tarea_valida}
+\end{longtable}
+
+\vspace{-5pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación de una tarea inválida}} \\ \hline 
+    Descripción                 & Petición a DELETE /task de una tarea inválida \\ \hline
+    Entrada                     & Petición con tarea no eliminable por el usuario \\
+                                & Petición sin tarea \\ \hline
+    Resultado esperado          & Respuesta con estado 404: Bad Request \\ \hline
+    \caption{Prueba de integración de la API: Eliminación de una tarea inválida}
+    \label{cp:i:api:eliminacion_tarea_invalida}
+\end{longtable}
+
+\vspace{-5pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar tarea como hecha}} \\ \hline 
+    Descripción                 & Petición a POST /task/read de una tarea no hecha\\ \hline
+    Entrada                     & Petición con tarea no hecha válida \\ 
+    Resultado esperado          & La tarea se marca como hecha \\ \hline
+                                & Respuesta sin contenido \\ \hline
+    \caption{Prueba de integración de la API: Marcar tarea como hecha}
+    \label{cp:i:api:marcar_tarea_hecha}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar tarea como no hecha}} \\ \hline 
+    Descripción                 & Petición a DELETE /task/read de una tarea hecha\\ \hline
+    Entrada                     & Petición con tarea hecha válida \\
+    Resultado esperado          & La tarea se marca como no hecha \\
+                                & Respuesta sin contenido \\ \hline
+    \caption{Prueba de integración de la API: Marcar tarea como no hecha}
+    \label{cp:i:api:marcar_tarea_no_hecha}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar tarea hecha como hecha}} \\ \hline 
+    Descripción                 & Petición a POST /task/read de una tarea hecha\\ \hline
+    Entrada                     & Petición con tarea hecha válida \\ 
+    Resultado esperado          & La tarea se marca como hecha \\ 
+                                & Respuesta sin contenido \\ \hline
+    \caption{Prueba de integración de la API: Marcar tarea hecha como hecha}
+    \label{cp:i:api:marcar_tarea_hecha_hecha}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Marcar tarea no hecha como no hecha}} \\ \hline 
+    Descripción                 & Petición a DELETE /task/read de una tarea no hecha\\ \hline
+    Entrada                     & Petición con tarea no hecha válida \\
+    Resultado esperado          & La tarea se marca como no hecha \\
+                                & Respuesta sin contenido \\ \hline
+    \caption{Prueba de integración de la API: Marcar tarea no hecha como no hecha}
+    \label{cp:i:api:marcar_tarea_no_hecha_no_hecha}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de tareas de un Paciente}} \\ \hline 
+    Descripción                 & Petición a GET /task de un Paciente \\ \hline
+    Entrada                     & Petición sin edad máximo con usuario Paciente \\ \hline
+    Resultado esperado          & Respuesta con las tareas relevantes del usuario \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de tareas de un Paciente}
+    \label{cp:i:api:recuperacion_tareas_paciente}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de tareas de un Cuidador}} \\ \hline 
+    Descripción                 & Petición a GET /task de un Cuidador \\ \hline
+    Entrada                     & Petición sin edad máxima con usuario Cuidador \\ \hline
+    Resultado esperado          & Respuesta con las tareas relevantes del usuario \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de tareas de un Cuidador}
+    \label{cp:i:api:recuperacion_tareas_cuidador}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de tareas con edad máxima}} \\ \hline 
+    Descripción                 & Petición a GET /task de un Cuidador especificando edad máxima \\ \hline
+    Entrada                     & Petición con edad máxima y usuario Cuidador\\  \hline
+    Resultado esperado          & Respuesta con las tareas esperadas \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de tareas con edad máxima}
+    \label{cp:i:api:recuperacion_tareas_edad_maxima}
+\end{longtable}
+
+\vspace{-15pt}
+\subsubsection{Usuarios}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualización de usuario}} \\ \hline 
+    Descripción                 & Petición a PATCH /user/ de un usuario válido \\ \hline
+    Entrada                     & Petición con actualización válida \\  \hline
+    Resultado esperado          & Respuesta con usuario actualizado \\ \hline
+    \caption{Prueba de integración de la API: Actualización de usuario}
+    \label{cp:i:api:actualizacion_usuario}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Actualización de usuario inválida}} \\ \hline 
+    Descripción                 & Petición a PATCH /user/ inválida \\ \hline
+    Entrada                     & Petición con ID diferente a la del usuario \\  \hline
+    Resultado esperado          & Respuesta con estado 401: Unauthorized \\ \hline
+    \caption{Prueba de integración de la API: Actualización de usuario inválida}
+    \label{cp:i:api:actualizacion_usuario_invalida}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de vínculo}} \\ \hline 
+    Descripción                 & Petición a POST /user/bond válida \\ \hline
+    Entrada                     & Petición con token de vinculación correcto \\  \hline
+    Resultado esperado          & Vínculo creado entre los dos usuario \\
+                                & Respuesta de éxito \\ \hline
+    \caption{Prueba de integración de la API: Creación de vínculo}
+    \label{cp:i:api:creacion_vinculo}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Creación de vínculo inválida}} \\ \hline 
+    Descripción                 & Petición a POST /user/bond inválida \\ \hline
+    Entrada                     & Petición con token de vinculación incorrecto \\  \hline
+    Resultado esperado          & Respuesta con estado 401: Unauthorized \\ \hline
+    \caption{Prueba de integración de la API: Creación de vínculo inválida}
+    \label{cp:i:api:creacion_vinculo_invalida}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación de vínculo válida}} \\ \hline 
+    Descripción                 & Petición a DELETE /user/bond válida \\ \hline
+    Entrada                     & Petición con ID de usuario vinculado \\  \hline
+    Resultado esperado          & Respuesta con estado 204: No Content \\ \hline
+    \caption{Prueba de integración de la API: Eliminación de vínculo válida}
+    \label{cp:i:api:eliminacion_vinculo_valida}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Generación de código de vinculación}} \\ \hline 
+    Descripción                 & Petición a GET /user/bond válida \\ \hline
+    Entrada                     & Petición válida \\  \hline
+    Resultado esperado          & Respuesta con el código de vinculación del usuario \\ \hline
+    \caption{Prueba de integración de la API: Generación de código de vinculación}
+    \label{cp:i:api:generacion_codigo_vinculacion}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de vínculos de un Paciente}} \\ \hline 
+    Descripción                 & Petición a GET /user/bonds de un Paciente vinculado \\ \hline
+    Entrada                     & Petición con Paciente vinculado \\  \hline
+    Resultado esperado          & Respuesta con datos de los vínculos del Paciente \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de vínculos de un Paciente}
+    \label{cp:i:api:recuperacion_vinculos_paciente}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de vínculos de un Cuidador}} \\ \hline 
+    Descripción                 & Petición a GET /user/bonds de un Cuidador vinculado \\ \hline
+    Entrada                     & Petición con Cuidador vinculado \\  \hline
+    Resultado esperado          & Respuesta con datos de los vínculos del Cuidador \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de vínculos de un Cuidador}
+    \label{cp:i:api:recuperacion_vinculos_cuidador}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de vínculos de un usuario incompleto}} \\ \hline 
+    Descripción                 & Petición a GET /user/bonds de un usuario sin rol \\ \hline
+    Entrada                     & Petición con usuario Blank \\  \hline
+    Resultado esperado          & Respuesta con estado 404: Bad Request \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de vínculos de un usuario incompleto}
+    \label{cp:i:api:recuperacion_vinculos_usuario_incompleto}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de Paciente de un Cuidador vinculado}} \\ \hline 
+    Descripción                 & Petición a GET /user/cared de un Cuidador vinculado \\ \hline
+    Entrada                     & Petición con Cuidador vinculado \\  \hline
+    Resultado esperado          & Respuesta con datos del Paciente vinculado \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de Paciente de un Cuidador vinculado}
+    \label{cp:i:api:recuperacion_paciente_cuidador_vinculado}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de Paciente de un Cuidador no vinculado}} \\ \hline 
+    Descripción                 & Petición a GET /user/cared de un Cuidador no vinculado \\ \hline
+    Entrada                     & Petición con Cuidador no vinculado \\  \hline
+    Resultado esperado          & Respuesta sin ningún Paciente \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de Paciente de un Cuidador no vinculado}
+    \label{cp:i:api:recuperacion_paciente_cuidador_no_vinculado}
+\end{longtable}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Recuperación de Paciente inválida}} \\ \hline 
+    Descripción                 & Petición a GET /user/cared inválida \\ \hline
+    Entrada                     & Petición con un Paciente \\
+                                & Petición con un usuario sin rol \\ \hline
+    Resultado esperado          & Respuesta con estado 401: Unauthorized \\ \hline
+    \caption{Prueba de integración de la API: Recuperación de Paciente inválida}
+    \label{cp:i:api:recuperacion_paciente_invalida}
+\end{longtable}
+
+\vspace{-10pt}

@@ -1,0 +1,87 @@
+\chapter{Evaluación de alternativas}
+\label{ch:evaluacion_alternativas}
+
+\section{Desarrollo de la aplicación móvil en Android}
+
+\subsection{Desarrollo nativo en Java}
+
+Java es el lenguaje principal utilizado a lo largo de todo el grado y en base a lo mismo también el lenguaje con el que el equipo de desarrollo cuenta con \textbf{más experiencia y soltura}. Es a su vez el primer lenguaje que fue seleccionado por Google para el desarrollo nativo en Android.
+
+Esta opción ha sido largamente considerada puesto que, además, conforma el punto de conocimiento del equipo acerca del desarrollo de aplicaciones móviles por la asignatura\footnote{SDM: Software para Dispositivos Móviles} del grado centrada en esto. A pesar de esto, la siguiente alternativa, Kotlin, ofrece todas las capacidades de Java más algunos añadidos y mejoras que se han considerado suficientes para \textbf{desechar esta opción} respecto a la siguiente.
+
+\subsection{Desarrollo nativo en Kotlin}
+
+Kotlin es un lenguaje, desarrollado por \textbf{JetBrains} en 2011, de tipado estático que funciona sobre la \acrlong{jvm} y cuya filosofía de creación es la mejora y extensión de Java manteniendo toda una interoperabilidad total con código Java. En el año 2017 fue nombrado por Google como \textbf{lenguaje oficial de Android}\cite{kotlin2017}, y en 2019 lo declararon como el lenguaje preferido para dicho sistema operativo\cite{kotlin2019}, sustituyendo a Java.
+
+Los desarrolladores de Kotlin son los mismos que están detrás del \textbf{Android Studio}, el \acrshort{ide} por antonomasia para el desarrollo en Android, y esto permite que dicho entorno facilite en gran medida el paso de Java a Kotlin con auto-conversión de código entre otras cosas. Esta facilidad, más la oficialidad de Kotlin como lenguaje por excelencia de Android y el interés por parte del equipo de desarrollo de aprender nuevas herramientas en auge han auspiciado \textbf{la selección de esta alternativa} para construír la aplicación.
+
+\subsection{Desarrollo con el framework React Native}
+
+La otra opción que se barajó para el desarrollo de la aplicación fue la opción de utilizar algún \textbf{framework multiplataforma} que permitiese también el desarrollo de la aplicación para iOS o que, al menos, ofreciese otro lenguaje o sistema para el desarrollo. Uno de los frameworks más extendidos de este tipo es \textbf{React Native}.
+
+React Native permite el desarrollo de la aplicación utilizando Javascript y React\footnote{Librería de Javascript para el desarrollo de interfaces de usuario desarrollada por FAcebook}, que luego es compilado a código nativo de Android. El equipo de desarrollo cuenta con cierta experiencia en el uso del mismo, en base a la cual también se sabe que el uso de dichos frameworks no es óptima y provoca muchos problemas derivados de trabajar con ellos. Puesto que iOs no es un requisito para la aplicación (e inviable para el equipo de desarrollo por carencia de dispositivos) se ha \textbf{descartado esta opción}.
+
+\section{Desarrollo de la API}
+
+\subsection{Spring Framework}
+
+Spring es un framework de código abierto para el desarrollo de aplicaciones ejecutables sobre la \acrshort{jvm}, admitiendo desarrollo en \textbf{Java y Kotlin}. A día de hoy es la plataforma base de la mayoría de aplicaciones empresariales desarrolladas en Java. Ofrece herramientas de sencilla ejecución como el despliegue sobre un servidor Apache o inyección de dependencias facilitando el desarrollo. Por defecto, usa JUnit como librería de pruebas.
+
+Es una de las dos tecnologías con las que se ha aprendido a desarrollar aplicaciones web con controladores \acrshort{api} \acrshort{rest} en el grado\footnote{En la asignatura de Sistemas Distribuidos e Internet (SDI)}, por lo que el equipo de desarrollo cuenta con experiencia en su uso. Aún con todo, y a pesar de admitir el desarrollo en el mismo lenguaje en que se desarrollará la aplicación móvil se ha decidido \textbf{descartar esta opción} pues las tecnologías y herramientas que ofrece para el desarrollo con WebSockets es más complicada que las librerías ofrecidas por otras alternativas.
+
+\subsection{Node.js con Express y Socket.io}
+
+Node.js es un entorno multiplataforma para el desarrollo de servidores y aplicaciones basado en el \textbf{Javascript}, aunque acepta otros lenguajes compilables a Javascript como \textbf{Typescript}. El desarrollo en Node está basado en un amplio entorno de librerías. La librería más extendida para la creación de \acrshort{api} \acrshort{rest}s es \textbf{Express}, que será la considerada en esta alternativa. Para el trabajo con WebSockets se considerará \textbf{Socket.io} y para las pruebas se elegirá \textbf{Jest}, ambas son librerías conocidas por la facilidad de uso.
+
+Node es la otra tecnología con la que se ha aprendido a trabajar en el grado\footnote{También en la asignatura de Sistemas Distribuidos e Internet (SDI)}, por lo que, de nuevo, el equipo de desarrollo cuenta con experiencia en este campo. Debido a la agilidad que ofrece y la sencillez de manejo de la librería de WebSockets (así como el que esta cuenta con una librería para implementar el cliente en Android) se \textbf{ha estimado elegir esta alternativa}. La \acrshort{api} se desarrollará en Node.js utilizando Typescript y con Express, Socket.io y Jest como librerías de enrutamiento \acrshort{rest}, de WebSocket y de testing respectivamente.
+
+\subsection{Micronaut}
+
+Micronaut es también un framework open-source para el desarrollo de aplicaciones sobre la \acrshort{jvm} que admite desarrollo en \textbf{Java, Groovy y Kotlin}. Micronaut ofrece una revisión sobre frameworks más antiguos como Spring haciendo énfasis en un diseño orientado a la nube u optimizaciones varias, por ejemplo, haciendo la inyección de dependencias con funcionamiento bajo demanda para reducir el peso y el tiempo de despliegue o testing (basado también en JUnit).
+
+Una de las ventajas de Micronaut, su modernidad, es también uno de sus mayores defectos pues carece de la amplia documentación o ejemplos que sí tenían las otras dos alternativas gracias a su longevidad y amplio uso. Es por este motivo por el que el equipo de desarrollo, aún teniendo cierta experiencia con el mismo, ha decidido \textbf{descartar Micronaut} para reducir en lo posible los bloqueos derivados del uso del framework.
+
+\section{Tecnología de geolocalización}
+
+\subsection{OsmDroid}
+
+\textbf{OpenStreetMap} es un proyecto colaborativo de mapeado global y de software libre que construye sus mapeados gracias a la aportación de los dispositivos \acrshort{gps} y a los añadidos manuales de sus contribuyentes. OpenStreetMap ofrece una \acrshort{api} gratuita para la consulta y acceso a los datos albergados y a su mapa digital.
+
+La librería más completa para trabajar con OpenStreetMap en Android es \textbf{OsmDroid}, que logra un reemplazamiento casi completo de la primera versión de la \acrshort{api} de mapas de Android con su código abierto. Sin embargo, esta librería aún no tiene el pulido de sus hermanas web y cuenta con menos documentación o ejemplos que la librería oficial de Google. Por lo que \textbf{no se considera} su uso contra esta. 
+
+\subsection{Google Maps for Android}
+
+Google Maps es la \acrshort{api} más extendida y usada del mundo para la implementación de mapas, sistemas de geolocalización o de navegación, entre otras cosas. Su precio varía según la plataforma donde se use y según las herramientas del mismo o el número de llamadas que se hagan a la API. Sin embargo, en el momento del desarrollo del proyecto \textbf{es gratuita para las aplicaciones de Android} con sus servicios básicos.
+
+El único servicio que está planeado para la aplicación es el de la visualización del mapa en las coordenadas especificadas y este se encuentra incluido en el paquete gratuito. Además, la empresa desarrolladora de Android y de la \acrshort{api} son la misma y de ello deriva que la librería que la emplea sea la más completa y funcional del sistema operativo. Por estas razones se decidió \textbf{optar por estar alternativa}.
+
+\section{Sistema de gestión de bases de datos}
+
+De cara a la selección de un sistema de gestión de bases de datos, debido al tipo de información que se manejarán en los chats, se seleccionó una \textbf{base de datos documental} como la mejor opción para el desarrollo de esta aplicación, dos gestores de este tipo fueron considerados:
+
+\subsection{MongoDB}
+\label{ssec:mongodb}
+
+MongoDB es la base de datos por excelencia en el mundo de las bases de datos documentales e incluso lidera ampliamente el conjunto de todos los sistemas de bases de datos NoSQL\cite{dbEnginesRanking}. MongoDB es un proyecto de código abierto y es compatible tanto con la nube privada, mediante el despliegue de la base de datos en los servidores del sistema que la vaya a utilizar; como con la nube pública, por medio del servicio \textbf{MongoDB Atlas}.
+
+MongoDB Atlas ofrece niveles del servicio gratuitos y, además, un crédito de 500\$ para estudiantes. Los requisitos iniciales del sistema son compatibles con los rangos que permiten estas dos opciones, sumado a su extendido uso, a la experiencia del equipo de desarrollo y facilidad de implementación en Node.js, se ha \textbf{elegido esta alternativa}.
+
+\subsection{Firebase}
+
+Firebase es una plataforma para el desarrollo móvil y web de Google que ofrece una serie de herramientas como un sistema de autenticación o una base de datos documental entre otras cosas. Está ampliamente documentada e implementada en gran número de aplicaciones Android.
+
+Su sistema de gestión de bases de datos es documental en formato \acrshort{json} y se llama \textbf{Realtime Database}. Sin embargo, y a pesar de que su coste sería gratuito para los propósitos iniciales de \emph{All for One}, la serie de pasos que requiere para su uso en el sistema son un punto negativo respecto a la otra alternativa considerada y en base a esto, \textbf{no será la opción empleada}.
+
+\section{Nube para el despliegue del servidor}
+
+\subsection{Amazon Web Services}
+
+Amazon Web Services (o AWS) es el servicio líder en cloud en el mundo\cite{cloud2021}. Derivado de esto se extiende una gran cantidad de documentación acerca de su uso y un servicio que se puede prever fiable. Además, el equipo de desarrollo ya ha desplegado anteriormente aplicaciones en este servicio. Lamentablemente, su coste es un problema para este desarrollo carente de inversión, por lo que se \textbf{ha decidido buscar otras alternativas}.
+
+\subsection{Microsoft Azure}
+
+Tras AWS, Azure de Microsoft es el siguiente servicio con mayor cuota de mercado\cite{cloud2021}, esto se traduce en unas virtudes similares a los nombrados en el punto anterior. Aunque el equipo de desarrollo no ha llevado a cabo ningún despliegue anterior sí ha acudido a un curso de formación\footnote{\textbf{Fundamentos de Microsoft Azure}, impartido por la Universidad de Oviedo en julio de 2021} relacionado con el mismo, por lo que tiene un conocimiento mucho mayor que con cualquier otro proveedor. Además, los estudiantes pueden recibir un crédito de 100\$ que puede ser suficiente para el despliegue necesario en este proyecto. La suma de todo esto ha convertido a Azure \textbf{en la opción elegida}.
+
+\subsection{Heroku}
+
+Puesto que el coste económico es el factor determinante en la decisión del proveedor de una nube para el despliegue del servidor, también se tuvo en amplia consideración otra alternativa, a pesar de carecer de total experiencia con ella. Heroku carece del mercado de las dos otras alternativas, pero ofrece un servicio de hosting para aplicaciones gratuito que habría sido suficiente para este proyecto. Aún con este punto positivo se decidió \textbf{optar por otra alternativa} más popular actualmente y que ofreciese un aprendizaje más útil de cara a la futura e inminente carrera profesional.

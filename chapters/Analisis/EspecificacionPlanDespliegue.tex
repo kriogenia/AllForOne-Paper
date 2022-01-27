@@ -1,0 +1,26 @@
+\chapter{Especificación del plan de despliegue}
+\label{ch:especificacion_plan_despliegue}
+
+\section{Despliegue de la API}
+\label{sec:despliegue_api}
+
+La \acrshort{api} será desplegada en la nube de Azure. El despliegue de esta se llevará a cabo por medio de la integración continua a través de la herramienta GitHub Actions (\fref{tool:github_actions}). El sistema se desplegará en un entorno AppService de Node.js con el \textbf{plan de tarifa B1} (\fref{fig:plan_b1}) es un plan de desarrollo y pruebas que se considera suficiente para el alcance del proyecto. En caso de realizar un lanzamiento oficial habría que escalar este despliegue a un plan de tarifas de producción
+
+\begin{figure}[H]
+\begin{longtable}{p{0.25\textwidth} p{0.25\textwidth}}
+    \hline
+    \multicolumn{2}{l}{\textbf{Plan de tarifa B1}} \\ \hline
+    \multicolumn{2}{l}{Equivalente de proceso de serie A} \\
+    Total de ACU      & 100 \\
+    Memoria  & 1,75 GB \\
+    Almacenamiento & 10GB \\
+    Escala manual & Hasta 3 instancias \\
+    Coste estimado & 11.08€/mes \\ \hline
+    \caption{Características del Plan B1}
+    \label{fig:plan_b1}
+\end{longtable}
+\end{figure}
+
+\section{Aplicación}
+
+Cae fuera del alcance del proyecto realizar una publicación de la aplicación en la PlayStore o algún otro servicio de publicación. En un principio se estudiaba dicha publicación de cara a la obtención de experiencia por parte del equipo desarrollador en ese proceso, pero ante el hecho de que los componentes de dicho equipo ya han realizado la publicación de una aplicación se ha terminado descartando. El único lanzamiento público de la aplicación será enfocado al enfoque abierto y colaboracional del proyecto y será \textbf{la publicación de la APK} como \emph{release} del repositorio en GitHub. Esto se llevará a cabo máximo una semana antes de la entrega del proyecto para valoración.

@@ -1,0 +1,31 @@
+\chapter{Ampliaciones}
+\label{ch:ampliaciones}
+
+\section{Avenencias legales}
+\label{sec:avenencia_legal}
+
+Una de las tareas pendientes a la conclusión de este desarrollo de cara a tener la aplicación lista para un lanzamiento público sería la adecuación del sistema con las diferentes obligaciones legales y morales. Por ejemplo, a día de hoy los diferentes datos de los usuario están siendo almacenados sin las medidas necesarias como podrían ser la \gls{seudonimizacion} y no existe la infraestructura necesaria detrás del sistema de la base de datos para garantizar o denegar el acceso a los datos según las autorizaciones del personal.
+
+Aunque muchas de estas cosas ya se presumían fuera del alcance del proyecto otras han quedado fuera por limitaciones de tiempo aunque existía un plan de implementarlas. Uno de estos casos sería añadir a la última pantalla de confirmación del registro del usuario un aviso legal que el usuario pudiese leer y debiese aceptar antes de terminar de crearse el perfil. Desgraciadamente no ha podido llevarse a cabo.
+
+\section{Edición de tareas y mensajes}
+
+El proyecto entregado únicamente permite cambiar el estado de una tarea, pero no su contenido, ni el de los mensajes de texto enviado a través del feed. Esto obliga a que en caso de crear una tarea erróneamente o de que una sufra un cambio como podría ser el retraso de una cita médica, lo único que se pueda hacer para corregir la información errónea sea eliminar la tarea y volver a crearla. 
+
+Permitir editar el título o la descripción de la tarea solucionaría este problema, para llevar esto a cabo un nuevo \gls{endpoint} podría ser incluido en la \acrshort{api} de tareas y mensajes que gestione esa actualización y envíe la debida notificación.
+
+\section{Filtros y búsqueda}
+
+Una característica que siempre mejora mucho la usabilidad de gran número de aplicaciones es la inclusión de filtros y buscadores en funciones que incluyan listados. De esta forma se facilita a un usuario el encontrar un ítem concreto que conocen o ignoran aquellos que no le interesan. Esto podría ser implementado en el feed para la búsqueda de un mensaje concreto que coincida con la búsqueda o en la lista de tareas para filtrar fuera aquellas ya completas o creadas por otros usuarios.
+
+\section{Imágenes de usuario}
+
+La función planeada que más ha costado dejar fuera de este proyecto por las constricciones temporales fue la implementación de imágenes como parte de los perfiles de usuario. La idea inicial era añadir la opción de subir la imagen o poder sacarla desde la pantalla de introducción del nombre del usuario. Más adelante, esta imagen sería mostrada en las tarjetas de perfil de los usuarios.
+
+Esta ampliación es especialmente útil de cara a fomentar el recuerdo de los rostros de los allegados del paciente, combatiendo una de las degeneraciones más relevantes del avance de la enfermedad en su etapa intermedia. Otra utilidad podría ser la de contar con una foto del paciente si se extravía y se debe buscar de forma que se pueda preguntar a viandantes, o al revés si el paciente extraviado busca a la persona con la que estaba.
+
+\section{Parametrización de la REST API}
+
+Actualmente, algunos de los \gls{endpoint} de la \acrshort{api} \acrshort{rest} aceptan algunos parámetros, como es el caso de la recuperación de notificaciones que permite especificar la edad máxima de las notificaciones a recuperar o el de recuperación de tareas que también acepta dicho parámetro. Estos parámetros podrían después ser convertidos en opciones de personalización de los usuarios en la aplicación, lo que supondría una mejor de calidad de uso.
+
+Sin embargo, la parametrización alcanzada en el momento de entrega de este proyecto no es tan amplia como se habría deseado. El extremo de recuperación de páginas de mensajes sólo permite especificar la página a recuperar, pero no el tamaño de la página, de forma que un usuario no tiene la oportunidad de cargar grupos mayores de mensajes aunque tenga la capacidad de procesamiento necsaria para permitirse esa mejora. Otros posibles parámetros que podrían ser de utilidad son aquellos que permitirían añadir filtros, como el tipo de mensaje o el autor, que permitirían implementar fácilmente nuevas características.

@@ -1,0 +1,26 @@
+\chapter{Interfaces de comunicación}
+\label{ch:interfaces_comunicacion}
+
+\section{API REST}
+
+A continuación se describen los \glspl{endpoint} de la API REST del sistema y toda la información de su funcionamiento. El único \gls{endpoint} público de la interfaz es el de inicio de sesión (\ref{api:inicio_sesion}), el token de autenticación provisto en las llamadas exitosas a dicho \gls{endpoint} será el que se deba proveer en el encabezado de autenticación siguiendo el \textbf{RFC 6750}\cite{rfc6750} para poder acceder a las funcionalidades del resto de funciones de la interfaz.
+
+Cualquier petición a los \glspl{endpoint} privados puede provocar los siguientes errores de autenticación aparte de los inherentes de cada función:
+
+\begin{itemize}
+    \item 400 BAD REQUEST si falta el Authorization header o está mal formateado.
+    \item 401 UNAUTHORIZED si el \gls{token} es inválido o está expirado.
+\end{itemize}
+
+\vspace{-10pt}
+\input{chapters/Diseño/InterfacesREST/Autenticacion}
+\input{chapters/Diseño/InterfacesREST/Feed}
+\input{chapters/Diseño/InterfacesREST/Tareas}
+\input{chapters/Diseño/InterfacesREST/Usuarios}
+
+\section{API del WebSocket}
+
+\input{chapters/Diseño/InterfacesWS/Global}
+\input{chapters/Diseño/InterfacesWS/Feed}
+\input{chapters/Diseño/InterfacesWS/Localizacion}
+\input{chapters/Diseño/InterfacesWS/Notificacion}

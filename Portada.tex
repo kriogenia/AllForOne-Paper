@@ -1,0 +1,38 @@
+\begin{titlepage}
+    \vfill    
+    \begin{tikzpicture}[remember picture,overlay]
+		% Title
+		\node [yshift=0.25 \paperheight, rectangle, inner sep=20pt, text width=1 \paperwidth, 
+				minimum height=5cm, text centered, fill=ThemeColor2] (title) at (current page.center)
+			{\parbox {0.75\paperwidth}
+				{\centering \color
+					{ThemeColor1}
+					\normalfont\huge\bfseries\scshape \dissertationTitle}
+			};
+		% Author
+		\node [anchor=north, yshift=0.25 \paperheight-2.5cm-20pt-10pt, 
+				inner sep=10pt] (author) at (current page.center)  
+			{\color {ThemeColor1} \textbf {\LARGE\scshape \dissertationAuthor}};
+		% TFG
+		\node [anchor=north, yshift=-25pt, inner sep=11pt] (dissertation) at (author)
+			{\color{ThemeColor1} \textbf{\Large Trabajo Fin de Grado}};
+		\node [anchor=north, yshift=-25pt, inner sep=10pt, text width=0.75 \paperwidth, 
+				text centered] at (dissertation)
+			{\parbox {0.7\paperwidth}
+				{\centering \color{ThemeColor1}
+				\Large\textbf{Director:\printdirector}}};
+		% University logo
+		\node [anchor=south, yshift=0.2 \paperheight] (logo) at (current page.south){
+			\includegraphics[width=0.25\paperwidth]{style/uniovi-squared.png}
+		};
+	%	\node [anchor=north, yshift=0.2 \paperheight] at (current page.south) 
+	%		{\color{ThemeColor1} \textbf{\large \university}};
+		\node [anchor=north, yshift=0.15 \paperheight] at (current page.south) 
+			{\color{ThemeColor1} \textbf{\large \today}};
+   	\end{tikzpicture}
+	\vfill
+
+	% Empty page before content
+	\cleardoublepage
+	
+\end{titlepage}

@@ -1,0 +1,78 @@
+\subsection{Feed}
+
+%feed:join
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{FEED\textunderscore JOIN}} \\ \hline 
+    Descripción         & Suscribe a un cliente a una sala de mensajería. \\ \hline
+    Clave               & feed:join \\ \hline
+    Tipo                & Retransmisión \\ \hline \hline
+    Mensaje de entrada  &      
+   \emph{object}. \acrshort{dto} con la información del usuario, del tipo \nameref{dto:usermin} (\fref{dto:usermin}). \\ \hline \hline
+    Emisión   & FEED\textunderscore JOIN a los usuarios suscritos a la sala. \\ \hline \hline
+    Errores     & Si el cliente no está conectado a una sala global .\\ \hline
+    \caption{Documentación del evento Join de la sala Feed}
+    \label{ws:feed_join}
+\end{longtable}
+
+%feed:leave
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{FEED\textunderscore LEAVE}} \\ \hline 
+    Descripción         & Da de baja a un cliente de su sala de mensajería. \\ \hline
+    Clave               & feed:leave \\ \hline
+    Tipo                & Retransmisión \\ \hline \hline
+    Mensaje de entrada  &      
+   \emph{object}. \acrshort{dto} con la información del usuario, del tipo \nameref{dto:usermin} (\fref{dto:usermin}). \\ \hline \hline
+    Emisión
+    & FEED\textunderscore LEAVE a los usuarios suscritos a la sala \\  \hline \hline
+    Errores     & Si el cliente no está conectado a una sala de mensajería. \\ \hline
+    \caption{Documentación del evento Leave de la sala Feed}
+    \label{ws:feed_leave}
+\end{longtable}
+
+%feed:send
+\begin{table}[H]
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{FEED\textunderscore SEND}} \\ \hline 
+    Descripción         & Envía un mensaje a través de la sala. \\ \hline
+    Clave               & feed:send \\ \hline
+    Tipo                & Cliente \\ \hline \hline
+    Mensaje de entrada    &
+   \emph{object}. \acrshort{dto} del mensaje, del tipo \nameref{dto:message} (\fref{dto:message}). \\ \hline \hline
+    Emisión
+    & FEED\textunderscore NEW a los usuarios suscritos a la sala \\ \hline \hline
+    Errores     & Si el cliente no está conectado a una sala de mensajería \\ \hline
+    \caption{Documentación del evento Send de la sala Feed}
+    \label{ws:feed_send}
+\end{longtable}
+\end{table}
+
+\newpage
+
+%feed:new
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{FEED\textunderscore NEW}} \\ \hline 
+    Descripción         & Nuevo mensaje enviado a través de la sala. \\ \hline
+    Clave               & feed:new \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión    &
+   \emph{object}. \acrshort{dto} del mensaje, del tipo \nameref{dto:message} (\fref{dto:message}). \\ \hline
+    \caption{Documentación del evento New de la sala Feed}
+    \label{ws:feed_new}
+\end{longtable}
+
+%feed:delete
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{FEED\textunderscore DELETE}} \\ \hline 
+    Descripción         & Elimina un mensaje eviado a través de la sala. \\ \hline
+    Clave               & feed:delete \\ \hline
+    Tipo                & Servidor \\ \hline \hline
+    Emisión    &
+   \emph{object}. \acrshort{dto} del mensaje, del tipo \nameref{dto:message} (\fref{dto:message}). \\ \hline
+    \caption{Documentación del evento Delete de la sala Feed}
+    \label{ws:feed_delete}
+\end{longtable}

@@ -1,0 +1,313 @@
+\subsection{Aplicación móvil}
+
+\subsubsection{Registro}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Registro de un Paciente en la aplicación}} \\ \hline 
+    Descripción                 & Realizar el proceso de registro de una cuenta nueva en la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:registro} \\ \hline
+    Entrada                     & Pulsar en \emph{Iniciar sesión} \\
+                                & Selección de cuenta no registrada \\ 
+                                & Introducir nombre \\
+                                & Pulsar en \emph{Avanzar} \\
+                                & Seleccionar rol Paciente \\
+                                & Pulsar en \emph{Avanzar} \\
+                                & Rellenar datos de contacto \\
+                                & Pulsar en \emph{Avanzar} \\
+                                & Aserción de datos \\
+                                & Pulsar en \emph{Finalizar} \\
+                                & Aserción de la tarjeta de Paciente \\ \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Registro de un Paciente en la aplicación}
+    \label{cp:i:app:registro_paciente}
+    
+\end{longtable}
+
+\newpage
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Registro de un Cuidador en la aplicación}} \\ \hline 
+    Descripción                 & Realizar el proceso de registro de una cuenta nueva en la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:registro} \\ \hline
+    Entrada                     & Pulsar en \emph{Iniciar sesión} \\
+                                & Selección de cuenta no registrada \\ 
+                                & Introducir nombre \\
+                                & Pulsar en \emph{Avanzar} \\
+                                & Seleccionar rol Cuidador \\
+                                & Pulsar en \emph{Avanzar} \\
+                                & Rellenar datos de contacto \\
+                                & Pulsar en \emph{Avanzar} \\
+                                & Aserción de datos \\
+                                & Pulsar en \emph{Finalizar} \\
+                                & Aserción de presencia del botón \emph{Forjar vínculo} \\ \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Registro de un Cuidador en la aplicación}
+    \label{cp:i:app:registro_cuidador}
+\end{longtable}
+
+\subsubsection{Inicio y cierre de sesión}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Inicio de sesión en la aplicación}} \\ \hline 
+    Descripción                 & Realizar el proceso de inicio de sesión en la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:iniciar_sesion} \\ \hline
+    Entrada                     & Pulsar en \emph{Iniciar sesión} \\
+                                & Selección de cuenta de Paciente ya registrada \\ 
+                                & Aserción de la tarjeta de Paciente \\ 
+                                & Pulsar en \emph{Ajustes} \\ 
+                                & Pulsar en \emph{Cerrar sesión} \\
+                                & Aserción de la presencia del botón \emph{Iniciar sesión} \\ \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Inicio de sesión en la aplicación}
+    \label{cp:i:app:inicio_sesion}
+\end{longtable}
+
+\newpage
+\subsubsection{Vinculación}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Mostrar código de vinculación en la aplicación}} \\ \hline 
+    Descripción                 & Mostrar el código de vinculación de un Paciente en la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:vincular_paciente} \\ \hline
+    Entrada                     & Iniciar sesión con un Paciente no vinculado \\
+                                & Navegar a \emph{Vínculos} \\ 
+                                & Pulsar en \emph{Añadir vínculo} \\
+                                & Aserción de presencia de código QR en pantalla \\ \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Mostrar código de vinculación en la aplicación}
+    \label{cp:i:app:mostrar_codigo_vinculacion}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Desplegar escáner en la aplicación}} \\ \hline 
+    Descripción                 & Abrir el escáner en la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:vincular_cuidador} \\ \hline
+    Entrada                     & Iniciar sesión con un Cuidador no vinculado \\
+                                & Pulsar en \emph{Forjar vínculo} \\
+                                & Pulsar en \emph{Conceder permiso} \\
+                                & Aserción de apertura del escáner \\ \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Desplegar escáner en la aplicación}
+    \label{cp:i:app:desplegar_escaner}
+\end{longtable}
+
+\vspace{-10pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación de vínculo de un Paciente}} \\ \hline 
+    Descripción                 & Eliminar un vínculo activo de un Paciente \\ \hline
+    Caso de uso                 & \nameref{cu:desvincular} \\ \hline
+    Entrada                     & Iniciar sesión con un Paciente vinculado \\
+                                & Pulsar en \emph{Vínculos} \\
+                                & Mantener pulsado en un vínculo \\
+                                & Confirmar la eliminación \\
+                                & Aserción de desaparición del vínculo \\
+                                & Cambiar a cuenta vinculada \\
+                                & Aserción de desaparición del vínculo \\ \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Eliminación de vínculo de un Paciente}
+    \label{cp:i:app:eliminiacion_vinculo_paciente}
+\end{longtable}
+
+\vspace{-20pt}
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Eliminación de vínculo de un Cuidador}} \\ \hline 
+    Descripción                 & Eliminar un vínculo activo de un Cuidador \\ \hline
+    Caso de uso                 & \nameref{cu:desvincular} \\ \hline
+    Entrada                     & Iniciar sesión con un Cuidador vinculado \\
+                                & Pulsar en \emph{Ajustes} \\
+                                & Pulsar en \emph{Eliminar vínculo} \\
+                                & Confirmar la eliminación \\
+                                & Aserción de desaparición del vínculo \\
+                                & Cambiar a cuenta vinculada \\
+                                & Pulsar en \emph{Vínculos} \\
+                                & Aserción de desaparición del vínculo \\ \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Eliminación de vínculo de un Cuidador}
+    \label{cp:i:app:eliminacion_vinculo_cuidador}
+\end{longtable}
+
+\subsubsection{Compartir ubicación}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Compartir ubicación en la aplicación}} \\ \hline 
+    Descripción                 & Compartir la ubicación de un usuario en la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:compartir_ubicacion} \\ \hline
+    Entrada                     & Iniciar sesión con un usuario vinculado \\
+                                & Navegar a \emph{Localización} \\ 
+                                & Pulsar en \emph{Conceder permiso} \\
+                                & Aserción de la localización \\
+                                & Desplazar GPS \\
+                                & Aserción de la localización \\ \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Compartir ubicación en la aplicación}
+    \label{cp:i:app:compartir_ubicacion}
+\end{longtable}
+
+\newpage
+\subsubsection{Gestionar tareas}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Gestionar las tareas desde Tareas}} \\ \hline 
+    Descripción                 & Probar todas las opciones de gestión de tareas en la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:listar_tareas}, \nameref{cu:crear_tarea}, \nameref{cu:marcar_tarea}, \nameref{cu:desmarcar_tarea}, \nameref{cu:eliminar_tarea} \\ \hline
+    Entrada                     & Iniciar sesión con un usuario vinculado \\
+                                & Navegar a \emph{Tareas} \\ 
+                                & Pulsar en \emph{Crear tarea} \\
+                                & Introducir título y descripción \\
+                                & Pulsar en \emph{Confirmar} \\
+                                & Aserción de la presencia de la tarea \\
+                                & Cambiar a cuenta vinculada \\
+                                & Navegar a \emph{Tareas} \\ 
+                                & Aserción de la presencia de la tarea \\
+                                & Marcar tarea como hecha \\
+                                & Aserción del estado de la tarea \\
+                                & Cambiar a cuenta inicial \\
+                                & Navegar a \emph{Tareas} \\ 
+                                & Aserción del estado de la tarea \\
+                                & Marcar tarea como no hecha \\
+                                & Aserción del estado de la tarea \\
+                                & Pulsar en el botón de eliminar tarea \\
+                                & Confirmar eliminación \\
+                                & Aserción de la ausencia de la tarea \\
+                                & Cambiar a cuenta inicial \\
+                                & Navegar a \emph{Tareas} \\ 
+                                & Aserción de la ausencia de la tarea \\
+                                \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Gestionar las tareas desde Tareas}
+    \label{cp:i:app:gestionar_tareas_tasks}
+\end{longtable}
+
+\newpage
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Gestionar las tareas desde el Feed}} \\ \hline 
+    Descripción                 & Probar todas las opciones de gestión de tareas desde el Feed de la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:listar_tareas}, \nameref{cu:crear_tarea}, \nameref{cu:marcar_tarea}, \nameref{cu:desmarcar_tarea}, \nameref{cu:eliminar_tarea} \\ \hline
+    Entrada                     & Iniciar sesión con un usuario vinculado \\
+                                & Navegar a \emph{Feed} \\ 
+                                & Pulsar en \emph{Modo tarea} \\
+                                & Introducir título y descripción \\
+                                & Pulsar en \emph{Enviar} \\
+                                & Aserción del listado de la tarea \\
+                                & Cambiar a cuenta vinculada \\
+                                & Navegar a \emph{Feed} \\ 
+                                & Aserción de la presencia de la tarea \\
+                                & Marcar tarea como hecha \\
+                                & Aserción del estado de la tarea \\
+                                & Cambiar a cuenta inicial \\
+                                & Navegar a \emph{Feed} \\ 
+                                & Aserción del estado de la tarea \\
+                                & Marcar tarea como no hecha \\
+                                & Aserción del estado de la tarea \\
+                                & Mantener presionada la tarea \\
+                                & Confirmar eliminación \\
+                                & Aserción de la ausencia de la tarea \\
+                                & Cambiar a cuenta inicial \\
+                                & Navegar a \emph{Feed} \\ 
+                                & Aserción de la ausencia de la tarea \\
+                                \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Gestionar las tareas desde el Feed}
+    \label{cp:i:app:gestionar_tareas_feed}
+\end{longtable}
+
+\newpage
+\subsubsection{Envío y recepción de mensaje}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Enviar y recibir mensajes en la aplicación}} \\ \hline 
+    Descripción                 & Probar el sistema de mensajería de la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:enviar_mensajes} \\ \hline
+    Entrada                     & Iniciar sesión con un usuario vinculado \\
+                                & Navegar a \emph{Feed} \\ 
+                                & Introducir un mensaje \\
+                                & Pulsar en \emph{Enviar} \\
+                                & Aserción del listado del mensaje \\
+                                & Cambiar a cuenta vinculada \\
+                                & Navegar a \emph{Feed} \\ 
+                                & Aserción de la del mensaje \\
+                                & Introducir un mensaje \\
+                                & Pulsar en \emph{Enviar} \\
+                                & Aserción del listado del mensaje \\
+                                & Cambiar a cuenta vinculada \\
+                                & Navegar a \emph{Feed} \\ 
+                                & Aserción de la del mensaje \\
+                                \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Enviar y recibir mensajes en la aplicación}
+    \label{cp:i:app:enviar_recibir_mensajes}
+\end{longtable}
+
+\newpage
+\subsubsection{Gestionar notificaciones}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Gestionar notificaciones en la aplicación}} \\ \hline 
+    Descripción                 & Probar las notificaciones de la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:consultar_notificaciones} \\ \hline
+    Entrada                     & Iniciar sesión con un usuario vinculado \\
+                                & Crear tres tareas \\ 
+                                & Cambiar a cuenta vinculada \\
+                                & Aserción del número de notificaciones \\
+                                & Abrir \emph{Notificaciones} \\ 
+                                & Aserción de las notificaciones \\
+                                & Marcar una como leída \\
+                                & Aserción de la ausencia de la notificación \\
+                                & Cerrar \emph{Notificaciones} \\
+                                & Aserción del número de notificaciones \\
+                                & Abrir \emph{Notificaciones} \\ 
+                                & Marcar todas como leídas \\
+                                & Aserción de la ausencia de las notificaciones \\
+                                & Cerrar \emph{Notificaciones} \\
+                                & Aserción del número de notificaciones \\
+                                \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Gestionar notificaciones en la aplicación}
+    \label{cp:i:app:gestionar_notificaciones}
+\end{longtable}
+
+\vspace{-15pt}
+\subsubsection{Consultar vínculos}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Consultar los vínculos en la aplicación}} \\ \hline 
+    Descripción                 & Consultar los vínculos en la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:consultar_cuidador} \\ \hline
+    Entrada                     & Iniciar sesión con un Paciente con dos vínculos \\
+                                & Abrir \emph{Vínculos} \\ 
+                                & Aserción de los vínculos (dos) \\
+                                & Cambiar a cuenta vinculada \\
+                                & Abrir \emph{Vínculos} \\ 
+                                & Aserción de los vínculos (uno) \\
+                                \hline
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Consultar los vínculos en la aplicación}
+    \label{cp:i:app:consultar_vinculos}
+\end{longtable}
+
+\subsubsection{Consultar paciente}
+
+\begin{longtable}{|p{0.25\textwidth} p{0.75\textwidth}|}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Consultar paciente en la aplicación}} \\ \hline 
+    Descripción                 & Realizar el proceso de inicio de sesión en la aplicación \\ \hline
+    Caso de uso                 & \nameref{cu:consultar_paciente} \\ \hline
+    Entrada                     & Iniciar sesión con Cuidador vinculado \\
+                                & Aserción de la tarjeta de Paciente \\ 
+    Resultado esperado          & Debe completarse satisfactoriamente sin errores \\ \hline
+    \caption{Prueba de integración de la aplicación: Consultar paciente en la aplicación}
+    \label{cp:i:app:consultar_paciente}
+\end{longtable}

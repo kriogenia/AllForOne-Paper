@@ -1,0 +1,41 @@
+\chapter{Manual de desarrollador}
+\label{ch:manual_desarrollador}
+
+\section{Despliegue en local}
+
+\subsection{Despliegue de la API}
+\label{ssec:despliegue_local_api}
+
+De cara a realizar un despliegue y ejecución del sistema en local es necesario realizar una serie de configuraciones de cara a permitir el funcionamiento y la comunicación entre los diferentes subsistemas.
+
+Primero, es necesario establecer las \textbf{variables de entorno} que se van a utilizar en la \acrshort{api} y que se tratan en el manual de despliegue, en la \fref{sec:variables_entorno}. Estas variables pueden establecerse en el sistema operativo que se estén usando, pero es más recomendable crear ficheros \code{.env} para tal empresa. Al hacerlo se pueden modificar con facilidad y se pueden tener ficheros distintos según el entorno que se quiera replicar.
+
+Estos ficheros se deben crear en la ruta \code{src/pre-start/env/} de la base de código de la \acrshort{api} utilizando como nombre la palabra que se quiera utilizar para invocar dicho entorno. Se recomienda usar \textbf{development} como nombre para el entorno que se vaya a usar habitualmente y \textbf{production} para uno que emule el entorno de producción. El repositorio cuenta con un fichero de entorno creado para los tests llamado \code{test.env} que puede servir de ejemplo. Los pares clave-valor que se deben definir en el fichero son los indicados en \fref{tab:variables_entorno} además de \textbf{PORT} y \textbf{HOST}.
+
+Una vez se hayan preparado las variables de entorno es necesario añadir la IP local a la lista blanca del clúster de MongoDB que se vaya a utilizar, de forma similar a como se hizo en la \fref{sec:despliegue_mongo} con las direcciones del servidor. Esto permitirá a nuestro servidor local establecer la conexión con el clúster y realizar operaciones con la base de datos.
+
+Al finalizar estas preparaciones, la \acrshort{api} estará preparada para ser desplegada en local con la dirección IP y puerto indicados en las variables de entorno destinadas a tal uso. Se recomienda usar \code{PORT=3000} y \code{HOST=127.0.0.1}. Para lanzar la API se puede utilizar el comando \code{yarn run dev} desde la raíz del proyecto para lanzarlo con las variables de \textbf{development} en un entorno autoreiniciable. Usando \code{yarn run prod} se compilará el código con las variables de \textbf{production} y se ejecutará el código compilado como ocurrirá en el servidor. En el \code{package.json} se puede consultar a qué comandos equivalen estos y crear nuevos a partir de ellos.
+
+\subsection{Despliegue de la aplicación}
+
+La aplicación hace uso de servicios de la \acrshort{api} de Google que en desarrollo requieren añadir una \emph{hash} local a una lista blanca. Esto se lleva a cabo en la pestaña \textbf{Credentials} del proyecto. Se puede encontrar toda la información del procedimiento a realizar en el siguiente enlace:
+
+\href{https://developers.google.com/android/guides/client-auth}{https://developers.google.com/android/guides/client-auth}
+
+Tras añadir la clave a la lista blanca la aplicación lanzada en local podrá comunicarse con los servicios de Google necesarios por la aplicación, falta establecer su comunicación con el servidor local. Para hacer esto se debe añadir la IP del servidor al archivo \code{build.gradle} de la carpeta \textbf{app} (no al de la raíz). En ese fichero se debe añadir la siguiente línea en \textbf{android.buildTypes.release} y \textbf{android.buildTypes.debug}, según el entorno que se vaya a usar.
+
+\code{buildConfigField("String", "SERVER\textunderscore IP", "http://10.0.2.2:3000")}
+
+\textbf{Atención}, la IP de la máquina local no es 127.0.0.1 para este caso, pues dicha IP corresponderá con el emulador en el que se lance la aplicación, la dirección que representa a la máquina que ejecutará el emulador es \code{http://10.0.2.2}. En caso de querer hacer un lanzamiento local de la aplicación que conecte con el servidor desplegado debe sustituirse la dirección por la del servidor, tal que:
+
+\code{buildConfigField("String", "SERVER\textunderscore IP", "https://4l1service.azurewebsites.net"}
+
+Cuando todas estas configuraciones estén listas y el servidor desplegado (esto es cuando hayan emitido el mensaje informativo indicándolo) ya se podrá lanzar la aplicación con el emulador de Android Studio y el sistema debería funcionar correctamente.
+
+\section{Lanzamientos de las pruebas}
+
+Para el lanzamiento de pruebas de la \acrshort{api} en local es únicamente necesario tener el archivo \code{test.env} nombrado en \ref{ssec:despliegue_local_api} \nameref{ssec:despliegue_local_api} en el lugar especificado. Para lanzar el conjunto completo de pruebas se puede usar los comandos \code{yarn run test} o \code{yarn jest}. En caso de querer lanzar únicamente las pruebas de un fichero se puede especificar el nombre o la ruta tras el comando de pruebas, por ejemplo: \code{yarn jest TokenService.ts}.
+
+La \acrshort{api} también cuenta con un sistema de revisión de código que puede ser ejecutado con el comando \code{yarn run lint}.
+
+Para lanzar las pruebas de la aplicación móvil sólo hay que seleccionar la clase, el paquete o la prueba que se desee ejecutar y lanzarla con las propias herramientas de Android Studio. Una forma de lanzar todas las pruebas de la aplicación es situarse encima del paquete \textbf{test/java} en el árbol de ficheros o en el paquete de test deseado si se usa la vista de proyecto; abrir el menú contextual con el click derecho o el sistema preferido; y elegir la opción \textbf{Ejecutar tests en ...}.

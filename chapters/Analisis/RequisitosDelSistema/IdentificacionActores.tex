@@ -1,0 +1,20 @@
+\subsection{Paciente}
+El \textbf{Paciente} o \textbf{Patient} es la figura base alrededor de la que orbita el sistema. Los Pacientes son los usuarios de la aplicación que serán auxiliados por los Cuidadores. Un paciente podrá tener hasta un máximo de seis Cuidadores.
+
+\subsection{Cuidador}
+\label{sec:Cuidador}
+
+Los usuarios de tipo \textbf{Cuidador} o \textbf{Keeper} serán aquellos que usen la aplicación con ánimo de ayudar a un Paciente. Los Cuidadores sólo podrán tener un Paciente vinculado, pero estarán en contacto con los demás Cuidadores de dicho Paciente. 
+
+\subsection{Administración}
+
+Debido a las funciones y carácter cerrado de la aplicación se ha estimado que una figura o rol de administración dentro del sistema sería innecesario. No es necesario ninguna clase de control ni gestión o comprobación a gran escala que exija una moderación interna. Todos los conflictos que puedan surgir por parte de los usuarios podrían ser resueltos por medio de modificaciones directas a la base de datos, que ya cuenta con su propio portal de administración, haciendo innecesario el desarrollo de ningún sistema dedicado para las labores de mantenimiento y administración.
+
+\subsection{Identificación de relación de actores}
+
+Entre los actores relevantes del sistema existen dos tipos de relación que serán nombradas en el documento:
+
+\begin{itemize}
+    \item \textbf{Vínculo}. Relación entre un Paciente y un Cuidador que han sido enlazados. Los usuarios vinculados de un Paciente son sus Cuidadores. El único usuario vinculado de un Cuidador es su Paciente.
+    \item \textbf{Asociación}. Relación entre Cuidadores del mismo Paciente, súper relación de Vínculo. Los usuarios asociados de un Paciente son sus Cuidadores. Los usuarios asociados de un Cuidador son el resto de Cuidadores del paciente y el propio Paciente.
+\end{itemize}
